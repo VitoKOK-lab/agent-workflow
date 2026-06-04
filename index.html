@@ -626,6 +626,52 @@
     .game-popup { width: 170px; left: auto; right: 0; }
   }
 
+  /* ---------- external link confirm modal ---------- */
+  .ext-overlay {
+    display: none; position: fixed; inset: 0; z-index: 500;
+    background: rgba(43,24,34,.35); backdrop-filter: blur(2px);
+    align-items: center; justify-content: center;
+  }
+  .ext-overlay.open { display: flex; }
+  .ext-modal {
+    background: var(--white); border-radius: var(--r-lg);
+    box-shadow: var(--shadow-lg); padding: 28px 30px 24px;
+    max-width: 360px; width: calc(100% - 40px); text-align: center;
+    border-top: 3px solid var(--zana-pink);
+    animation: modalIn .2s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .ext-modal .ext-icon { font-size: 22px; }
+  .ext-modal h4 {
+    font-family: var(--font-sans-tc); font-weight: 700; font-size: 16px;
+    margin: 10px 0 6px; color: var(--ink);
+  }
+  .ext-modal p { font-size: 13px; color: var(--ink-soft); margin: 0 0 20px; line-height: 1.6; }
+  .ext-modal .ext-url {
+    display: block; font-size: 11.5px; color: var(--ink-faint);
+    word-break: break-all; margin-bottom: 20px;
+    padding: 7px 12px; background: var(--paper-warm);
+    border-radius: var(--r-sm); border: 1px solid var(--line);
+  }
+  .ext-btns { display: flex; gap: 10px; justify-content: center; }
+  .ext-cancel {
+    flex: 1; padding: 10px; border-radius: var(--r-pill);
+    border: 1.5px solid var(--line); background: var(--white);
+    font-family: var(--font-sans-tc); font-weight: 700; font-size: 14px;
+    color: var(--ink-soft); cursor: pointer; transition: background .2s;
+  }
+  .ext-cancel:hover { background: var(--paper-warm); }
+  .ext-confirm {
+    flex: 1; padding: 10px; border-radius: var(--r-pill);
+    border: none; background: var(--zana-pink); color: var(--white);
+    font-family: var(--font-sans-tc); font-weight: 700; font-size: 14px;
+    cursor: pointer; box-shadow: var(--shadow-pink); transition: background .2s;
+  }
+  .ext-confirm:hover { background: var(--dark-pink); }
+
   /* ---------- decision split (審核通過/不通過) ---------- */
   .dec-split {
     display: grid;
@@ -1297,6 +1343,20 @@ Step 4 ・ 60 天倒數啟動,跟著任務一關一關過
 
 </div>
 
+<!-- external link confirm modal -->
+<div class="ext-overlay" id="extOverlay" onclick="extCancel(event)">
+  <div class="ext-modal" onclick="event.stopPropagation()">
+    <div class="ext-icon">↗</div>
+    <h4>即將開啟新視窗</h4>
+    <p>以下連結將在新分頁中開啟。</p>
+    <span class="ext-url" id="extUrl"></span>
+    <div class="ext-btns">
+      <button class="ext-cancel" onclick="extCancel()">取消</button>
+      <button class="ext-confirm" id="extConfirmBtn" onclick="extConfirm()">繼續開啟 →</button>
+    </div>
+  </div>
+</div>
+
 <script>
   // scroll-spy for side rail
   (function () {
@@ -1318,6 +1378,27 @@ Step 4 ・ 60 天倒數啟動,跟著任務一關一關過
     }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
     document.querySelectorAll('.stage').forEach(function (s) { obs.observe(s); });
   })();
+
+  // intercept all target="_blank" links (except side-rail nav)
+  var _extHref = null;
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[target="_blank"]');
+    if (!a) return;
+    e.preventDefault();
+    _extHref = a.href;
+    document.getElementById('extUrl').textContent = _extHref;
+    document.getElementById('extOverlay').classList.add('open');
+  }, true);
+  function extConfirm() {
+    if (_extHref) { window.open(_extHref, '_blank', 'noopener'); }
+    document.getElementById('extOverlay').classList.remove('open');
+    _extHref = null;
+  }
+  function extCancel(e) {
+    if (e && e.target !== document.getElementById('extOverlay')) return;
+    document.getElementById('extOverlay').classList.remove('open');
+    _extHref = null;
+  }
 
   function toggleGamePopup(icon) {
     var popup = icon.nextElementSibling;
