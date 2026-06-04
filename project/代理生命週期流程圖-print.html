@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>代理線上商店輔導流程 · 流程圖</title>
+<link rel="stylesheet" href="assets/colors_and_type.css" />
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(1100px 520px at 50% -120px, var(--pink-050), transparent 70%),
+      var(--paper-warm);
+    color: var(--ink);
+    font-family: var(--font-sans-tc);
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px 140px;
+  }
+
+  /* ---------- shared type ---------- */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: var(--track-eyebrow);
+    text-transform: uppercase;
+    color: var(--gold-deep);
+  }
+  .num-h { font-family: var(--font-sans); font-weight: 500; }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero {
+    text-align: center;
+    padding: 84px 0 28px;
+    position: relative;
+  }
+  .hero .motif-bg {
+    position: absolute;
+    top: 18px; left: 50%; transform: translateX(-50%);
+    width: 320px; opacity: .06; pointer-events: none; user-select: none;
+  }
+  .hero .mark { width: 70px; height: auto; position: relative; }
+  .hero .wordmark {
+    margin-top: 18px;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: .42em;
+    color: var(--ink-soft);
+    padding-left: .42em;
+  }
+  .hero h1 {
+    font-family: var(--font-serif-tc);
+    font-weight: 600;
+    font-size: clamp(34px, 5.4vw, 56px);
+    line-height: 1.12;
+    margin: 18px 0 0;
+    color: var(--ink);
+  }
+  .hero .lead {
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin: 16px auto 0;
+    max-width: 540px;
+    line-height: 1.7;
+  }
+  .gold-rule {
+    width: 64px; height: 1.5px; margin: 30px auto 0;
+    background: var(--foil-gold);
+  }
+  .byline {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin: 26px auto 0;
+    padding: 9px 18px;
+    background: var(--white);
+    border: 1px solid var(--line-gold);
+    border-radius: var(--r-pill);
+    box-shadow: var(--shadow-xs);
+    font-size: 13px; color: var(--ink-soft); line-height: 1.4;
+  }
+  .byline .bk { color: var(--ink-faint); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-family: var(--font-sans); }
+  .byline b { font-weight: 700; color: var(--dark-pink-700); }
+  .byline .sep { width: 1px; height: 14px; background: var(--line-gold); }
+
+  /* ---------- legend ---------- */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 14px;
+    margin: 34px auto 0;
+    max-width: 760px;
+  }
+  .legend .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 16px 8px 12px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--r-pill);
+    box-shadow: var(--shadow-xs);
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .legend .chip .dot {
+    width: 11px; height: 11px; border-radius: 50%;
+  }
+  .legend .chip .n {
+    font-family: var(--font-sans); font-size: 11px; font-weight: 500;
+    color: var(--ink-faint); letter-spacing: .06em;
+  }
+  .legend .chip.key { border-color: var(--zana-pink); background: var(--pink-050); }
+
+  /* ---------- journey overview strip ---------- */
+  .overview {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    max-width: 900px; margin: 46px auto 0;
+    background: var(--white); border: 1px solid var(--line);
+    border-radius: var(--r-lg); box-shadow: var(--shadow-sm); overflow: hidden;
+  }
+  .ov-cell { padding: 20px 18px; position: relative; text-decoration: none; color: inherit; display: block; transition: background .25s ease; cursor: pointer; }
+  .ov-cell:hover { background: var(--pink-050); }
+  .ov-cell:hover h3 { color: var(--dark-pink-700); }
+  .ov-cell .ov-go {
+    position: absolute; top: 16px; right: 16px; font-size: 14px; color: var(--ink-faint);
+    opacity: 0; transform: translateX(-4px); transition: all .25s ease;
+  }
+  .ov-cell:hover .ov-go { opacity: 1; transform: translateX(0); color: var(--zana-pink); }
+  .ov-cell + .ov-cell { border-left: 1px solid var(--line); }
+  .ov-cell .ov-top {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--font-sans); font-size: 11px; letter-spacing: .16em; color: var(--ink-faint);
+  }
+  .ov-cell .ov-dot { width: 9px; height: 9px; border-radius: 50%; }
+  .ov-cell h3 {
+    font-family: var(--font-sans-tc); font-weight: 700; font-size: 16px;
+    margin: 9px 0 0; color: var(--ink);
+  }
+  .ov-cell .ov-meta { font-size: 12px; color: var(--ink-soft); margin-top: 5px; line-height: 1.5; }
+  .ov-cell .ov-dur {
+    display: inline-block; margin-top: 10px; font-family: var(--font-sans); font-size: 11px;
+    font-weight: 700; color: var(--gold-deep); letter-spacing: .04em;
+    border: 1px solid var(--line-gold); border-radius: var(--r-pill); padding: 3px 9px;
+  }
+  @media (max-width: 760px) {
+    .overview { grid-template-columns: 1fr 1fr; }
+    .ov-cell:nth-child(3) { border-left: none; }
+    .ov-cell:nth-child(n+3) { border-top: 1px solid var(--line); }
+  }
+  .ov-key {
+    display: flex; align-items: center; justify-content: center; gap: 9px;
+    max-width: 900px; margin: 14px auto 0;
+    font-size: 12.5px; color: var(--ink-soft); letter-spacing: .02em;
+  }
+  .ov-key b { color: var(--zana-pink); font-weight: 700; }
+  .ov-key .ov-keydot { width: 10px; height: 10px; border-radius: 50%; background: var(--zana-pink); flex: none; }
+
+  /* ============================================================
+     SIDE RAIL (scroll-spy)
+     ============================================================ */
+  .rail {
+    position: fixed;
+    left: 28px; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 4px;
+    z-index: 30;
+  }
+  .rail a {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+    padding: 7px 6px;
+    color: var(--ink-faint);
+    transition: color .3s ease;
+  }
+  .rail a .rdot {
+    width: 10px; height: 10px; border-radius: 50%;
+    border: 1.5px solid var(--ink-faint);
+    background: transparent;
+    transition: all .3s ease;
+    flex: none;
+  }
+  .rail a .rlabel {
+    font-size: 12px; letter-spacing: .04em;
+    opacity: 0; transform: translateX(-6px);
+    transition: all .3s ease; white-space: nowrap;
+  }
+  .rail a:hover .rlabel { opacity: 1; transform: translateX(0); }
+  .rail a.active { color: var(--ink); }
+  .rail a.active .rdot { border-color: var(--stage-c); background: var(--stage-c); transform: scale(1.25); }
+  .rail a.active .rlabel { opacity: 1; transform: translateX(0); color: var(--ink); }
+  @media (max-width: 1240px) { .rail { display: none; } }
+
+  /* ============================================================
+     STAGE
+     ============================================================ */
+  .stage { padding-top: 30px; scroll-margin-top: 24px; }
+  .stage-head { text-align: center; margin: 0 auto 38px; max-width: 660px; position: relative; }
+  .stage-head .stage-no {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: .3em;
+    color: var(--stage-c);
+  }
+  .stage-head h2 {
+    font-family: var(--font-serif-tc);
+    font-weight: 600;
+    font-size: clamp(26px, 3.5vw, 38px);
+    margin: 10px 0 0;
+    color: var(--ink);
+  }
+  .stage-head .stage-sub { font-size: 14px; color: var(--ink-soft); margin-top: 10px; }
+  .stage-head .stage-bar {
+    width: 46px; height: 3px; border-radius: 2px; margin: 18px auto 0;
+    background: var(--stage-c);
+  }
+
+  /* ---------- centered flow column ---------- */
+  .flow { display: flex; flex-direction: column; align-items: center; }
+
+  .link {
+    display: flex; flex-direction: column; align-items: center;
+    height: 50px; position: relative;
+  }
+  .link .bar { width: 2px; flex: 1; background: var(--stage-c); opacity: .42; }
+  .link .head {
+    width: 9px; height: 9px; margin-top: -7px;
+    border-right: 2px solid var(--stage-c);
+    border-bottom: 2px solid var(--stage-c);
+    transform: rotate(45deg); opacity: .55;
+  }
+
+  /* ---------- step card ---------- */
+  .step {
+    display: flex; align-items: center; gap: 22px;
+    width: 100%; max-width: 600px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow-sm);
+    padding: 22px 28px;
+    position: relative;
+    transition: box-shadow .35s ease, transform .35s ease;
+  }
+  .step:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .step .num {
+    flex: none; width: 56px; height: 56px; border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: var(--font-sans); font-weight: 500; font-size: 23px;
+  }
+  /* neutral (stage 1) */
+  .num.n-neutral { background: var(--white); border: 1.5px solid var(--ink-soft); color: var(--ink); }
+  /* gold (stage 2) */
+  .num.n-gold { background: var(--foil-gold); color: #4b3f1c; }
+  /* deep pink (stage 3) */
+  .num.n-pink { background: var(--dark-pink); color: var(--white); }
+  /* teal (stage 4) */
+  .num.n-teal { background: var(--tahir-blue); color: var(--ink); }
+
+  .step .body { flex: 1; min-width: 0; }
+  .step .body h4 {
+    font-family: var(--font-sans-tc); font-weight: 700; font-size: 19px;
+    margin: 0; color: var(--ink); line-height: 1.3;
+  }
+  .step .body p { font-size: 13.5px; color: var(--ink-soft); margin: 5px 0 0; line-height: 1.55; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 11px; }
+  .tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; padding: 4px 11px; border-radius: var(--r-pill);
+    border: 1px solid var(--line); color: var(--ink-soft); background: var(--paper-warm);
+  }
+  .tag.pos { border-color: var(--tahir-blue); color: #1f7d75; background: var(--teal-050); }
+  .tag.neg { border-color: var(--line); color: var(--ink-faint); }
+  .tag b { font-weight: 700; }
+
+  /* ---------- copyable message template ---------- */
+  .msg-wrap { width: 100%; max-width: 600px; margin-top: 0; }
+  .msg-toggle {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 14px;
+    font-family: var(--font-sans-tc); font-weight: 700; font-size: 13px;
+    cursor: pointer; color: var(--gold-deep);
+    border: 1px solid var(--line-gold); border-radius: var(--r-pill);
+    padding: 7px 15px; background: var(--white);
+    transition: background .2s ease;
+  }
+  .msg-toggle:hover { background: var(--gold-050); }
+  .msg-toggle .arr { transition: transform .25s ease; display: inline-block; }
+  .msg-toggle.open .arr { transform: rotate(90deg); }
+  .msg-box {
+    display: none; margin-top: 14px;
+    border: 1.5px solid var(--line-gold);
+    border-radius: var(--r-md);
+    background: var(--white);
+    box-shadow: var(--shadow-xs);
+    overflow: hidden;
+  }
+  .msg-box.open { display: block; }
+  .msg-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px; background: var(--gold-050);
+    border-bottom: 1px solid var(--line-gold);
+  }
+  .msg-head span {
+    font-family: var(--font-sans); font-size: 11px; font-weight: 700;
+    letter-spacing: .14em; color: var(--gold-deep); text-transform: uppercase;
+  }
+  .copy-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-sans-tc); font-weight: 700; font-size: 12px;
+    border: none; cursor: pointer; border-radius: var(--r-pill);
+    padding: 6px 14px; background: var(--zana-pink); color: var(--white);
+    box-shadow: var(--shadow-pink); transition: background .2s ease;
+  }
+  .copy-btn:hover { background: var(--dark-pink); }
+  .copy-btn.copied { background: #06C755; box-shadow: 0 4px 14px rgba(6,199,85,.28); }
+  .msg-body {
+    padding: 18px 20px;
+    font-family: var(--font-sans-tc); font-size: 13.5px; line-height: 1.8;
+    color: var(--ink); white-space: pre-wrap; word-break: break-word;
+    max-height: 420px; overflow-y: auto;
+    border-bottom: 1px solid var(--line);
+  }
+  .msg-foot {
+    padding: 10px 16px;
+    display: flex; justify-content: flex-end;
+  }
+  .steplink {
+    display: inline-flex; align-items: center; gap: 7px; margin-top: 12px;
+    font-family: var(--font-sans-tc); font-weight: 700; font-size: 13px;
+    text-decoration: none; color: var(--white); background: var(--zana-pink);
+    border-radius: var(--r-pill); padding: 8px 16px;
+    box-shadow: var(--shadow-pink); transition: background .25s ease, transform .2s ease;
+  }
+  .steplink:hover { background: var(--dark-pink); transform: translateY(-1px); }
+  .steplink .arr { font-family: var(--font-sans); font-weight: 500; }
+  .steplink.line { background: #06C755; box-shadow: 0 4px 14px rgba(6,199,85,.28); }
+  .steplink.line:hover { background: #05a648; }
+  .steplink.ghost {
+    background: var(--white); color: var(--dark-pink-700);
+    border: 1.5px solid var(--zana-pink); box-shadow: var(--shadow-xs);
+  }
+  .steplink.ghost:hover { background: var(--pink-050); }
+
+  /* ---------- KEY NODE ---------- */
+  .step.key {
+    border: 1.6px solid var(--zana-pink);
+    background: linear-gradient(180deg, #fff, var(--pink-050));
+    box-shadow: var(--shadow-pink);
+    max-width: 640px;
+  }
+  .step.key .num.keynum { background: var(--zana-pink); color: var(--white); border: none; }
+  .keyflag {
+    position: absolute; top: -13px; right: 22px;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--zana-pink); color: var(--white);
+    font-size: 11px; font-weight: 700; letter-spacing: .14em;
+    padding: 6px 13px; border-radius: var(--r-pill);
+    box-shadow: var(--shadow-pink);
+  }
+  .step.key .body h4 { color: var(--dark-pink-700); }
+
+  /* a key milestone tile (no number, centered) */
+  .milestone {
+    width: 100%; max-width: 560px; text-align: center;
+    border: 1.6px solid var(--zana-pink);
+    background: linear-gradient(180deg, #fff, var(--pink-050));
+    box-shadow: var(--shadow-pink);
+    border-radius: var(--r-lg);
+    padding: 30px 32px 28px;
+    position: relative;
+  }
+  .milestone .spark { color: var(--zana-pink); font-size: 20px; letter-spacing: .3em; }
+  .milestone h4 {
+    font-family: var(--font-serif-tc); font-weight: 600; font-size: 23px;
+    margin: 8px 0 0; color: var(--dark-pink-700);
+  }
+  .milestone p { font-size: 14px; color: var(--ink-soft); margin: 8px 0 0; }
+  .metrics {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    margin: 20px 0 4px;
+  }
+  .metric {
+    background: var(--white); border: 1px solid var(--pink-200);
+    border-radius: var(--r-md); padding: 16px 10px;
+  }
+  .metric .mv {
+    font-family: var(--font-sans); font-weight: 700; font-size: 30px;
+    color: var(--zana-pink); line-height: 1;
+  }
+  .metric .ml { font-size: 12.5px; color: var(--ink-soft); margin-top: 7px; }
+  .reward {
+    display: inline-flex; align-items: center; gap: 9px; margin-top: 18px;
+    background: var(--foil-gold); color: #4b3f1c; font-weight: 700; font-size: 14px;
+    padding: 10px 20px; border-radius: var(--r-pill); box-shadow: var(--shadow-xs);
+  }
+
+  /* ============================================================
+     DETOUR / BRANCH
+     ============================================================ */
+  .detour-wrap { display: flex; flex-direction: column; align-items: center; width: 100%; }
+  .branch-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-sans); font-size: 11px; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--ink-faint);
+    margin-bottom: 4px;
+  }
+  .detour {
+    width: 100%; max-width: 640px;
+    border: 1.5px dashed var(--line-gold);
+    border-radius: var(--r-md);
+    background: var(--paper-warm);
+    padding: 22px 26px 26px;
+    position: relative;
+  }
+  .detour .dhead {
+    display: flex; align-items: baseline; gap: 10px;
+    padding-bottom: 14px; margin-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .detour .dhead h5 {
+    font-family: var(--font-sans-tc); font-weight: 700; font-size: 15px;
+    margin: 0; color: var(--ink);
+  }
+  .detour .dhead span { font-size: 12.5px; color: var(--ink-soft); }
+
+  .bflow { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .bstep {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    padding: 13px 16px;
+  }
+  .bstep .badge {
+    flex: none; font-family: var(--font-sans); font-size: 11px; font-weight: 500;
+    letter-spacing: .08em; color: var(--gold-deep);
+    border: 1px solid var(--line-gold); border-radius: var(--r-pill);
+    padding: 4px 10px; white-space: nowrap;
+  }
+  .bstep .bt { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .bstep .bd { font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; }
+  .blink {
+    display: flex; flex-direction: column; align-items: center; height: 34px;
+    position: relative;
+  }
+  .blink .bar { width: 2px; flex: 1; background: var(--gold-300); opacity: .7; }
+  .blink span { font-size: 11px; color: var(--ink-faint); position: absolute; left: calc(50% + 16px); top: 50%; transform: translateY(-50%); white-space: nowrap; }
+
+  .bsplit { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+  .boutcome {
+    border-radius: var(--r-sm); padding: 13px 15px; text-align: center;
+    border: 1px solid var(--line); background: var(--white);
+  }
+  .boutcome .ol { font-size: 11px; letter-spacing: .1em; color: var(--ink-faint); }
+  .boutcome .ov { font-size: 14.5px; font-weight: 700; margin-top: 4px; }
+  .boutcome.sleep .ov { color: var(--ink-soft); }
+  .boutcome.back { border-color: var(--tahir-blue); background: var(--teal-050); }
+  .boutcome.back .ov { color: #1f7d75; }
+
+  /* ============================================================
+     STAGE 3 — trigger + parallel + extension
+     ============================================================ */
+  .trigger {
+    width: 100%; max-width: 560px; text-align: center;
+    border: 1px solid var(--line); background: var(--white);
+    border-radius: var(--r-lg); box-shadow: var(--shadow-sm);
+    padding: 24px 28px;
+  }
+  .trigger .cmd {
+    display: inline-block; font-family: var(--font-sans-tc); font-weight: 700;
+    font-size: 18px; color: var(--white);
+    background: var(--dark-pink); border-radius: var(--r-pill);
+    padding: 10px 22px;
+  }
+  .trigger p { font-size: 13.5px; color: var(--ink-soft); margin: 14px 0 0; }
+  .trigger .countdown {
+    margin-top: 6px; font-family: var(--font-sans); font-weight: 700;
+    color: var(--dark-pink-700); letter-spacing: .04em;
+  }
+
+  .parallel {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    width: 100%; max-width: 780px;
+  }
+  .phase {
+    background: var(--white); border: 1px solid var(--line);
+    border-radius: var(--r-md); box-shadow: var(--shadow-sm);
+    padding: 22px 22px 24px; position: relative; overflow: hidden;
+  }
+  .phase::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--dark-pink);
+  }
+  .phase .ph-no {
+    font-family: var(--font-sans); font-size: 11px; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--dark-pink);
+  }
+  .phase h4 {
+    font-family: var(--font-sans-tc); font-weight: 700; font-size: 18px;
+    margin: 8px 0 2px; color: var(--ink);
+  }
+  .phase .range {
+    font-family: var(--font-sans); font-size: 12px; color: var(--ink-faint);
+    letter-spacing: .04em;
+  }
+  .phase ul {
+    list-style: none; margin: 16px 0 0; padding: 0;
+    display: flex; flex-wrap: wrap; gap: 7px;
+  }
+  .phase li {
+    font-size: 12.5px; color: var(--ink-soft);
+    background: var(--pink-050); border: 1px solid var(--line);
+    border-radius: var(--r-pill); padding: 5px 11px;
+  }
+  .parallel-note {
+    text-align: center; font-size: 12px; color: var(--ink-faint);
+    margin-top: 14px; letter-spacing: .04em;
+  }
+
+  /* game-by-game rows inside a phase */
+  .phase ul.games {
+    flex-direction: column; gap: 0; margin-top: 18px;
+  }
+  .phase ul.games li {
+    display: flex; align-items: flex-start; gap: 13px;
+    background: transparent; border: none; border-radius: 0;
+    padding: 11px 0; position: relative;
+  }
+  .phase ul.games li + li { border-top: 1px solid var(--line); }
+  .phase ul.games li .g {
+    flex: none; font-family: var(--font-sans); font-weight: 700; font-size: 12px;
+    letter-spacing: .02em; color: var(--white); background: var(--dark-pink);
+    border-radius: var(--r-pill); padding: 4px 9px; margin-top: 1px; min-width: 58px; text-align: center;
+  }
+  .phase ul.games li .gt { font-size: 14px; font-weight: 700; color: var(--ink); line-height: 1.35; }
+  .phase ul.games li .gd { font-size: 12px; color: var(--ink-soft); margin-top: 2px; line-height: 1.5; }
+  .phase .ph-meta {
+    display: inline-flex; align-items: center; gap: 7px; margin-top: 8px;
+    font-family: var(--font-sans); font-size: 11px; letter-spacing: .04em; color: var(--gold-deep);
+    border: 1px solid var(--line-gold); border-radius: var(--r-pill); padding: 3px 10px;
+  }
+
+  /* merge connector (two -> one) */
+  .merge { width: 100%; max-width: 780px; height: 38px; position: relative; }
+  .merge svg { width: 100%; height: 100%; display: block; }
+
+  /* ============================================================
+     STAGE 4 — horizontal ops flow
+     ============================================================ */
+  .ops {
+    display: flex; flex-wrap: wrap; align-items: stretch; justify-content: center;
+    gap: 8px; width: 100%; max-width: 1000px;
+  }
+  .opcard {
+    flex: 1 1 200px; min-width: 190px;
+    background: var(--white); border: 1px solid var(--teal-100);
+    border-radius: var(--r-md); box-shadow: var(--shadow-sm);
+    padding: 22px 20px; text-align: center;
+    border-top: 3px solid var(--tahir-blue);
+  }
+  .opcard .oi {
+    font-family: var(--font-sans); font-size: 12px; color: var(--ink-faint);
+    letter-spacing: .14em;
+  }
+  .opcard h4 {
+    font-family: var(--font-sans-tc); font-weight: 700; font-size: 18px;
+    margin: 8px 0 0; color: var(--ink);
+  }
+  .opcard p { font-size: 13px; color: var(--ink-soft); margin: 7px 0 0; line-height: 1.5; }
+  .oparrow {
+    flex: 0 0 auto; display: grid; place-items: center; color: var(--tahir-blue);
+    font-size: 22px; align-self: center;
+  }
+  @media (max-width: 720px) {
+    .oparrow { transform: rotate(90deg); }
+    .opcard { flex: 1 1 100%; }
+  }
+
+  /* finale */
+  .finale { text-align: center; margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--line); }
+  .finale .mk { width: 38px; opacity: .8; }
+  .finale p { font-size: 13px; color: var(--ink-faint); margin: 14px 0 0; letter-spacing: .04em; }
+
+  .detour-wrap:not([style]) .bflow .blink,
+  .detour-wrap:not([style]) .bflow .bstep:last-child { display: none; }
+
+  @media (max-width: 600px) {
+    .step { flex-direction: row; padding: 18px 18px; gap: 16px; }
+    .step .num { width: 48px; height: 48px; font-size: 20px; }
+    .step .body h4 { font-size: 17px; }
+    .bsplit { grid-template-columns: 1fr; }
+    .parallel { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    @page { size: A4 portrait; margin: 14mm 12mm; }
+    *, *::before, *::after { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    html { scroll-behavior: auto; }
+    body { background: var(--paper-warm) !important; }
+    .rail { display: none !important; }
+    .msg-toggle { display: none !important; }
+    .msg-box { display: block !important; }
+    .copy-btn { display: none !important; }
+    .page { max-width: 100%; padding: 0 0 20px; }
+    .hero { padding: 8px 0 18px; break-after: page; }
+    .stage { break-before: page; padding-top: 8px; }
+    #s1 { break-before: avoid; }
+    .stage-head { margin-bottom: 26px; }
+    .page > .link { display: none; }
+    .step, .detour, .milestone, .trigger, .phase, .opcard,
+    .detour-wrap, .stage-head, .overview, .ov-cell, .msg-box { break-inside: avoid; }
+    .step:hover { box-shadow: var(--shadow-sm); transform: none; }
+    .ops { gap: 6px; }
+    .finale { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============= SIDE RAIL ============= -->
+<nav class="rail" aria-label="段落導覽">
+  <a href="#s1" data-stage="s1"><span class="rdot"></span><span class="rlabel">招募簽約</span></a>
+  <a href="#s2" data-stage="s2"><span class="rdot"></span><span class="rlabel">匯款預備課</span></a>
+  <a href="#s3" data-stage="s3"><span class="rdot"></span><span class="rlabel">建店養號</span></a>
+  <a href="#s4" data-stage="s4"><span class="rdot"></span><span class="rlabel">正式營運</span></a>
+</nav>
+
+<div class="page">
+
+  <!-- ============= HERO ============= -->
+  <header class="hero">
+    <img class="motif-bg" src="assets/motif-gold.png" alt="" />
+    <img class="mark" src="assets/logo-pink.png" alt="TAHIR ZAINAB" />
+    <div class="wordmark">TAHIR ZAINAB</div>
+    <h1>代理線上商店輔導流程</h1>
+    <p class="lead">從看到一支影片，到成為正式上線的線上珠寶商 —— 招募、簽約、建店、營運的完整旅程。</p>
+    <div class="byline">
+      <span class="bk">品牌</span>TAHIR ZAINAB 泰熙爾札娜
+      <span class="sep"></span>
+      <span class="bk">業務承辦</span><b>上山打老虎有限公司</b>
+    </div>
+    <div class="gold-rule"></div>
+
+    <div class="overview">
+      <a class="ov-cell" href="#s1">
+        <span class="ov-go">→</span>
+        <div class="ov-top"><span class="ov-dot" style="background:var(--ink-soft)"></span>STAGE 01</div>
+        <h3>招募簽約</h3>
+        <div class="ov-meta">看到內容 → 審核 → 面談簽約</div>
+        <span class="ov-dur">STEP 1–7 · 含追蹤分支</span>
+      </a>
+      <a class="ov-cell" href="#s2">
+        <span class="ov-go">→</span>
+        <div class="ov-top"><span class="ov-dot" style="background:var(--gold)"></span>STAGE 02</div>
+        <h3>匯款預備課</h3>
+        <div class="ov-meta">入會 → 生效 → 考試解鎖</div>
+        <span class="ov-dur">STEP 8–11 · 預備課約 1 週</span>
+      </a>
+      <a class="ov-cell" href="#s3">
+        <span class="ov-go">→</span>
+        <div class="ov-top"><span class="ov-dot" style="background:var(--dark-pink)"></span>STAGE 03</div>
+        <h3>建店養號</h3>
+        <div class="ov-meta">IG 開店 → 養號 → FB 收尾</div>
+        <span class="ov-dur">game01–15 · 60 天挑戰</span>
+      </a>
+      <a class="ov-cell" href="#s4">
+        <span class="ov-go">→</span>
+        <div class="ov-top"><span class="ov-dot" style="background:var(--tahir-blue)"></span>STAGE 04</div>
+        <h3>正式營運</h3>
+        <div class="ov-meta">賣貨拿傭金，後勤全包</div>
+        <span class="ov-dur">上線後·持續營運</span>
+      </a>
+    </div>
+    <div class="ov-key">
+      <span class="ov-keydot"></span>流程中以 <b>札娜紅</b> 標示的為 <b>關鍵節點</b> · 點上方四格可跳至各段
+    </div>
+  </header>
+
+  <!-- ============================================================
+       第一段 · 招募簽約
+       ============================================================ -->
+  <section class="stage" id="s1" style="--stage-c: var(--ink-soft);">
+    <div class="stage-head">
+      <div class="stage-no">STAGE 01</div>
+      <h2>招募簽約</h2>
+      <div class="stage-sub">全人工流程 · 從興趣到現場簽約</div>
+      <div class="stage-bar"></div>
+    </div>
+
+    <div class="flow">
+      <div class="step">
+        <div class="num num-neutral n-neutral">1</div>
+        <div class="body"><h4>看到影片 / 圖文有興趣</h4><p>在 IG、FB 等社群觸及品牌內容，產生初步好奇。</p></div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <div class="step">
+        <div class="num n-neutral">2</div>
+        <div class="body"><h4>加官方 LINE OA</h4><p>進入品牌官方帳號，開始一對一對話。</p>
+        <a class="steplink line" href="https://lin.ee/oE4sdTer" target="_blank" rel="noopener">加入官方 LINE OA <span class="arr">→</span></a>
+        <button class="msg-toggle" onclick="toggleMsg(this)">公版回覆範本 <span class="arr">›</span></button>
+        <div class="msg-box">
+          <div class="msg-head">
+            <span>LINE OA 公版回覆</span>
+            <button class="copy-btn" style="background:#06C755;box-shadow:0 4px 14px rgba(6,199,85,.28);" onclick="copyMsg(this)">複製內容</button>
+          </div>
+          <div class="msg-body">很高興您對軽奄珠寶創業有興趣 💎
+夢想啟動就在這一刻！為了讓您更了解合作細節，請先幫我們填寫「創業評估表」，我們確認您是否適合之後會傳送「線上說明會影片」給您
+
+「創業評估表」
+ https://www.tzgrotw.tw/forms/69ccb630319b6ae4603723b8
+填寫完畢後，請回傳「已填寫」讓我們一起打造屬於您的珠寶品牌夢！歡迎你的到來～😄</div>
+          <div class="msg-foot">
+            <button class="copy-btn" style="background:#06C755;box-shadow:0 4px 14px rgba(6,199,85,.28);" onclick="copyMsg(this)">複製內容</button>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <div class="step">
+        <div class="num n-neutral">3</div>
+        <div class="body"><h4>填寫評估表</h4><p>提供基本資料與加入意願，供承辦公司評估。</p>
+        <a class="steplink" href="https://www.tzgrotw.tw/forms/69ccb630319b6ae4603723b8" target="_blank" rel="noopener">填寫評估表 <span class="arr">→</span></a></div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <!-- branch: 填表後若沒下文 -->
+      <div class="detour-wrap">
+        <div class="branch-label">↷ 填寫評估表後 · 若對方沒下文</div>
+        <div class="detour">
+          <div class="dhead">
+            <h5>沒下文 → 追蹤</h5>
+            <span>主動再接觸，把人帶回主線</span>
+          </div>
+          <div class="bflow">
+            <div class="bstep">
+              <span class="badge">第一次 · 2 天</span>
+              <div><div class="bt">LINE OA + IG 私訊</div><div class="bd">輕度提醒，重新開啟對話。</div></div>
+            </div>
+            <div class="blink"><span class="bar"></span><span>再 2 天沒回</span></div>
+            <div class="bstep">
+              <span class="badge">第二次 · 再 2 天</span>
+              <div><div class="bt">Vito 1 對 1 線上會議</div><div class="bd">真人對談，釐清疑慮。</div></div>
+            </div>
+          </div>
+          <div class="bsplit">
+            <div class="boutcome sleep"><div class="ol">仍沒回</div><div class="ov">列入休眠</div></div>
+            <div class="boutcome back"><div class="ol">有回</div><div class="ov">回主線 → STEP 4</div></div>
+          </div>
+          <button class="msg-toggle" onclick="toggleMsg(this)">追蹤公版範本 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head"><span>LINE OA 沒下文追蹤公版</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-body">嗈,再次打擾你 🙏
+
+幾天前傳給你的代理評估表
+https://www.tzgrotw.tw/forms/69ccb630319b6ae4603723b8
+還沒收到你的回覆。
+
+如果你還在考慮,沒關係 ——
+我們下週會集中審核這一批申請,
+建議你想好就盡早填,免得錯過這次的開放名額。
+
+如果你最後決定不參與,
+也歡迎直接告訴我,我們不會打擾你 😊</div>
+            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <div class="step">
+        <div class="num n-neutral">4</div>
+        <div class="body">
+          <h4>承辦公司審核評估表</h4>
+          <div class="tags">
+            <span class="tag pos"><b>通過</b> → 寄說明會</span>
+            <span class="tag neg"><b>不通過</b> → 婉拒</span>
+          </div>
+          <a class="steplink ghost" href="https://form-builder.shoplineapp.com/admin/tzgrotw251/forms/69ccb630319b6ae4603723b8/report" target="_blank" rel="noopener">查看填寫內容（後台） <span class="arr">→</span></a>
+          <button class="msg-toggle" onclick="toggleMsg(this)">通過後：寄送說明會範本 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head">
+              <span>LINE OA 寄送說明會訊息範本</span>
+              <button class="copy-btn" onclick="copyMsg(this)">複製內容</button>
+            </div>
+            <div class="msg-body">{AccountName}感謝您填完評估表，以下是線上說明會連結
+
+https://reurl.cc/Q2q81p
+
+(!)此影片有附上電子簽章請勿外傳，看完後請再和我們約面談時間，謝謝</div>
+            <div class="msg-foot">
+              <button class="copy-btn" onclick="copyMsg(this)">複製內容</button>
+            </div>
+          </div>
+          <button class="msg-toggle" style="background:var(--paper-warm);" onclick="toggleMsg(this)">️ 寄出婉拒訊息範本 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head">
+              <span>LINE OA 婉拒訊息範本</span>
+              <button class="copy-btn" style="background:var(--ink-soft);box-shadow:none;" onclick="copyMsg(this)">複製內容</button>
+            </div>
+            <div class="msg-body">[名字] 你好 🙏
+
+謝謝你完整填寫代理評估表,
+我們有認真看過你的內容。
+
+經過審核,這次我們無法邀請你加入代理團隊。
+這不代表你不夠好——
+代理的合作有許多條件考量,
+也跟我們目前的階段規劃有關。
+
+💎 歡迎你繼續關注泰熙爾札娜,
+從消費者的角度認識我們的珠寶,
+未來如果時機合適,我們也歡迎你再次聯繫。
+
+祝你一切順利。</div>
+            <div class="msg-foot">
+              <button class="copy-btn" style="background:var(--ink-soft);box-shadow:none;" onclick="copyMsg(this)">複製內容</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <div class="step">
+        <div class="num n-neutral">5</div>
+        <div class="body"><h4>看線上說明會影片</h4><p>了解品牌故事、代理制度與實際營運樣貌。</p>
+        <a class="steplink ghost" href="https://www.tzgrotw.tw/pages/%E7%B7%9A%E4%B8%8A%E7%8F%A0%E5%AF%B6%E5%95%86%E4%BB%A3%E7%90%86%E8%AA%AA%E6%98%8E%E6%9C%83" target="_blank" rel="noopener">觀看線上說明會 <span class="arr">→</span></a></div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <!-- branch moved to before step 4 -->
+      <div class="detour-wrap" style="display:none">
+        <div class="branch-label">⤷ 從 STEP 5 岔出 · 若沒下文</div>
+        <div class="detour">
+          <div class="dhead">
+            <h5>沒下文 → 追蹤</h5>
+            <span>主動再接觸，把人帶回主線</span>
+          </div>
+          <div class="bflow">
+            <div class="bstep">
+              <span class="badge">第一次 · 2 天</span>
+              <div><div class="bt">LINE OA + IG 私訊</div><div class="bd">輕度提醒，重新開啟對話。</div></div>
+            </div>
+            <div class="blink"><span class="bar"></span><span>再 2 天沒回</span></div>
+            <div class="bstep">
+              <span class="badge">第二次 · 再 2 天</span>
+              <div><div class="bt">Vito 1 對 1 線上會議</div><div class="bd">真人對談，釐清疑慮。</div></div>
+            </div>
+          </div>
+          <div class="bsplit">
+            <div class="boutcome sleep"><div class="ol">仍沒回</div><div class="ov">列入休眠</div></div>
+            <div class="boutcome back"><div class="ol">有回</div><div class="ov">回主線 → STEP 5</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <div class="step">
+        <div class="num n-neutral" style="font-size:12px;width:46px;height:46px;background:var(--paper-warm);border:1.5px dashed var(--ink-soft);">24h</div>
+        <div class="body">
+          <h4>說明會觀看後追蹤</h4>
+          <p>寄出說明會連結約 24 小時後，確認對方看完了沒、有何想法。</p>
+          <button class="msg-toggle" onclick="toggleMsg(this)">說明會追蹤公版 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head"><span>LINE OA 說明會追蹤公版</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-body">說明會影片看完了嗎?
+
+我這邊在幫你排下一步,但想先聽到你的想法，喜歡哪裡、卡哪裡，都可以跟我說。</div>
+            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <div class="step">
+        <div class="num n-neutral" style="font-size:15px;letter-spacing:0;">V</div>
+        <div class="body">
+          <h4>（可選）Vito 1 對 1 線上會議</h4>
+          <p>對方聊得比較深、有真的在思考 → 安排免費 1 小時線上會議，直接問直接釐清。</p>
+          <div class="tags"><span class="tag pos">適合真的在考慮的人</span><span class="tag">線上 · 1 小時 · 免費</span></div>
+          <button class="msg-toggle" onclick="toggleMsg(this)">邀請範本 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head"><span>LINE OA Vito 1 對 1 邀請</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-body">這樣好了,
+我幫你約一次跟我們講師的 1 對 1 線上會議,
+讓你直接問、直接聊,把不確定的地方一次釐清。
+
+1 小時,線上,不收費。
+這個通常是聊到比較深、有真的在思考的人我們可以幫你約。
+
+什麼時間方便?我幫你看看講師的空檔 🙏</div>
+            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+          </div>
+          <button class="msg-toggle" onclick="toggleMsg(this)">確認範本（約好了） <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head"><span>LINE OA Vito 1 對 1 確認</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-body">幫你約好了 👍
+
+📅 時間:[MM/DD]([週X])・ [HH:MM] - [HH:MM]
+🔗 連結:[會議連結]
+⏱️ 約 1 小時
+
+如果突然有事不能來,提早跟我說一聲,我幫你重約 🙏</div>
+            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <div class="step">
+        <div class="num n-neutral">6</div>
+        <div class="body"><h4>來公司面談</h4><p>至承辦公司現場面談。</p><div class="tags"><span class="tag">彰化</span><span class="tag">台北</span></div>
+          <button class="msg-toggle" onclick="toggleMsg(this)">約面談訊息範本 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head"><span>LINE OA 約來公司面談範本</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-body">[名字],
+
+跟你約來公司簽約詳談
+
+📍 兩個地點可選
+
+彰化總部
+彰化市中山路二段 2 號 12 樓
+
+台北辦公室
+臺北市大安區仁愛路 4 段 101 號 3 樓
+
+📋 過來請帶
+・身分證正反面副本
+・本人存折封面副本
+
+幫你安排：時間:[MM/DD]([週X])・ [HH:MM] - [HH:MM]
+到時候請準時到 🙏 期待與您相見~</div>
+            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <div class="step">
+        <div class="num n-neutral">7</div>
+        <div class="body"><h4>現場讀合約 · 簽約 · 繳證件</h4><p>現場逐條說明合約、完成簽署與證件繳交。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="link" style="--stage-c: var(--gold-deep);"><span class="bar"></span><span class="head"></span></div>
+
+  <!-- ============================================================
+       第二段 · 匯款預備課
+       ============================================================ -->
+  <section class="stage" id="s2" style="--stage-c: var(--gold-deep);">
+    <div class="stage-head">
+      <div class="stage-no">STAGE 02</div>
+      <h2>匯款 · 預備課 · 解鎖</h2>
+      <div class="stage-sub">入會、生效，到寶石知識考試解鎖任務</div>
+      <div class="stage-bar"></div>
+    </div>
+
+    <div class="flow">
+      <div class="step">
+        <div class="num n-gold">8</div>
+        <div class="body"><h4>5 日內匯款入會費</h4><p>簽約後限期完成繳費。</p>
+          <button class="msg-toggle" onclick="toggleMsg(this)">第 3 天匯款提醒範本 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head"><span>LINE OA 第 3 天匯款提醒</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-body">[名字],
+
+提醒你 5 日內匯款,今天是第 3 天 🔔
+
+💰 入會費:NT$[500,000 / 200,000]
+
+🏦 匯款資訊
+戶名:上山打老虎有限公司
+銀行:103 新光銀行 0444 彰化分行
+帳號:0444-10300-628-3
+
+匯完把後五碼回傳給我,我幫你對帳 🙏</div>
+            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <div class="step">
+        <div class="num n-gold">9</div>
+        <div class="body">
+          <h4>合約成立</h4>
+          <p>寄生效通知 + 開店工具包。</p>
+          <button class="msg-toggle" onclick="toggleMsg(this)">️寄出 LINE OA 通知範本 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head">
+              <span>LINE OA 合約成立訊息範本</span>
+              <button class="copy-btn" onclick="copyMsg(this)">複製內容</button>
+            </div>
+            <div class="msg-body" id="lineMsg">【LINE OA 合約成立訊息範本】
+🎉 [名字],歡迎正式加入泰熙爾札娜!
+
+入會費已確認到帳,你的代理身分從今天起正式生效。
+
+📅 生效日:[YYYY/MM/DD]
+📅 到期日:[YYYY/MM/DD]
+🏆 代理級別:[A / B]
+
+──────────────
+
+🔑【你的開店工具包】
+
+1️⃣ 你的專屬連結
+[連結]
+※ 客人從這條進去買,業績才算你的。這條保管好。
+
+2️⃣ SHOPLINE 後台
+帳號:[帳號]
+密碼:[密碼]
+登入:[後台網址]
+
+3️⃣ 寶石知識預備課
+[影片清單連結]
+共 [XX] 支影片,建議一週內看完。
+
+──────────────
+【下一步】
+
+Step 1 ・ 把寶石知識影片看完
+Step 2 ・ 通過線上小考(我會在課程後傳考試連結給你)
+Step 3 ・ 通過後,你在這裡輸入「開始我的線上珠寶店」
+Step 4 ・ 60 天倒數啟動,跟著任務一關一關過
+
+走到終點,還有「與創辦人同拍影片」的禮物等你 🎬
+
+──────────────
+
+歡迎加入 💎</div>
+            <div class="msg-foot">
+              <button class="copy-btn" onclick="copyMsg(this)">複製內容</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <div class="step">
+        <div class="num n-gold">10</div>
+        <div class="body"><h4>寶石知識預備課</h4><p>約 1 週 · 十幾支預錄影片。</p></div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <div class="step key">
+        <div class="keyflag">✦ 關鍵節點</div>
+        <div class="num keynum num-h">11</div>
+        <div class="body"><h4>線上考試 · 通過解鎖任務</h4><p>通往建店任務的閘門 —— 通過才能開始 60 天挑戰。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="link" style="--stage-c: var(--dark-pink);"><span class="bar"></span><span class="head"></span></div>
+
+  <!-- ============================================================
+       第三段 · 建店養號
+       ============================================================ -->
+  <section class="stage" id="s3" style="--stage-c: var(--dark-pink);">
+    <div class="stage-head">
+      <div class="stage-no">STAGE 03</div>
+      <h2>建店養號</h2>
+      <div class="stage-sub">LINE OA 自動腳本 · 60 天任務挑戰</div>
+      <div class="stage-bar"></div>
+    </div>
+
+    <div class="flow">
+      <!-- trigger -->
+      <div class="trigger">
+        <span class="cmd">「開始我的線上珠寶店」</span>
+        <p>於 LINE OA 輸入指令，啟動自動腳本。</p>
+        <div class="countdown">收到 game01 · 60 天倒數啟動</div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <!-- parallel two phases -->
+      <div class="parallel">
+        <div class="phase">
+          <div class="ph-no">階段 1</div>
+          <h4>IG 開店</h4>
+          <div class="range">game01 → game06</div>
+          <div class="ph-meta">把帳號從零開出來</div>
+          <ul class="games">
+            <li><span class="g">game01</span><div><div class="gt">註冊帳號</div><div class="gd">建立專屬的 IG 珠寶店帳號。</div></div></li>
+            <li><span class="g">game02</span><div><div class="gt">取店名</div><div class="gd">設定符合品牌調性的名稱。</div></div></li>
+            <li><span class="g">game03</span><div><div class="gt">大頭貼</div><div class="gd">上傳圈裁頭像，建立第一印象。</div></div></li>
+            <li><span class="g">game04</span><div><div class="gt">簡介</div><div class="gd">撰寫個人簡介與品牌語言。</div></div></li>
+            <li><span class="g">game05</span><div><div class="gt">連結</div><div class="gd">放上訂購 / 聯絡連結。</div></div></li>
+            <li><span class="g">game06</span><div><div class="gt">進群</div><div class="gd">加入代理社群，連上資源。</div></div></li>
+          </ul>
+        </div>
+        <div class="phase">
+          <div class="ph-no">階段 2</div>
+          <h4>IG 養號</h4>
+          <div class="range">game07 → game13</div>
+          <div class="ph-meta">把帳號養活、讓內容跩起來</div>
+          <ul class="games">
+            <li><span class="g">game07</span><div><div class="gt">學發文</div><div class="gd">掌握貯文格式與品牌調性。</div></div></li>
+            <li><span class="g">game08–10</span><div><div class="gt">限時動態</div><div class="gd">常態經營限動，累積互動。</div></div></li>
+            <li><span class="g">game11</span><div><div class="gt">精選封面</div><div class="gd">製作限動精選封面，整理版面。</div></div></li>
+            <li><span class="g">game12–13</span><div><div class="gt">衝量</div><div class="gd">衝貼文、圖文與精選數，咁到達標。</div></div></li>
+          </ul>
+        </div>
+      </div>
+      <div class="parallel-note">兩階段接續進行 · game01 → game13 · 全程由 LINE OA 自動腳本引導</div>
+
+      <!-- merge -->
+      <div class="merge">
+        <svg viewBox="0 0 780 38" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M195 0 V12 Q195 24 390 24 Q585 24 585 12 V0" fill="none" stroke="var(--dark-pink)" stroke-width="2" opacity="0.42"/>
+          <path d="M390 24 V34" fill="none" stroke="var(--dark-pink)" stroke-width="2" opacity="0.42"/>
+          <path d="M384 30 l6 6 l6 -6" fill="none" stroke="var(--dark-pink)" stroke-width="2" opacity="0.55"/>
+        </svg>
+      </div>
+
+      <!-- key node: 大禮 -->
+      <div class="milestone">
+        <div class="keyflag">✦ 關鍵節點</div>
+        <div class="spark">✦</div>
+        <h4>達標領大禮 · game13 三項過關</h4>
+        <p>養號階段的驗收門 —— 三項同時達標才算過關。</p>
+        <div class="metrics">
+          <div class="metric"><div class="mv">5</div><div class="ml">精選類別</div></div>
+          <div class="metric"><div class="mv">12</div><div class="ml">貼文篇數</div></div>
+          <div class="metric"><div class="mv">100</div><div class="ml">圖文個數</div></div>
+        </div>
+        <div class="reward">→ 領大禮：與創辦人同拍影片</div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <!-- extension: FB -->
+      <div class="step">
+        <div class="num n-pink num-h">＋</div>
+        <div class="body">
+          <h4>階段 3 · FB 收尾</h4>
+          <p>game14 → game15 · 把版圖延伸到 Facebook，完整跨平台佈局。</p>
+          <div class="tags">
+            <span class="tag">game14 · 建立 FB 經營</span>
+            <span class="tag">game15 · FB 收尾</span>
+            <span class="tag pos">不綁大禮，做了更好</span>
+          </div>
+        </div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <!-- key node: 正式成立 -->
+      <div class="milestone">
+        <div class="keyflag">✦ 關鍵節點</div>
+        <div class="spark">✦ ✦ ✦</div>
+        <h4>線上珠寶商 · 正式成立</h4>
+        <p>完成上線，進入正式營運。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="link" style="--stage-c: var(--tahir-blue);"><span class="bar"></span><span class="head"></span></div>
+
+  <!-- ============================================================
+       第四段 · 正式營運
+       ============================================================ -->
+  <section class="stage" id="s4" style="--stage-c: var(--tahir-blue);">
+    <div class="stage-head">
+      <div class="stage-no">STAGE 04</div>
+      <h2>正式營運</h2>
+      <div class="stage-sub">賣貨拿傭金 · 公司全包後勤</div>
+      <div class="stage-bar"></div>
+    </div>
+
+    <div class="flow">
+      <div class="ops">
+        <div class="opcard">
+          <div class="oi">01</div>
+          <h4>直播課</h4>
+          <p>自由參加，持續精進。</p>
+        </div>
+        <div class="oparrow">▸</div>
+        <div class="opcard">
+          <div class="oi">02</div>
+          <h4>日常營運</h4>
+          <p>發文 · 互動，經營客群。</p>
+        </div>
+        <div class="oparrow">▸</div>
+        <div class="opcard">
+          <div class="oi">03</div>
+          <h4>客人下單</h4>
+          <p>系統自動歸戶。</p>
+        </div>
+        <div class="oparrow">▸</div>
+        <div class="opcard">
+          <div class="oi">04</div>
+          <h4>承辦公司後勤</h4>
+          <p>上山打老虎包辦出貨、物流與客服，代理專心賣貨領傭金。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="finale">
+      <img class="mk" src="assets/logo-gold.png" alt="" />
+      <p>TAHIR ZAINAB · 代理線上商店輔導流程</p>
+      <p style="margin-top:4px;font-size:12px;">品牌 TAHIR ZAINAB 泰熙爾札娜 · 業務承辦：上山打老虎有限公司</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // scroll-spy for side rail
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.rail a'));
+    var map = {};
+    links.forEach(function (a) { map[a.getAttribute('data-stage')] = a; });
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          links.forEach(function (l) { l.classList.remove('active'); });
+          var a = map[e.target.id];
+          if (a) {
+            a.classList.add('active');
+            var c = getComputedStyle(e.target).getPropertyValue('--stage-c');
+            a.style.setProperty('--stage-c', c);
+          }
+        }
+      });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    document.querySelectorAll('.stage').forEach(function (s) { obs.observe(s); });
+  })();
+
+  function toggleMsg(btn) {
+    btn.classList.toggle('open');
+    var box = btn.nextElementSibling;
+    box.classList.toggle('open');
+  }
+
+  function copyMsg(btn) {
+    var box = btn.closest('.msg-box');
+    var text = box.querySelector('.msg-body').innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      var all = box.querySelectorAll('.copy-btn');
+      all.forEach(function(b){ b.textContent = '已複製 ✓'; b.classList.add('copied'); });
+      setTimeout(function () {
+        all.forEach(function(b){ b.textContent = '複製內容'; b.classList.remove('copied'); });
+      }, 2000);
+    });
+  }
+
+  (function () {
+    function ready() {
+      var imgs = Array.prototype.slice.call(document.images);
+      return Promise.all(imgs.map(function (img) {
+        if (img.complete) return Promise.resolve();
+        return new Promise(function (res) { img.onload = img.onerror = res; });
+      }));
+    }
+    Promise.all([
+      document.fonts ? document.fonts.ready : Promise.resolve(),
+      ready()
+    ]).then(function () { setTimeout(function () { window.print(); }, 500); });
+  })();
+
+  function toggleMsg(btn) {
+    btn.classList.toggle('open');
+    var box = btn.nextElementSibling;
+    box.classList.toggle('open');
+  }
+
+  function copyMsg(btn) {
+    var box = btn.closest('.msg-box');
+    var text = box.querySelector('.msg-body').innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      var all = box.querySelectorAll('.copy-btn');
+      all.forEach(function(b){ b.textContent = '已複製 ✓'; b.classList.add('copied'); });
+      setTimeout(function () {
+        all.forEach(function(b){ b.textContent = '複製內容'; b.classList.remove('copied'); });
+      }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
