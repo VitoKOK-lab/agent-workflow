@@ -593,6 +593,32 @@
   .detour-wrap:not([style]) .bflow .blink,
   .detour-wrap:not([style]) .bflow .bstep:last-child { display: none; }
 
+  /* ---------- game card preview popup ---------- */
+  .game-preview-wrap { position: relative; display: inline-block; }
+  .game-preview-icon {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin-left: 8px; cursor: pointer;
+    font-size: 11px; color: var(--gold-deep);
+    border: 1px solid var(--line-gold); border-radius: var(--r-pill);
+    padding: 3px 9px; background: var(--gold-050);
+    vertical-align: middle; transition: background .2s;
+  }
+  .game-preview-icon:hover { background: var(--gold-100); }
+  .game-popup {
+    display: none;
+    position: absolute; left: 0; top: calc(100% + 10px); z-index: 100;
+    width: 320px; border-radius: var(--r-md);
+    box-shadow: var(--shadow-lg); overflow: hidden;
+    border: 1px solid var(--line-gold);
+    background: var(--white);
+  }
+  .game-popup img { width: 100%; display: block; }
+  .game-preview-wrap:hover .game-popup,
+  .game-preview-wrap:focus-within .game-popup { display: block; }
+  @media (max-width: 700px) {
+    .game-popup { width: 260px; }
+  }
+
   /* ---------- decision split (審核通過/不通過) ---------- */
   .dec-split {
     display: grid;
@@ -701,9 +727,6 @@
         <span class="ov-dur">上線後·持續營運</span>
       </a>
     </div>
-    <div class="ov-key">
-      <span class="ov-keydot"></span>流程中以 <b>札娜紅</b> 標示的為 <b>關鍵節點</b> · 點上方四格可跳至各段
-    </div>
   </header>
 
   <!-- ============================================================
@@ -713,7 +736,6 @@
     <div class="stage-head">
       <div class="stage-no">STAGE 01</div>
       <h2>招募簽約</h2>
-      <div class="stage-sub">全人工流程 · 從興趣到現場簽約</div>
       <div class="stage-bar"></div>
     </div>
 
@@ -1147,7 +1169,7 @@ Step 4 ・ 60 天倒數啟動,跟著任務一關一關過
           <div class="range">game01 → game06</div>
           <div class="ph-meta">把帳號從零開出來</div>
           <ul class="games">
-            <li><span class="g">game01</span><div><div class="gt">註冊帳號</div><div class="gd">建立專屬的 IG 珠寶店帳號。</div></div></li>
+            <li><span class="g">game01</span><div><div class="gt">註冊帳號<span class="game-preview-wrap"><span class="game-preview-icon">📋 任務說明</span><div class="game-popup"><img src="assets/game01-card.jpg" alt="game01 任務說明" /></div></span></div><div class="gd">建立專屬的 IG 珠寶店帳號。</div></div></li>
             <li><span class="g">game02</span><div><div class="gt">取店名</div><div class="gd">設定符合品牌調性的名稱。</div></div></li>
             <li><span class="g">game03</span><div><div class="gt">大頭貼</div><div class="gd">上傳圈裁頭像，建立第一印象。</div></div></li>
             <li><span class="g">game04</span><div><div class="gt">簡介</div><div class="gd">撰寫個人簡介與品牌語言。</div></div></li>
