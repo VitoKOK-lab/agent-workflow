@@ -602,21 +602,28 @@
     border: 1px solid var(--line-gold); border-radius: var(--r-pill);
     padding: 3px 9px; background: var(--gold-050);
     vertical-align: middle; transition: background .2s;
+    user-select: none;
   }
   .game-preview-icon:hover { background: var(--gold-100); }
   .game-popup {
     display: none;
-    position: absolute; left: 0; top: calc(100% + 10px); z-index: 100;
-    width: 320px; border-radius: var(--r-md);
+    position: absolute; left: 0; top: calc(100% + 8px); z-index: 200;
+    width: 200px; border-radius: var(--r-md);
     box-shadow: var(--shadow-lg); overflow: hidden;
     border: 1px solid var(--line-gold);
     background: var(--white);
   }
+  .game-popup.open { display: block; }
   .game-popup img { width: 100%; display: block; }
-  .game-preview-wrap:hover .game-popup,
-  .game-preview-wrap:focus-within .game-popup { display: block; }
-  @media (max-width: 700px) {
-    .game-popup { width: 260px; }
+  .game-popup-close {
+    position: absolute; top: 6px; right: 8px;
+    background: rgba(0,0,0,.45); color: #fff;
+    border: none; border-radius: 50%; width: 22px; height: 22px;
+    font-size: 13px; cursor: pointer; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+  }
+  @media (max-width: 600px) {
+    .game-popup { width: 170px; left: auto; right: 0; }
   }
 
   /* ---------- decision split (審核通過/不通過) ---------- */
@@ -1169,7 +1176,7 @@ Step 4 ・ 60 天倒數啟動,跟著任務一關一關過
           <div class="range">game01 → game06</div>
           <div class="ph-meta">把帳號從零開出來</div>
           <ul class="games">
-            <li><span class="g">game01</span><div><div class="gt">註冊帳號<span class="game-preview-wrap"><span class="game-preview-icon">📋 任務說明</span><div class="game-popup"><img src="project/assets/game01-card.jpg" alt="game01 任務說明" /></div></span></div><div class="gd">建立專屬的 IG 珠寶店帳號。</div></div></li>
+            <li><span class="g">game01</span><div><div class="gt">註冊帳號<span class="game-preview-wrap"><span class="game-preview-icon" onclick="toggleGamePopup(this)">📋 任務說明</span><div class="game-popup"><button class="game-popup-close" onclick="closeGamePopup(this)">✕</button><img src="project/assets/game01-card.jpg" alt="game01 任務說明" /></div></span></div><div class="gd">建立專屬的 IG 珠寶店帳號。</div></div></li>
             <li><span class="g">game02</span><div><div class="gt">取店名</div><div class="gd">設定符合品牌調性的名稱。</div></div></li>
             <li><span class="g">game03</span><div><div class="gt">大頭貼</div><div class="gd">上傳圈裁頭像，建立第一印象。</div></div></li>
             <li><span class="g">game04</span><div><div class="gt">簡介</div><div class="gd">撰寫個人簡介與品牌語言。</div></div></li>
@@ -1311,6 +1318,21 @@ Step 4 ・ 60 天倒數啟動,跟著任務一關一關過
     }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
     document.querySelectorAll('.stage').forEach(function (s) { obs.observe(s); });
   })();
+
+  function toggleGamePopup(icon) {
+    var popup = icon.nextElementSibling;
+    var isOpen = popup.classList.contains('open');
+    document.querySelectorAll('.game-popup.open').forEach(function(p){ p.classList.remove('open'); });
+    if (!isOpen) popup.classList.add('open');
+  }
+  function closeGamePopup(btn) {
+    btn.closest('.game-popup').classList.remove('open');
+  }
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.game-preview-wrap')) {
+      document.querySelectorAll('.game-popup.open').forEach(function(p){ p.classList.remove('open'); });
+    }
+  });
 
   function toggleMsg(btn) {
     btn.classList.toggle('open');
