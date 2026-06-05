@@ -626,6 +626,21 @@
     .game-popup { width: 170px; left: auto; right: 0; }
   }
 
+  /* ---------- back to top button ---------- */
+  .back-top {
+    position: fixed; bottom: 28px; right: 28px; z-index: 400;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: var(--zana-pink); color: var(--white);
+    border: none; cursor: pointer; font-size: 20px;
+    box-shadow: var(--shadow-pink);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity .3s ease, transform .3s ease;
+  }
+  .back-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .back-top:hover { background: var(--dark-pink); }
+
   /* ---------- external link confirm modal ---------- */
   .ext-overlay {
     display: none; position: fixed; inset: 0; z-index: 500;
@@ -1343,6 +1358,9 @@ Step 4 ・ 60 天倒數啟動,跟著任務一關一關過
 
 </div>
 
+<!-- back to top button -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到頂部">↑</button>
+
 <!-- external link confirm modal -->
 <div class="ext-overlay" id="extOverlay" onclick="extCancel(event)">
   <div class="ext-modal" onclick="event.stopPropagation()">
@@ -1378,6 +1396,16 @@ Step 4 ・ 60 天倒數啟動,跟著任務一關一關過
     }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
     document.querySelectorAll('.stage').forEach(function (s) { obs.observe(s); });
   })();
+
+  // scroll to top on every page load
+  history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+
+  // back to top button visibility
+  var backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', function() {
+    backTop.classList.toggle('visible', window.scrollY > 300);
+  });
 
   // intercept all target="_blank" links (except side-rail nav)
   var _extHref = null;
