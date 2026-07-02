@@ -4,6 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>代理線上商店輔導流程 · 流程圖</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="assets/colors_and_type.css" />
 <style>
   * { box-sizing: border-box; }
@@ -156,13 +158,6 @@
     .ov-cell:nth-child(3) { border-left: none; }
     .ov-cell:nth-child(n+3) { border-top: 1px solid var(--line); }
   }
-  .ov-key {
-    display: flex; align-items: center; justify-content: center; gap: 9px;
-    max-width: 900px; margin: 14px auto 0;
-    font-size: 12.5px; color: var(--ink-soft); letter-spacing: .02em;
-  }
-  .ov-key b { color: var(--zana-pink); font-weight: 700; }
-  .ov-key .ov-keydot { width: 10px; height: 10px; border-radius: 50%; background: var(--zana-pink); flex: none; }
 
   /* ============================================================
      SIDE RAIL (scroll-spy)
@@ -201,7 +196,7 @@
   /* ============================================================
      STAGE
      ============================================================ */
-  .stage { padding-top: 30px; scroll-margin-top: 24px; }
+  .stage { padding-top: 30px; scroll-margin-top: 72px; }
   .stage-head { text-align: center; margin: 0 auto 38px; max-width: 660px; position: relative; }
   .stage-head .stage-no {
     font-family: var(--font-sans);
@@ -590,9 +585,6 @@
   .finale .mk { width: 38px; opacity: .8; }
   .finale p { font-size: 13px; color: var(--ink-faint); margin: 14px 0 0; letter-spacing: .04em; }
 
-  .detour-wrap:not([style]) .bflow .blink,
-  .detour-wrap:not([style]) .bflow .bstep:last-child { display: none; }
-
   /* ---------- game card preview popup ---------- */
   .game-preview-wrap { position: relative; display: inline-block; }
   .game-preview-icon {
@@ -737,9 +729,119 @@
     .parallel { grid-template-columns: 1fr; }
     .dec-split { grid-template-columns: 1fr; }
   }
+
+  /* ============================================================
+     ENHANCEMENTS — motion · nav · polish
+     ============================================================ */
+
+  /* top reading progress bar */
+  .scroll-progress {
+    position: fixed; top: 0; left: 0; right: 0; height: 3px;
+    z-index: 600; pointer-events: none;
+  }
+  .scroll-progress i {
+    display: block; height: 100%; width: 0;
+    background: linear-gradient(90deg, var(--zana-pink), var(--dark-pink), var(--gold));
+  }
+
+  /* compact sticky stage nav (mobile / narrow screens) */
+  .mnav {
+    position: fixed; top: 14px; left: 50%;
+    transform: translateX(-50%) translateY(-80px);
+    display: flex; gap: 4px; padding: 5px;
+    background: rgba(255,255,255,.9);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border: 1px solid var(--line); border-radius: var(--r-pill);
+    box-shadow: var(--shadow-md); z-index: 450;
+    transition: transform .4s cubic-bezier(.22,.9,.35,1);
+  }
+  .mnav.show { transform: translateX(-50%) translateY(0); }
+  .mnav a {
+    text-decoration: none; font-size: 12px; font-weight: 700;
+    color: var(--ink-soft); padding: 7px 14px; border-radius: var(--r-pill);
+    white-space: nowrap; transition: background .25s ease, color .25s ease;
+  }
+  .mnav a:hover { background: var(--pink-050); color: var(--dark-pink-700); }
+  .mnav a.active { background: var(--stage-c, var(--zana-pink)); color: var(--white); }
+  @media (min-width: 1241px) { .mnav { display: none; } }
+
+  /* scroll reveal */
+  .rv { opacity: 0; }
+  .rv-in { opacity: 1; animation: rvUp .65s cubic-bezier(.22,.9,.35,1) backwards; }
+  @keyframes rvUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* hero entrance */
+  .hero .mark, .hero .wordmark, .hero h1, .hero .lead,
+  .hero .gold-rule, .hero .byline, .hero .overview {
+    animation: rvUp .7s cubic-bezier(.22,.9,.35,1) backwards;
+  }
+  .hero .wordmark  { animation-delay: .08s; }
+  .hero h1         { animation-delay: .14s; }
+  .hero .lead      { animation-delay: .2s;  }
+  .hero .gold-rule { animation-delay: .24s; }
+  .hero .byline    { animation-delay: .28s; }
+  .hero .overview  { animation-delay: .38s; }
+
+  /* flowing light along connectors */
+  .link .bar { position: relative; overflow: hidden; }
+  .link .bar::after {
+    content: ''; position: absolute; left: 0; width: 100%; height: 46%; top: -50%;
+    background: linear-gradient(to bottom, transparent, var(--stage-c));
+    animation: flowDown 2.4s linear infinite;
+  }
+  @keyframes flowDown { from { top: -50%; } to { top: 110%; } }
+
+  /* key-node breathing glow */
+  .keyflag { animation: keyPulse 2.8s ease-in-out infinite; }
+  @keyframes keyPulse {
+    0%, 100% { box-shadow: var(--shadow-pink); }
+    50%      { box-shadow: 0 0 0 7px rgba(230,0,126,.1), var(--shadow-pink); }
+  }
+  .milestone .spark { display: inline-block; animation: sparkle 3.2s ease-in-out infinite; }
+  @keyframes sparkle {
+    0%, 100% { transform: scale(1); opacity: .85; }
+    50%      { transform: scale(1.18); opacity: 1; }
+  }
+
+  /* open/close micro-motion */
+  .msg-box.open { animation: msgIn .28s ease; }
+  .game-popup.open { animation: msgIn .22s ease; }
+  @keyframes msgIn { from { opacity: 0; transform: translateY(-5px); } }
+
+  /* card hover polish */
+  .dec-card, .phase, .opcard, .trigger, .milestone, .bstep {
+    transition: box-shadow .35s ease, transform .35s ease;
+  }
+  .dec-card:hover, .phase:hover, .opcard:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .milestone:hover { transform: translateY(-2px); }
+
+  /* keyboard focus */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--zana-pink); outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .rv { opacity: 1; }
+  }
 </style>
 </head>
 <body>
+
+<!-- top reading progress -->
+<div class="scroll-progress" aria-hidden="true"><i></i></div>
+
+<!-- compact sticky nav (appears after scrolling, hidden on wide screens) -->
+<nav class="mnav" id="mnav" aria-label="快速導覽">
+  <a href="#s1" data-stage="s1">簽約</a>
+  <a href="#s2" data-stage="s2">培訓</a>
+  <a href="#s3" data-stage="s3">建店</a>
+  <a href="#s4" data-stage="s4">營運</a>
+</nav>
 
 <!-- ============= SIDE RAIL ============= -->
 <nav class="rail" aria-label="段落導覽">
@@ -978,33 +1080,6 @@ https://reurl.cc/Q2q81p
         <div class="num n-neutral">5</div>
         <div class="body"><h4>看線上說明會影片</h4><p>了解品牌故事、代理制度與實際營運樣貌。</p>
         <a class="steplink ghost" href="https://www.tzgrotw.tw/pages/%E7%B7%9A%E4%B8%8A%E7%8F%A0%E5%AF%B6%E5%95%86%E4%BB%A3%E7%90%86%E8%AA%AA%E6%98%8E%E6%9C%83" target="_blank" rel="noopener">觀看線上說明會 <span class="arr">→</span></a></div>
-      </div>
-      <div class="link"><span class="bar"></span><span class="head"></span></div>
-
-      <!-- branch moved to before step 4 -->
-      <div class="detour-wrap" style="display:none">
-        <div class="branch-label">⤷ 從 STEP 5 岔出 · 若沒下文</div>
-        <div class="detour">
-          <div class="dhead">
-            <h5>沒下文 → 追蹤</h5>
-            <span>主動再接觸，把人帶回主線</span>
-          </div>
-          <div class="bflow">
-            <div class="bstep">
-              <span class="badge">第一次 · 2 天</span>
-              <div><div class="bt">LINE OA + IG 私訊</div><div class="bd">輕度提醒，重新開啟對話。</div></div>
-            </div>
-            <div class="blink"><span class="bar"></span><span>再 2 天沒回</span></div>
-            <div class="bstep">
-              <span class="badge">第二次 · 再 2 天</span>
-              <div><div class="bt">Vito 1 對 1 線上會議</div><div class="bd">真人對談，釐清疑慮。</div></div>
-            </div>
-          </div>
-          <div class="bsplit">
-            <div class="boutcome sleep"><div class="ol">仍沒回</div><div class="ov">列入休眠</div></div>
-            <div class="boutcome back"><div class="ol">有回</div><div class="ov">回主線 → STEP 5</div></div>
-          </div>
-        </div>
       </div>
       <div class="link"><span class="bar"></span><span class="head"></span></div>
 
@@ -1537,35 +1612,82 @@ Step 4 ・ 60 天倒數啟動,跟著任務一關一關過
 </div>
 
 <script>
-  // scroll-spy for side rail
+  // scroll-spy: side rail + sticky mobile nav
   (function () {
-    var links = Array.prototype.slice.call(document.querySelectorAll('.rail a'));
-    var map = {};
-    links.forEach(function (a) { map[a.getAttribute('data-stage')] = a; });
+    var links = Array.prototype.slice.call(document.querySelectorAll('.rail a, .mnav a'));
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          links.forEach(function (l) { l.classList.remove('active'); });
-          var a = map[e.target.id];
-          if (a) {
-            a.classList.add('active');
-            var c = getComputedStyle(e.target).getPropertyValue('--stage-c');
-            a.style.setProperty('--stage-c', c);
-          }
-        }
+        if (!e.isIntersecting) return;
+        var c = getComputedStyle(e.target).getPropertyValue('--stage-c');
+        links.forEach(function (l) {
+          var on = l.getAttribute('data-stage') === e.target.id;
+          l.classList.toggle('active', on);
+          if (on) l.style.setProperty('--stage-c', c);
+        });
       });
     }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
     document.querySelectorAll('.stage').forEach(function (s) { obs.observe(s); });
+  })();
+
+  // scroll reveal for flow cards
+  (function () {
+    var targets = document.querySelectorAll('.flow > *:not(.link), .stage-head, .finale');
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e, i) {
+        if (!e.isIntersecting) return;
+        e.target.style.animationDelay = (i * 70) + 'ms';
+        e.target.classList.add('rv-in');
+        obs.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    targets.forEach(function (t) { t.classList.add('rv'); obs.observe(t); });
+  })();
+
+  // metric numbers count up when milestone scrolls into view
+  (function () {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        obs.unobserve(e.target);
+        var target = parseInt(e.target.textContent, 10);
+        if (!target) return;
+        var start = null;
+        function tick(ts) {
+          if (!start) start = ts;
+          var p = Math.min((ts - start) / 900, 1);
+          e.target.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('.metric .mv').forEach(function (m) { obs.observe(m); });
   })();
 
   // scroll to top on every page load
   history.scrollRestoration = 'manual';
   window.scrollTo(0, 0);
 
-  // back to top button visibility
+  // back-to-top / progress bar / sticky nav visibility
   var backTop = document.getElementById('backTop');
-  window.addEventListener('scroll', function() {
-    backTop.classList.toggle('visible', window.scrollY > 300);
+  var progressBar = document.querySelector('.scroll-progress i');
+  var mnav = document.getElementById('mnav');
+  function onScroll() {
+    var y = window.scrollY;
+    backTop.classList.toggle('visible', y > 300);
+    mnav.classList.toggle('show', y > 480);
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ESC closes overlays / popups
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    document.getElementById('extOverlay').classList.remove('open');
+    _extHref = null;
+    document.querySelectorAll('.game-popup.open').forEach(function (p) { p.classList.remove('open'); });
   });
 
   // intercept all target="_blank" links (except side-rail nav)
