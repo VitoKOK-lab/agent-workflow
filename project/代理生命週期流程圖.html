@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>代理線上商店輔導流程 · 流程圖</title>
+<title>代理招募與上手流程 2.0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="assets/colors_and_type.css" />
@@ -71,7 +71,7 @@
     font-size: 16px;
     color: var(--ink-soft);
     margin: 16px auto 0;
-    max-width: 540px;
+    max-width: 560px;
     line-height: 1.7;
   }
   .gold-rule {
@@ -91,36 +91,15 @@
   .byline .bk { color: var(--ink-faint); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-family: var(--font-sans); }
   .byline b { font-weight: 700; color: var(--dark-pink-700); }
   .byline .sep { width: 1px; height: 14px; background: var(--line-gold); }
-
-  /* ---------- legend ---------- */
-  .legend {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px 14px;
-    margin: 34px auto 0;
-    max-width: 760px;
-  }
-  .legend .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    padding: 8px 16px 8px 12px;
-    background: var(--white);
-    border: 1px solid var(--line);
+  .northstar {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin: 14px auto 0; padding: 9px 20px;
+    background: linear-gradient(180deg, #fff, var(--pink-050));
+    border: 1.5px solid var(--zana-pink);
     border-radius: var(--r-pill);
-    box-shadow: var(--shadow-xs);
-    font-size: 13px;
-    color: var(--ink);
+    box-shadow: var(--shadow-pink);
+    font-size: 13.5px; font-weight: 700; color: var(--dark-pink-700);
   }
-  .legend .chip .dot {
-    width: 11px; height: 11px; border-radius: 50%;
-  }
-  .legend .chip .n {
-    font-family: var(--font-sans); font-size: 11px; font-weight: 500;
-    color: var(--ink-faint); letter-spacing: .06em;
-  }
-  .legend .chip.key { border-color: var(--zana-pink); background: var(--pink-050); }
 
   /* ---------- journey overview strip ---------- */
   .overview {
@@ -157,6 +136,10 @@
     .overview { grid-template-columns: 1fr 1fr; }
     .ov-cell:nth-child(3) { border-left: none; }
     .ov-cell:nth-child(n+3) { border-top: 1px solid var(--line); }
+  }
+  .ov-note {
+    text-align: center; font-size: 12.5px; color: var(--ink-soft);
+    margin-top: 16px; letter-spacing: .02em;
   }
 
   /* ============================================================
@@ -236,7 +219,7 @@
   /* ---------- step card ---------- */
   .step {
     display: flex; align-items: center; gap: 22px;
-    width: 100%; max-width: 600px;
+    width: 100%; max-width: 620px;
     background: var(--white);
     border: 1px solid var(--line);
     border-radius: var(--r-md);
@@ -249,15 +232,11 @@
   .step .num {
     flex: none; width: 56px; height: 56px; border-radius: 50%;
     display: grid; place-items: center;
-    font-family: var(--font-sans); font-weight: 500; font-size: 23px;
+    font-family: var(--font-sans); font-weight: 500; font-size: 20px;
   }
-  /* neutral (stage 1) */
   .num.n-neutral { background: var(--white); border: 1.5px solid var(--ink-soft); color: var(--ink); }
-  /* gold (stage 2) */
   .num.n-gold { background: var(--foil-gold); color: #4b3f1c; }
-  /* deep pink (stage 3) */
   .num.n-pink { background: var(--dark-pink); color: var(--white); }
-  /* teal (stage 4) */
   .num.n-teal { background: var(--tahir-blue); color: var(--ink); }
 
   .step .body { flex: 1; min-width: 0; }
@@ -274,13 +253,16 @@
     border: 1px solid var(--line); color: var(--ink-soft); background: var(--paper-warm);
   }
   .tag.pos { border-color: var(--tahir-blue); color: #1f7d75; background: var(--teal-050); }
-  .tag.neg { border-color: var(--line); color: var(--ink-faint); }
   .tag b { font-weight: 700; }
+  /* 負責人標籤 */
+  .tag.co   { border-color: var(--gold-300); color: var(--gold-deep); background: var(--gold-050); }
+  .tag.ag   { border-color: var(--pink-200); color: var(--dark-pink-700); background: var(--pink-050); }
+  .tag.both { border-color: var(--teal-100); color: #1f7d75; background: var(--teal-050); }
 
   /* ---------- copyable message template ---------- */
-  .msg-wrap { width: 100%; max-width: 600px; margin-top: 0; }
+  .msg-wrap { width: 100%; max-width: 620px; margin-top: 0; }
   .msg-toggle {
-    display: inline-flex; align-items: center; gap: 8px; margin-top: 14px;
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; margin-right: 8px;
     font-family: var(--font-sans-tc); font-weight: 700; font-size: 13px;
     cursor: pointer; color: var(--gold-deep);
     border: 1px solid var(--line-gold); border-radius: var(--r-pill);
@@ -329,7 +311,7 @@
     display: flex; justify-content: flex-end;
   }
   .steplink {
-    display: inline-flex; align-items: center; gap: 7px; margin-top: 12px;
+    display: inline-flex; align-items: center; gap: 7px; margin-top: 12px; margin-right: 8px;
     font-family: var(--font-sans-tc); font-weight: 700; font-size: 13px;
     text-decoration: none; color: var(--white); background: var(--zana-pink);
     border-radius: var(--r-pill); padding: 8px 16px;
@@ -345,14 +327,7 @@
   }
   .steplink.ghost:hover { background: var(--pink-050); }
 
-  /* ---------- KEY NODE ---------- */
-  .step.key {
-    border: 1.6px solid var(--zana-pink);
-    background: linear-gradient(180deg, #fff, var(--pink-050));
-    box-shadow: var(--shadow-pink);
-    max-width: 640px;
-  }
-  .step.key .num.keynum { background: var(--zana-pink); color: var(--white); border: none; }
+  /* ---------- KEY NODE / milestone ---------- */
   .keyflag {
     position: absolute; top: -13px; right: 22px;
     display: inline-flex; align-items: center; gap: 6px;
@@ -361,9 +336,6 @@
     padding: 6px 13px; border-radius: var(--r-pill);
     box-shadow: var(--shadow-pink);
   }
-  .step.key .body h4 { color: var(--dark-pink-700); }
-
-  /* a key milestone tile (no number, centered) */
   .milestone {
     width: 100%; max-width: 560px; text-align: center;
     border: 1.6px solid var(--zana-pink);
@@ -409,7 +381,7 @@
     margin-bottom: 4px;
   }
   .detour {
-    width: 100%; max-width: 640px;
+    width: 100%; max-width: 660px;
     border: 1.5px dashed var(--line-gold);
     border-radius: var(--r-md);
     background: var(--paper-warm);
@@ -417,7 +389,7 @@
     position: relative;
   }
   .detour .dhead {
-    display: flex; align-items: baseline; gap: 10px;
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
     padding-bottom: 14px; margin-bottom: 18px;
     border-bottom: 1px solid var(--line);
   }
@@ -434,12 +406,13 @@
     border: 1px solid var(--line);
     border-radius: var(--r-sm);
     padding: 13px 16px;
+    transition: box-shadow .35s ease, transform .35s ease;
   }
   .bstep .badge {
-    flex: none; font-family: var(--font-sans); font-size: 11px; font-weight: 500;
+    flex: none; font-family: var(--font-sans); font-size: 11px; font-weight: 700;
     letter-spacing: .08em; color: var(--gold-deep);
     border: 1px solid var(--line-gold); border-radius: var(--r-pill);
-    padding: 4px 10px; white-space: nowrap;
+    padding: 4px 10px; white-space: nowrap; background: var(--gold-050);
   }
   .bstep .bt { font-size: 14px; font-weight: 700; color: var(--ink); }
   .bstep .bd { font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; }
@@ -461,27 +434,66 @@
   .boutcome.back { border-color: var(--tahir-blue); background: var(--teal-050); }
   .boutcome.back .ov { color: #1f7d75; }
 
-  /* ============================================================
-     STAGE 3 — trigger + parallel + extension
-     ============================================================ */
-  .trigger {
-    width: 100%; max-width: 560px; text-align: center;
-    border: 1px solid var(--line); background: var(--white);
-    border-radius: var(--r-lg); box-shadow: var(--shadow-sm);
-    padding: 24px 28px;
+  /* ---------- decision split ---------- */
+  .dec-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    width: 100%;
   }
-  .trigger .cmd {
-    display: inline-block; font-family: var(--font-sans-tc); font-weight: 700;
-    font-size: 18px; color: var(--white);
-    background: var(--dark-pink); border-radius: var(--r-pill);
-    padding: 10px 22px;
+  .dec-card {
+    border-radius: var(--r-sm);
+    border: 1.5px solid var(--line);
+    background: var(--white);
+    overflow: hidden;
+    transition: box-shadow .35s ease, transform .35s ease;
   }
-  .trigger p { font-size: 13.5px; color: var(--ink-soft); margin: 14px 0 0; }
-  .trigger .countdown {
-    margin-top: 6px; font-family: var(--font-sans); font-weight: 700;
-    color: var(--dark-pink-700); letter-spacing: .04em;
+  .dec-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .dec-pass { border-color: var(--teal-100); }
+  .dec-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-sans-tc);
+  }
+  .dec-pass .dec-head { background: var(--teal-050); border-bottom-color: var(--teal-100); }
+  .dec-reject .dec-head { background: var(--paper-warm); }
+  .dec-icon { font-size: 14px; font-weight: 700; }
+  .dec-icon-pass { color: #1f7d75; }
+  .dec-icon-reject { color: var(--ink-faint); }
+  .dec-head strong { font-size: 14px; color: var(--ink); }
+  .dec-sub { font-size: 11.5px; color: var(--ink-soft); }
+  .dec-body-inner { padding: 13px 14px; }
+  .dec-body-inner p { font-size: 12.5px; color: var(--ink-soft); margin: 0; line-height: 1.65; }
+  .dec-continue {
+    margin-top: 14px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: .08em;
+    color: #1f7d75;
+    padding: 6px 14px;
+    border: 1px solid var(--teal-100);
+    border-radius: var(--r-pill);
+    background: var(--teal-050);
+    display: inline-block;
   }
 
+  /* ---------- 交店 checklist ---------- */
+  .checklist {
+    list-style: none; margin: 14px 0 0; padding: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  }
+  .checklist li {
+    display: flex; gap: 8px; align-items: flex-start;
+    font-size: 13px; color: var(--ink); line-height: 1.45;
+    background: var(--paper-warm); border: 1px solid var(--line);
+    border-radius: var(--r-sm); padding: 9px 12px;
+  }
+  .checklist li::before { content: '✓'; color: var(--zana-pink); font-weight: 700; flex: none; }
+
+  /* ---------- week / phase cards ---------- */
   .parallel {
     display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
     width: 100%; max-width: 780px;
@@ -490,14 +502,16 @@
     background: var(--white); border: 1px solid var(--line);
     border-radius: var(--r-md); box-shadow: var(--shadow-sm);
     padding: 22px 22px 24px; position: relative; overflow: hidden;
+    transition: box-shadow .35s ease, transform .35s ease;
   }
+  .phase:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
   .phase::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: var(--dark-pink);
+    background: var(--stage-c, var(--dark-pink));
   }
   .phase .ph-no {
     font-family: var(--font-sans); font-size: 11px; letter-spacing: .2em;
-    text-transform: uppercase; color: var(--dark-pink);
+    text-transform: uppercase; color: var(--stage-c, var(--dark-pink));
   }
   .phase h4 {
     font-family: var(--font-sans-tc); font-weight: 700; font-size: 18px;
@@ -507,34 +521,19 @@
     font-family: var(--font-sans); font-size: 12px; color: var(--ink-faint);
     letter-spacing: .04em;
   }
-  .phase ul {
-    list-style: none; margin: 16px 0 0; padding: 0;
-    display: flex; flex-wrap: wrap; gap: 7px;
-  }
-  .phase li {
-    font-size: 12.5px; color: var(--ink-soft);
-    background: var(--pink-050); border: 1px solid var(--line);
-    border-radius: var(--r-pill); padding: 5px 11px;
-  }
-  .parallel-note {
-    text-align: center; font-size: 12px; color: var(--ink-faint);
-    margin-top: 14px; letter-spacing: .04em;
-  }
-
-  /* game-by-game rows inside a phase */
   .phase ul.games {
-    flex-direction: column; gap: 0; margin-top: 18px;
+    list-style: none; margin: 14px 0 0; padding: 0;
+    display: flex; flex-direction: column; gap: 0;
   }
   .phase ul.games li {
     display: flex; align-items: flex-start; gap: 13px;
-    background: transparent; border: none; border-radius: 0;
     padding: 11px 0; position: relative;
   }
   .phase ul.games li + li { border-top: 1px solid var(--line); }
   .phase ul.games li .g {
     flex: none; font-family: var(--font-sans); font-weight: 700; font-size: 12px;
-    letter-spacing: .02em; color: var(--white); background: var(--dark-pink);
-    border-radius: var(--r-pill); padding: 4px 9px; margin-top: 1px; min-width: 58px; text-align: center;
+    letter-spacing: .02em; color: var(--white); background: var(--stage-c, var(--dark-pink));
+    border-radius: var(--r-pill); padding: 4px 9px; margin-top: 1px; min-width: 52px; text-align: center;
   }
   .phase ul.games li .gt { font-size: 14px; font-weight: 700; color: var(--ink); line-height: 1.35; }
   .phase ul.games li .gd { font-size: 12px; color: var(--ink-soft); margin-top: 2px; line-height: 1.5; }
@@ -543,13 +542,13 @@
     font-family: var(--font-sans); font-size: 11px; letter-spacing: .04em; color: var(--gold-deep);
     border: 1px solid var(--line-gold); border-radius: var(--r-pill); padding: 3px 10px;
   }
-
-  /* merge connector (two -> one) */
-  .merge { width: 100%; max-width: 780px; height: 38px; position: relative; }
-  .merge svg { width: 100%; height: 100%; display: block; }
+  .parallel-note {
+    text-align: center; font-size: 12px; color: var(--ink-faint);
+    margin-top: 14px; letter-spacing: .04em;
+  }
 
   /* ============================================================
-     STAGE 4 — horizontal ops flow
+     STAGE 4 — ops flow + rhythm
      ============================================================ */
   .ops {
     display: flex; flex-wrap: wrap; align-items: stretch; justify-content: center;
@@ -561,7 +560,9 @@
     border-radius: var(--r-md); box-shadow: var(--shadow-sm);
     padding: 22px 20px; text-align: center;
     border-top: 3px solid var(--tahir-blue);
+    transition: box-shadow .35s ease, transform .35s ease;
   }
+  .opcard:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
   .opcard .oi {
     font-family: var(--font-sans); font-size: 12px; color: var(--ink-faint);
     letter-spacing: .14em;
@@ -585,40 +586,7 @@
   .finale .mk { width: 38px; opacity: .8; }
   .finale p { font-size: 13px; color: var(--ink-faint); margin: 14px 0 0; letter-spacing: .04em; }
 
-  /* ---------- game card preview popup ---------- */
-  .game-preview-wrap { position: relative; display: inline-block; }
-  .game-preview-icon {
-    display: inline-flex; align-items: center; gap: 5px;
-    margin-left: 8px; cursor: pointer;
-    font-size: 11px; color: var(--gold-deep);
-    border: 1px solid var(--line-gold); border-radius: var(--r-pill);
-    padding: 3px 9px; background: var(--gold-050);
-    vertical-align: middle; transition: background .2s;
-    user-select: none;
-  }
-  .game-preview-icon:hover { background: var(--gold-100); }
-  .game-popup {
-    display: none;
-    position: absolute; left: 0; top: calc(100% + 8px); z-index: 200;
-    width: 200px; border-radius: var(--r-md);
-    box-shadow: var(--shadow-lg); overflow: hidden;
-    border: 1px solid var(--line-gold);
-    background: var(--white);
-  }
-  .game-popup.open { display: block; }
-  .game-popup img { width: 100%; display: block; }
-  .game-popup-close {
-    position: absolute; top: 6px; right: 8px;
-    background: rgba(0,0,0,.45); color: #fff;
-    border: none; border-radius: 50%; width: 22px; height: 22px;
-    font-size: 13px; cursor: pointer; line-height: 1;
-    display: flex; align-items: center; justify-content: center;
-  }
-  @media (max-width: 600px) {
-    .game-popup { width: 170px; left: auto; right: 0; }
-  }
-
-  /* ---------- back to top button ---------- */
+  /* ---------- back to top ---------- */
   .back-top {
     position: fixed; bottom: 28px; right: 28px; z-index: 400;
     width: 46px; height: 46px; border-radius: 50%;
@@ -679,62 +647,9 @@
   }
   .ext-confirm:hover { background: var(--dark-pink); }
 
-  /* ---------- decision split (審核通過/不通過) ---------- */
-  .dec-split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    width: 100%;
-  }
-  .dec-card {
-    border-radius: var(--r-sm);
-    border: 1.5px solid var(--line);
-    background: var(--white);
-    overflow: hidden;
-  }
-  .dec-pass { border-color: var(--teal-100); }
-  .dec-head {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 11px 14px;
-    border-bottom: 1px solid var(--line);
-    font-family: var(--font-sans-tc);
-  }
-  .dec-pass .dec-head { background: var(--teal-050); border-bottom-color: var(--teal-100); }
-  .dec-reject .dec-head { background: var(--paper-warm); }
-  .dec-icon { font-size: 14px; font-weight: 700; }
-  .dec-icon-pass { color: #1f7d75; }
-  .dec-icon-reject { color: var(--ink-faint); }
-  .dec-head strong { font-size: 14px; color: var(--ink); }
-  .dec-sub { font-size: 11.5px; color: var(--ink-soft); }
-  .dec-body-inner { padding: 13px 14px; }
-  .dec-continue {
-    margin-top: 14px;
-    font-family: var(--font-sans);
-    font-size: 12px;
-    letter-spacing: .08em;
-    color: #1f7d75;
-    padding: 6px 14px;
-    border: 1px solid var(--teal-100);
-    border-radius: var(--r-pill);
-    background: var(--teal-050);
-  }
-
-  @media (max-width: 600px) {
-    .step { flex-direction: row; padding: 18px 18px; gap: 16px; }
-    .step .num { width: 48px; height: 48px; font-size: 20px; }
-    .step .body h4 { font-size: 17px; }
-    .bsplit { grid-template-columns: 1fr; }
-    .parallel { grid-template-columns: 1fr; }
-    .dec-split { grid-template-columns: 1fr; }
-  }
-
   /* ============================================================
      ENHANCEMENTS — motion · nav · polish
      ============================================================ */
-
-  /* top reading progress bar */
   .scroll-progress {
     position: fixed; top: 0; left: 0; right: 0; height: 3px;
     z-index: 600; pointer-events: none;
@@ -743,8 +658,6 @@
     display: block; height: 100%; width: 0;
     background: linear-gradient(90deg, var(--zana-pink), var(--dark-pink), var(--gold));
   }
-
-  /* compact sticky stage nav (mobile / narrow screens) */
   .mnav {
     position: fixed; top: 14px; left: 50%;
     transform: translateX(-50%) translateY(-80px);
@@ -765,27 +678,25 @@
   .mnav a.active { background: var(--stage-c, var(--zana-pink)); color: var(--white); }
   @media (min-width: 1241px) { .mnav { display: none; } }
 
-  /* scroll reveal */
   .rv { opacity: 0; }
   .rv-in { opacity: 1; animation: rvUp .65s cubic-bezier(.22,.9,.35,1) backwards; }
   @keyframes rvUp {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-
-  /* hero entrance */
   .hero .mark, .hero .wordmark, .hero h1, .hero .lead,
-  .hero .gold-rule, .hero .byline, .hero .overview {
+  .hero .gold-rule, .hero .byline, .hero .northstar, .hero .overview, .hero .ov-note {
     animation: rvUp .7s cubic-bezier(.22,.9,.35,1) backwards;
   }
-  .hero .wordmark  { animation-delay: .08s; }
-  .hero h1         { animation-delay: .14s; }
-  .hero .lead      { animation-delay: .2s;  }
-  .hero .gold-rule { animation-delay: .24s; }
-  .hero .byline    { animation-delay: .28s; }
-  .hero .overview  { animation-delay: .38s; }
+  .hero .wordmark   { animation-delay: .08s; }
+  .hero h1          { animation-delay: .14s; }
+  .hero .lead       { animation-delay: .2s;  }
+  .hero .gold-rule  { animation-delay: .24s; }
+  .hero .byline     { animation-delay: .28s; }
+  .hero .northstar  { animation-delay: .32s; }
+  .hero .overview   { animation-delay: .4s;  }
+  .hero .ov-note    { animation-delay: .48s; }
 
-  /* flowing light along connectors */
   .link .bar { position: relative; overflow: hidden; }
   .link .bar::after {
     content: ''; position: absolute; left: 0; width: 100%; height: 46%; top: -50%;
@@ -794,7 +705,6 @@
   }
   @keyframes flowDown { from { top: -50%; } to { top: 110%; } }
 
-  /* key-node breathing glow */
   .keyflag { animation: keyPulse 2.8s ease-in-out infinite; }
   @keyframes keyPulse {
     0%, 100% { box-shadow: var(--shadow-pink); }
@@ -805,20 +715,9 @@
     0%, 100% { transform: scale(1); opacity: .85; }
     50%      { transform: scale(1.18); opacity: 1; }
   }
-
-  /* open/close micro-motion */
   .msg-box.open { animation: msgIn .28s ease; }
-  .game-popup.open { animation: msgIn .22s ease; }
   @keyframes msgIn { from { opacity: 0; transform: translateY(-5px); } }
 
-  /* card hover polish */
-  .dec-card, .phase, .opcard, .trigger, .milestone, .bstep {
-    transition: box-shadow .35s ease, transform .35s ease;
-  }
-  .dec-card:hover, .phase:hover, .opcard:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-  .milestone:hover { transform: translateY(-2px); }
-
-  /* keyboard focus */
   a:focus-visible, button:focus-visible {
     outline: 2px solid var(--zana-pink); outline-offset: 2px;
   }
@@ -827,6 +726,16 @@
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .rv { opacity: 1; }
+  }
+
+  @media (max-width: 600px) {
+    .step { flex-direction: row; padding: 18px 18px; gap: 16px; }
+    .step .num { width: 48px; height: 48px; font-size: 17px; }
+    .step .body h4 { font-size: 17px; }
+    .bsplit { grid-template-columns: 1fr; }
+    .parallel { grid-template-columns: 1fr; }
+    .dec-split { grid-template-columns: 1fr; }
+    .checklist { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -837,17 +746,17 @@
 
 <!-- compact sticky nav (appears after scrolling, hidden on wide screens) -->
 <nav class="mnav" id="mnav" aria-label="快速導覽">
-  <a href="#s1" data-stage="s1">簽約</a>
-  <a href="#s2" data-stage="s2">培訓</a>
-  <a href="#s3" data-stage="s3">建店</a>
+  <a href="#s1" data-stage="s1">招募</a>
+  <a href="#s2" data-stage="s2">交店</a>
+  <a href="#s3" data-stage="s3">上手</a>
   <a href="#s4" data-stage="s4">營運</a>
 </nav>
 
 <!-- ============= SIDE RAIL ============= -->
 <nav class="rail" aria-label="段落導覽">
   <a href="#s1" data-stage="s1"><span class="rdot"></span><span class="rlabel">招募簽約</span></a>
-  <a href="#s2" data-stage="s2"><span class="rdot"></span><span class="rlabel">匯款預備課</span></a>
-  <a href="#s3" data-stage="s3"><span class="rdot"></span><span class="rlabel">建店養號</span></a>
+  <a href="#s2" data-stage="s2"><span class="rdot"></span><span class="rlabel">開通交店</span></a>
+  <a href="#s3" data-stage="s3"><span class="rdot"></span><span class="rlabel">14 天上手</span></a>
   <a href="#s4" data-stage="s4"><span class="rdot"></span><span class="rlabel">正式營運</span></a>
 </nav>
 
@@ -858,133 +767,77 @@
     <img class="motif-bg" src="assets/motif-gold.png" alt="" />
     <img class="mark" src="assets/logo-pink.png" alt="TAHIR ZAINAB" />
     <div class="wordmark">TAHIR ZAINAB</div>
-    <h1>代理線上商店輔導流程</h1>
-    <p class="lead">從看到一支影片，到成為正式上線的線上珠寶商 —— 招募、簽約、建店、營運的完整旅程。</p>
+    <h1>代理招募與上手流程 2.0</h1>
+    <p class="lead">從陌生人到第一筆訂單。招募、交店、上手、營運 —— 每一步都清楚寫著：誰負責、做什麼、用哪句話。</p>
     <div class="byline">
       <span class="bk">品牌</span>TAHIR ZAINAB 泰熙爾札娜
       <span class="sep"></span>
       <span class="bk">業務承辦</span><b>上山打老虎有限公司</b>
     </div>
+    <div><span class="northstar">🎯 北極星指標：簽約後 17 天內，拿到第一筆訂單</span></div>
     <div class="gold-rule"></div>
 
     <div class="overview">
       <a class="ov-cell" href="#s1">
         <span class="ov-go">→</span>
-        <div class="ov-top"><span class="ov-dot" style="background:var(--ink-soft)"></span>STAGE 01</div>
+        <div class="ov-top"><span class="ov-dot" style="background:var(--ink-soft)"></span>PHASE A</div>
         <h3>招募簽約</h3>
-        <div class="ov-meta">看到內容 → 審核 → 面談簽約</div>
-        <span class="ov-dur">STEP 1–7 · 含追蹤分支</span>
+        <div class="ov-meta">加 LINE → 評估 → 說明會 → 簽約</div>
+        <span class="ov-dur">5 步 · 一套追蹤節奏</span>
       </a>
       <a class="ov-cell" href="#s2">
         <span class="ov-go">→</span>
-        <div class="ov-top"><span class="ov-dot" style="background:var(--gold)"></span>STAGE 02</div>
-        <h3>匯款預備課</h3>
-        <div class="ov-meta">入會 → 生效 → 考試解鎖</div>
-        <span class="ov-dur">STEP 8–11 · 預備課約 1 週</span>
+        <div class="ov-top"><span class="ov-dot" style="background:var(--gold)"></span>PHASE B</div>
+        <h3>開通交店</h3>
+        <div class="ov-meta">匯款生效 → 公司把店做好交給你</div>
+        <span class="ov-dur">Day 0 – 3</span>
       </a>
       <a class="ov-cell" href="#s3">
         <span class="ov-go">→</span>
-        <div class="ov-top"><span class="ov-dot" style="background:var(--dark-pink)"></span>STAGE 03</div>
-        <h3>建店養號</h3>
-        <div class="ov-meta">IG 開店 → 養號 → FB 收尾</div>
-        <span class="ov-dur">game01–15 · 60 天挑戰</span>
+        <div class="ov-top"><span class="ov-dot" style="background:var(--dark-pink)"></span>PHASE C</div>
+        <h3>14 天上手</h3>
+        <div class="ov-meta">會發 → 會賣 → 拿首單</div>
+        <span class="ov-dur">Day 4 – 17</span>
       </a>
       <a class="ov-cell" href="#s4">
         <span class="ov-go">→</span>
-        <div class="ov-top"><span class="ov-dot" style="background:var(--tahir-blue)"></span>STAGE 04</div>
+        <div class="ov-top"><span class="ov-dot" style="background:var(--tahir-blue)"></span>PHASE D</div>
         <h3>正式營運</h3>
-        <div class="ov-meta">賣貨拿傭金，後勤全包</div>
-        <span class="ov-dur">上線後·持續營運</span>
+        <div class="ov-meta">照週節奏走，公司包後勤</div>
+        <span class="ov-dur">Day 18 起</span>
       </a>
     </div>
+    <div class="ov-note">每張卡片都標了負責人：<span class="tag co" style="margin:0 2px;">🏢 公司做</span><span class="tag ag" style="margin:0 2px;">🙋 代理做</span><span class="tag both" style="margin:0 2px;">🤝 一起做</span></div>
   </header>
 
   <!-- ============================================================
-       第一段 · 招募簽約
+       PHASE A · 招募簽約
        ============================================================ -->
   <section class="stage" id="s1" style="--stage-c: var(--ink-soft);">
     <div class="stage-head">
-      <div class="stage-no">STAGE 01</div>
+      <div class="stage-no">PHASE A</div>
       <h2>招募簽約</h2>
+      <div class="stage-sub">主線只有 5 步。對方卡在任何一步，都用同一套「2-4-7 追蹤節奏」處理。</div>
       <div class="stage-bar"></div>
     </div>
 
     <div class="flow">
       <div class="step">
-        <div class="num num-neutral n-neutral">1</div>
-        <div class="body"><h4>看到影片 / 圖文有興趣</h4><p>在 IG、FB 等社群觸及品牌內容，產生初步好奇。</p></div>
-      </div>
-      <div class="link"><span class="bar"></span><span class="head"></span></div>
-
-      <div class="step">
-        <div class="num n-neutral">2</div>
-        <div class="body"><h4>加官方 LINE OA</h4><p>進入品牌官方帳號，開始一對一對話。</p>
-        <a class="steplink line" href="https://lin.ee/oE4sdTer" target="_blank" rel="noopener">加入官方 LINE OA <span class="arr">→</span></a>
-        <button class="msg-toggle" onclick="toggleMsg(this)">公版回覆範本 <span class="arr">›</span></button>
-        <div class="msg-box">
-          <div class="msg-head">
-            <span>LINE OA 公版回覆</span>
-            <button class="copy-btn" style="background:#06C755;box-shadow:0 4px 14px rgba(6,199,85,.28);" onclick="copyMsg(this)">複製內容</button>
-          </div>
-          <div class="msg-body">很高興您對輕奢珠寶創業有興趣 💎
+        <div class="num n-neutral num-h">A1</div>
+        <div class="body">
+          <h4>看到內容 · 加 LINE OA</h4>
+          <p>在 IG、FB 觸及品牌內容，加入官方帳號。加入後立刻收到歡迎訊息＋評估表。</p>
+          <div class="tags"><span class="tag ag">🙋 代理做</span></div>
+          <a class="steplink line" href="https://lin.ee/oE4sdTer" target="_blank" rel="noopener">官方 LINE OA <span class="arr">→</span></a>
+          <button class="msg-toggle" onclick="toggleMsg(this)">歡迎訊息公版 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head"><span>LINE OA 歡迎訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-body">很高興您對輕奢珠寶創業有興趣 💎
 夢想啟動就在這一刻！為了讓您更了解合作細節，請先幫我們填寫「創業評估表」，我們確認您是否適合之後會傳送「線上說明會影片」給您
 
 「創業評估表」
  https://www.tzgrotw.tw/forms/69ccb630319b6ae4603723b8
 填寫完畢後，請回傳「已填寫」讓我們一起打造屬於您的珠寶品牌夢！歡迎你的到來～😄</div>
-          <div class="msg-foot">
-            <button class="copy-btn" style="background:#06C755;box-shadow:0 4px 14px rgba(6,199,85,.28);" onclick="copyMsg(this)">複製內容</button>
-          </div>
-        </div>
-        </div>
-      </div>
-      <div class="link"><span class="bar"></span><span class="head"></span></div>
-
-      <div class="step">
-        <div class="num n-neutral">3</div>
-        <div class="body"><h4>填寫評估表</h4><p>提供基本資料與加入意願，供承辦公司評估。</p>
-        <a class="steplink" href="https://www.tzgrotw.tw/forms/69ccb630319b6ae4603723b8" target="_blank" rel="noopener">填寫評估表 <span class="arr">→</span></a></div>
-      </div>
-      <div class="link"><span class="bar"></span><span class="head"></span></div>
-
-      <!-- branch: 填表後若沒下文 -->
-      <div class="detour-wrap">
-        <div class="branch-label">↷ 填寫評估表後 · 若對方沒下文</div>
-        <div class="detour">
-          <div class="dhead">
-            <h5>沒下文 → 追蹤</h5>
-            <span>主動再接觸，把人帶回主線</span>
-          </div>
-          <div class="bflow">
-            <div class="bstep">
-              <span class="badge">第一次 · 2 天</span>
-              <div><div class="bt">LINE OA + IG 私訊</div><div class="bd">輕度提醒，重新開啟對話。</div></div>
-            </div>
-            <div class="blink"><span class="bar"></span><span>再 2 天沒回</span></div>
-            <div class="bstep">
-              <span class="badge">第二次 · 再 2 天</span>
-              <div><div class="bt">Vito 1 對 1 線上會議</div><div class="bd">真人對談，釐清疑慮。</div></div>
-            </div>
-          </div>
-          <div class="bsplit">
-            <div class="boutcome sleep"><div class="ol">仍沒回</div><div class="ov">列入休眠</div></div>
-            <div class="boutcome back"><div class="ol">有回</div><div class="ov">回主線 → STEP 4</div></div>
-          </div>
-          <button class="msg-toggle" onclick="toggleMsg(this)">追蹤公版範本 <span class="arr">›</span></button>
-          <div class="msg-box">
-            <div class="msg-head"><span>LINE OA 沒下文追蹤公版</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
-            <div class="msg-body">嗈,再次打擾你 🙏
-
-幾天前傳給你的代理評估表
-https://www.tzgrotw.tw/forms/69ccb630319b6ae4603723b8
-還沒收到你的回覆。
-
-如果你還在考慮,沒關係 ——
-我們下週會集中審核這一批申請,
-建議你想好就盡早填,免得錯過這次的開放名額。
-
-如果你最後決定不參與,
-也歡迎直接告訴我,我們不會打擾你 😊</div>
             <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
           </div>
         </div>
@@ -992,45 +845,113 @@ https://www.tzgrotw.tw/forms/69ccb630319b6ae4603723b8
       <div class="link"><span class="bar"></span><span class="head"></span></div>
 
       <div class="step">
-        <div class="num n-neutral">4</div>
+        <div class="num n-neutral num-h">A2</div>
         <div class="body">
-          <h4>承辦公司審核評估表</h4>
-          <p>上山打老虎有限公司審核填寫內容，決定是否邀請加入。</p>
-          <a class="steplink ghost" href="https://form-builder.shoplineapp.com/admin/tzgrotw251/forms/69ccb630319b6ae4603723b8/report" target="_blank" rel="noopener">查看填寫內容（後台） <span class="arr">→</span></a>
+          <h4>填寫評估表</h4>
+          <p>提供基本資料與加入意願，供承辦公司評估。</p>
+          <div class="tags"><span class="tag ag">🙋 代理做</span></div>
+          <a class="steplink" href="https://www.tzgrotw.tw/forms/69ccb630319b6ae4603723b8" target="_blank" rel="noopener">評估表連結 <span class="arr">→</span></a>
         </div>
       </div>
       <div class="link"><span class="bar"></span><span class="head"></span></div>
 
-      <!-- 審核結果 decision branch -->
+      <!-- 全段通用追蹤系統 -->
       <div class="detour-wrap">
-        <div class="branch-label">↷ 審核結果 · 依結果發送對應訊息</div>
-        <div class="detour">
+        <div class="branch-label">⚙ 全段通用 · 對方在任何一步卡住，就啟動</div>
+        <div class="detour" style="border-color: var(--pink-200); background: linear-gradient(180deg, #fff, var(--pink-050));">
           <div class="dhead">
-            <h5>通過 / 不通過</h5>
-            <span>查看完內容後，選擇對應回覆</span>
+            <h5>2-4-7 追蹤節奏</h5>
+            <span>只有這一套規則：第 2 天輕提醒 → 第 4 天約通話 → 第 7 天最後確認</span>
           </div>
-          <div class="dec-split">
+          <div class="bflow">
+            <div class="bstep">
+              <span class="badge">第 2 天</span>
+              <div><div class="bt">輕提醒</div><div class="bd">LINE OA + IG 私訊，一句話重新開啟對話。</div></div>
+            </div>
+            <div class="blink"><span class="bar"></span><span>還是沒回</span></div>
+            <div class="bstep">
+              <span class="badge">第 4 天</span>
+              <div><div class="bt">約 15 分鐘通話</div><div class="bd">文字說不清楚的，用一通短電話釐清。</div></div>
+            </div>
+            <div class="blink"><span class="bar"></span><span>還是沒回</span></div>
+            <div class="bstep">
+              <span class="badge">第 7 天</span>
+              <div><div class="bt">最後確認</div><div class="bd">禮貌收尾，說明這是最後一次主動聯繫。</div></div>
+            </div>
+          </div>
+          <div class="bsplit">
+            <div class="boutcome back"><div class="ol">任何時候有回</div><div class="ov">回到主線，從卡住那步繼續</div></div>
+            <div class="boutcome sleep"><div class="ol">7 天後仍沒回</div><div class="ov">進休眠池 · 每月喚醒一次</div></div>
+          </div>
+          <button class="msg-toggle" onclick="toggleMsg(this)">第 2 天輕提醒 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head"><span>LINE OA 第 2 天輕提醒</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-body">[名字] 你好 🙏
+上次傳給你的內容，不知道你看了嗎？
+有任何不清楚的地方，直接回我就可以，我都在 😊</div>
+            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+          </div>
+          <button class="msg-toggle" onclick="toggleMsg(this)">第 4 天約通話 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head"><span>LINE OA 第 4 天約通話</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-body">[名字]，
+文字有時候說不清楚 😅
+要不要我幫你約一通 15 分鐘的電話，
+把你在意的問題一次講清楚？
+
+不用準備什麼，聊聊就好。
+你哪天方便？</div>
+            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+          </div>
+          <button class="msg-toggle" onclick="toggleMsg(this)">第 7 天最後確認 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head"><span>LINE OA 第 7 天最後確認</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-body">[名字] 你好 🙏
+不想一直打擾你，這是我最後一次主動聯繫。
+
+如果你還有興趣，隨時回我這則訊息，我馬上接手。
+如果暫時不考慮，也謝謝你花時間了解我們，
+祝一切順利 💎</div>
+            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+          </div>
+          <button class="msg-toggle" onclick="toggleMsg(this)">休眠池 · 每月喚醒 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head"><span>LINE OA 每月喚醒訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-body">[名字] 好久不見 👋
+這個月我們有 [新品 / 活動 / 開放名額]，
+想到你之前有了解過代理合作，跟你說一聲。
+
+有興趣隨時回我 😊</div>
+            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <div class="step">
+        <div class="num n-neutral num-h">A3</div>
+        <div class="body">
+          <h4>審核評估表</h4>
+          <p>上山打老虎審核填寫內容，24 小時內回覆結果。</p>
+          <div class="tags"><span class="tag co">🏢 公司做</span></div>
+          <a class="steplink ghost" href="https://form-builder.shoplineapp.com/admin/tzgrotw251/forms/69ccb630319b6ae4603723b8/report" target="_blank" rel="noopener">查看填寫內容（後台） <span class="arr">→</span></a>
+          <div class="dec-split" style="margin-top:14px;">
             <div class="dec-card dec-pass">
               <div class="dec-head">
                 <span class="dec-icon dec-icon-pass">✓</span>
                 <strong>通過</strong>
-                <span class="dec-sub">寄送說明會連結</span>
+                <span class="dec-sub">寄說明會連結</span>
               </div>
               <div class="dec-body-inner">
-                <button class="msg-toggle" onclick="toggleMsg(this)">寄送說明會範本 <span class="arr">›</span></button>
+                <button class="msg-toggle" style="margin-top:0;" onclick="toggleMsg(this)">寄送說明會範本 <span class="arr">›</span></button>
                 <div class="msg-box">
-                  <div class="msg-head">
-                    <span>LINE OA 寄送說明會訊息範本</span>
-                    <button class="copy-btn" onclick="copyMsg(this)">複製內容</button>
-                  </div>
+                  <div class="msg-head"><span>LINE OA 寄送說明會</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
                   <div class="msg-body">{AccountName}感謝您填完評估表，以下是線上說明會連結
 
 https://reurl.cc/Q2q81p
 
 (!)此影片有附上電子簽章請勿外傳，看完後，請再和我們聯繫。謝謝</div>
-                  <div class="msg-foot">
-                    <button class="copy-btn" onclick="copyMsg(this)">複製內容</button>
-                  </div>
+                  <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
                 </div>
               </div>
             </div>
@@ -1038,15 +959,12 @@ https://reurl.cc/Q2q81p
               <div class="dec-head">
                 <span class="dec-icon dec-icon-reject">✗</span>
                 <strong>不通過</strong>
-                <span class="dec-sub">婉拒並感謝填寫</span>
+                <span class="dec-sub">婉拒並感謝</span>
               </div>
               <div class="dec-body-inner">
-                <button class="msg-toggle" style="background:var(--paper-warm);color:var(--ink-soft);border-color:var(--line);" onclick="toggleMsg(this)">寄出婉拒訊息範本 <span class="arr">›</span></button>
+                <button class="msg-toggle" style="margin-top:0;background:var(--paper-warm);color:var(--ink-soft);border-color:var(--line);" onclick="toggleMsg(this)">婉拒訊息範本 <span class="arr">›</span></button>
                 <div class="msg-box">
-                  <div class="msg-head">
-                    <span>LINE OA 婉拒訊息範本</span>
-                    <button class="copy-btn" style="background:var(--ink-soft);box-shadow:none;" onclick="copyMsg(this)">複製內容</button>
-                  </div>
+                  <div class="msg-head"><span>LINE OA 婉拒訊息</span><button class="copy-btn" style="background:var(--ink-soft);box-shadow:none;" onclick="copyMsg(this)">複製內容</button></div>
                   <div class="msg-body">[名字] 你好 🙏
 
 謝謝你完整填寫代理評估表,
@@ -1062,79 +980,77 @@ https://reurl.cc/Q2q81p
 未來如果時機合適,我們也歡迎你再次聯繫。
 
 祝你一切順利。</div>
-                  <div class="msg-foot">
-                    <button class="copy-btn" style="background:var(--ink-soft);box-shadow:none;" onclick="copyMsg(this)">複製內容</button>
-                  </div>
+                  <div class="msg-foot"><button class="copy-btn" style="background:var(--ink-soft);box-shadow:none;" onclick="copyMsg(this)">複製內容</button></div>
                 </div>
               </div>
             </div>
-          </div>
-          <div style="text-align:center;margin-top:16px;">
-            <span class="dec-continue">通過 → 繼續到 STEP 5 看說明會</span>
           </div>
         </div>
       </div>
       <div class="link"><span class="bar"></span><span class="head"></span></div>
 
       <div class="step">
-        <div class="num n-neutral">5</div>
-        <div class="body"><h4>看線上說明會影片</h4><p>了解品牌故事、代理制度與實際營運樣貌。</p>
-        <a class="steplink ghost" href="https://www.tzgrotw.tw/pages/%E7%B7%9A%E4%B8%8A%E7%8F%A0%E5%AF%B6%E5%95%86%E4%BB%A3%E7%90%86%E8%AA%AA%E6%98%8E%E6%9C%83" target="_blank" rel="noopener">觀看線上說明會 <span class="arr">→</span></a></div>
-      </div>
-      <div class="link"><span class="bar"></span><span class="head"></span></div>
-
-      <div class="step">
-        <div class="num n-neutral" style="font-size:12px;width:46px;height:46px;background:var(--paper-warm);border:1.5px dashed var(--ink-soft);">24h</div>
+        <div class="num n-neutral num-h">A4</div>
         <div class="body">
-          <h4>說明會觀看後追蹤</h4>
-          <p>寄出說明會連結約 24 小時後，確認對方看完了沒、有何想法。</p>
-          <button class="msg-toggle" onclick="toggleMsg(this)">說明會追蹤公版 <span class="arr">›</span></button>
+          <h4>看說明會 · 解惑</h4>
+          <p>寄出連結 24 小時後主動追蹤感想。對方有疑慮時，給兩個選項把問題一次清掉。</p>
+          <div class="tags"><span class="tag both">🤝 一起做</span></div>
+          <button class="msg-toggle" onclick="toggleMsg(this)">24h 追蹤公版 <span class="arr">›</span></button>
           <div class="msg-box">
-            <div class="msg-head"><span>LINE OA 說明會追蹤公版</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-head"><span>LINE OA 說明會 24h 追蹤</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
             <div class="msg-body">說明會影片看完了嗎?
 
 我這邊在幫你排下一步,但想先聽到你的想法，喜歡哪裡、卡哪裡，都可以跟我說。</div>
             <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
           </div>
-        </div>
-      </div>
-      <div class="link"><span class="bar"></span><span class="head"></span></div>
+          <div class="dec-split" style="margin-top:14px;">
+            <div class="dec-card dec-pass">
+              <div class="dec-head">
+                <span class="dec-icon dec-icon-pass">☎</span>
+                <strong>免費 · 線上通話</strong>
+                <span class="dec-sub">1 小時 · 一般疑問</span>
+              </div>
+              <div class="dec-body-inner">
+                <p>直接問、直接聊，把不確定的地方一次釐清。</p>
+                <button class="msg-toggle" onclick="toggleMsg(this)">邀約公版 <span class="arr">›</span></button>
+                <div class="msg-box">
+                  <div class="msg-head"><span>LINE OA 邀約線上通話</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+                  <div class="msg-body">這樣好了,
+我幫你約一次 1 對 1 線上會議,
+讓你直接問、直接聊,把不確定的地方一次釐清。
 
-      <!-- branch: 看完影片有疑慮 → 付費到館諮詢 -->
-      <div class="detour-wrap">
-        <div class="branch-label">↷ 在 LINE OA 提問 · 仍有疑慮或不放心</div>
-        <div class="detour">
-          <div class="dhead">
-            <h5>付費 1 對 1 到館諮詢</h5>
-            <span>先付款 · 付款後聯繫我們排時間 · 費用可抵扣代理費</span>
-          </div>
-          <div class="bflow">
-            <div class="bstep">
-              <span class="badge">Step 1</span>
-              <div>
-                <div class="bt">點連結 · 先完成付款</div>
-                <div class="bd">在商品頁完成購買後，把截圖傳給我。</div>
+1 小時,線上,不收費。
+
+什麼時間方便?我幫你看看講師的空檔 🙏</div>
+                  <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+                </div>
+                <button class="msg-toggle" onclick="toggleMsg(this)">約好確認公版 <span class="arr">›</span></button>
+                <div class="msg-box">
+                  <div class="msg-head"><span>LINE OA 線上通話確認</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+                  <div class="msg-body">幫你約好了 👍
+
+📅 時間:[MM/DD]([週X])・ [HH:MM] - [HH:MM]
+🔗 連結:[會議連結]
+⏱️ 約 1 小時
+
+如果突然有事不能來,提早跟我說一聲,我幫你重約 🙏</div>
+                  <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+                </div>
               </div>
             </div>
-            <div class="blink"><span class="bar"></span></div>
-            <div class="bstep">
-              <span class="badge">Step 2</span>
-              <div>
-                <div class="bt">我們幫你排時間 · 確認地點</div>
-                <div class="bd">彰化 / 台北擇一，90 分鐘 1 對 1 到館諮詢。</div>
+            <div class="dec-card" style="border-color:var(--gold-300);">
+              <div class="dec-head" style="background:var(--gold-050);border-bottom-color:var(--line-gold);">
+                <span class="dec-icon" style="color:var(--gold-deep);">💎</span>
+                <strong>付費 · 到館諮詢</strong>
+                <span class="dec-sub">90 分 · 可抵代理費</span>
               </div>
-            </div>
-          </div>
-          <div style="margin-top:14px;">
-            <span style="display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--gold-deep);border:1px solid var(--line-gold);border-radius:var(--r-pill);padding:6px 14px;background:var(--gold-050);">✓ 確定加入後，諮詢費用全額抵扣代理費</span>
-          </div>
-          <div style="margin-top:12px;">
-            <a class="steplink ghost" href="https://www.tzgrotw.tw/products/%E7%8F%A0%E5%AF%B6%E4%BB%A3%E7%90%86%E4%B8%80%E5%B0%8D%E4%B8%80%E8%AB%AE%E8%A9%A2%EF%BD%9C90-%E5%88%86%E9%90%98" target="_blank" rel="noopener">前往購買付費諮詢 <span class="arr">→</span></a>
-          </div>
-          <button class="msg-toggle" onclick="toggleMsg(this)">介紹付費諮詢公版 <span class="arr">›</span></button>
-          <div class="msg-box">
-            <div class="msg-head"><span>LINE OA 介紹付費諮詢範本</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
-            <div class="msg-body">[名字] 你好，
+              <div class="dec-body-inner">
+                <p>先付款，再回來約時間。彰化 / 台北擇一。確定加入後全額抵扣代理費。</p>
+                <a class="steplink ghost" style="margin-top:12px;" href="https://www.tzgrotw.tw/products/%E7%8F%A0%E5%AF%B6%E4%BB%A3%E7%90%86%E4%B8%80%E5%B0%8D%E4%B8%80%E8%AB%AE%E8%A9%A2%EF%BD%9C90-%E5%88%86%E9%90%98" target="_blank" rel="noopener">購買連結 <span class="arr">→</span></a>
+                <button class="msg-toggle" onclick="toggleMsg(this)">介紹公版 <span class="arr">›</span></button>
+                <div class="msg-box">
+                  <div class="msg-head"><span>LINE OA 介紹付費諮詢</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+                  <div class="msg-body">[名字] 你好，
 
 謝謝你認真把問題提出來 🙏
 
@@ -1153,113 +1069,23 @@ https://reurl.cc/Q2q81p
 https://www.tzgrotw.tw/products/%E7%8F%A0%E5%AF%B6%E4%BB%A3%E7%90%86%E4%B8%80%E5%B0%8D%E4%B8%80%E8%AB%AE%E8%A9%A2%EF%BD%9C90-%E5%88%86%E9%90%98
 
 也可以繼續在這邊問，沒有硬性規定要買 😊</div>
-            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
-          </div>
-        </div>
-      </div>
-      <div class="link"><span class="bar"></span><span class="head"></span></div>
-
-      <div class="step">
-        <div class="num n-neutral">6</div>
-        <div class="body">
-          <h4>面談 / 線上諮詢</h4>
-          <p>依對方需求擇一：免費線上通話，或直接到彰化 / 台北辦公室面談，把疑問一次釐清。</p>
-          <div class="tags">
-            <span class="tag pos">線上 · 1 小時 · 免費</span>
-            <span class="tag">彰化</span>
-            <span class="tag">台北</span>
-          </div>
-          <button class="msg-toggle" onclick="toggleMsg(this)">邀約線上會議範本 <span class="arr">›</span></button>
-          <div class="msg-box">
-            <div class="msg-head"><span>LINE OA 邀約線上會議</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
-            <div class="msg-body">這樣好了,
-我幫你約一次 1 對 1 線上會議,
-讓你直接問、直接聊,把不確定的地方一次釐清。
-
-1 小時,線上,不收費。
-
-什麼時間方便?我幫你看看講師的空檔 🙏</div>
-            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
-          </div>
-          <button class="msg-toggle" onclick="toggleMsg(this)">線上會議確認範本 <span class="arr">›</span></button>
-          <div class="msg-box">
-            <div class="msg-head"><span>LINE OA 線上會議確認</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
-            <div class="msg-body">幫你約好了 👍
-
-📅 時間:[MM/DD]([週X])・ [HH:MM] - [HH:MM]
-🔗 連結:[會議連結]
-⏱️ 約 1 小時
-
-如果突然有事不能來,提早跟我說一聲,我幫你重約 🙏</div>
-            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
-          </div>
-          <button class="msg-toggle" onclick="toggleMsg(this)">約來公司面談範本 <span class="arr">›</span></button>
-          <div class="msg-box">
-            <div class="msg-head"><span>LINE OA 約來公司面談範本</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
-            <div class="msg-body">[名字],
-
-跟你約來公司面談
-
-📍 兩個地點可選
-
-彰化總部
-彰化市中山路二段 2 號 12 樓
-
-台北辦公室
-臺北市大安區仁愛路 4 段 101 號 3 樓
-
-📋 過來請帶
-・身分證正反面副本
-・本人存折封面副本
-
-幫你安排：時間:[MM/DD]([週X])・ [HH:MM] - [HH:MM]
-到時候請準時到 🙏 期待與您相見~</div>
-            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
-          </div>
-        </div>
-      </div>
-      <div class="link"><span class="bar"></span><span class="head"></span></div>
-
-      <!-- branch: 面談後帶回去考慮 -->
-      <div class="detour-wrap">
-        <div class="branch-label">↷ 面談後帶回去考慮 · 2 天內追蹤</div>
-        <div class="detour">
-          <div class="dhead">
-            <h5>面談後追蹤</h5>
-            <span>主動問候考慮進度，保持溫度</span>
-          </div>
-          <div class="bflow">
-            <div class="bstep">
-              <span class="badge">2 天內</span>
-              <div><div class="bt">主動詢問考慮狀況</div><div class="bd">問候是否有疑問，歡迎隨時聯繫。</div></div>
+                  <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="bsplit">
-            <div class="boutcome sleep"><div class="ol">仍在考慮</div><div class="ov">保持觀察</div></div>
-            <div class="boutcome back"><div class="ol">決定了</div><div class="ov">回主線 → STEP 7</div></div>
-          </div>
-          <button class="msg-toggle" onclick="toggleMsg(this)">面談後追蹤公版 <span class="arr">›</span></button>
-          <div class="msg-box">
-            <div class="msg-head"><span>LINE OA 面談後追蹤公版</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
-            <div class="msg-body">[名字] 你好 🙏
-
-前幾天見面，感謝你特地撥冗過來！
-
-不知道這幾天考慮得怎麼樣了？
-如果有任何問題、或是有什麼想再了解的，
-都歡迎直接問我，我很樂意幫你釐清 😊</div>
-            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
-          </div>
         </div>
       </div>
       <div class="link"><span class="bar"></span><span class="head"></span></div>
 
-      <div class="step">
-        <div class="num n-neutral">7</div>
+      <div class="step" style="border: 1.6px solid var(--zana-pink); background: linear-gradient(180deg, #fff, var(--pink-050)); box-shadow: var(--shadow-pink);">
+        <div class="keyflag">✦ 關鍵節點</div>
+        <div class="num num-h" style="background: var(--zana-pink); color: var(--white);">A5</div>
         <div class="body">
-          <h4>現場讀合約 · 簽約 · 繳證件</h4>
-          <p>現場逐條說明合約、完成簽署與證件繳交。</p>
-          <button class="msg-toggle" onclick="toggleMsg(this)">約簽約公版（含帶物清單＋路線） <span class="arr">›</span></button>
+          <h4 style="color:var(--dark-pink-700);">來公司簽約</h4>
+          <p>現場逐條讀合約、簽署、繳證件。約好時間就寄「簽約須知」：帶什麼、怎麼來，一則訊息說完。</p>
+          <div class="tags"><span class="tag both">🤝 一起做</span><span class="tag">彰化</span><span class="tag">台北</span></div>
+          <button class="msg-toggle" onclick="toggleMsg(this)">約簽約公版（帶物＋交通） <span class="arr">›</span></button>
           <div class="msg-box">
             <div class="msg-head"><span>LINE OA 約簽約公版</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
             <div class="msg-body">[名字] 你好！
@@ -1306,24 +1132,48 @@ https://www.tzgrotw.tw/products/%E7%8F%A0%E5%AF%B6%E4%BB%A3%E7%90%86%E4%B8%80%E5
   <div class="link" style="--stage-c: var(--gold-deep);"><span class="bar"></span><span class="head"></span></div>
 
   <!-- ============================================================
-       第二段 · 匯款預備課
+       PHASE B · 開通交店 Day 0-3
        ============================================================ -->
   <section class="stage" id="s2" style="--stage-c: var(--gold-deep);">
     <div class="stage-head">
-      <div class="stage-no">STAGE 02</div>
-      <h2>合約成立 · 培訓</h2>
-      <div class="stage-sub">入會、生效，到寶石知識考試解鎖任務</div>
+      <div class="stage-no">PHASE B · DAY 0–3</div>
+      <h2>開通交店</h2>
+      <div class="stage-sub">簽約後你不用自己開店 —— 3 天內，公司把 IG 店整個做好交到你手上。</div>
       <div class="stage-bar"></div>
     </div>
 
     <div class="flow">
       <div class="step">
-        <div class="num n-gold">8</div>
-        <div class="body"><h4>5 日內匯款入會費</h4><p>此 5 天同時為合約審閱期，如有任何疑問請在繳費前提出，確認無誤後再完成匯款。</p>
-          <button class="msg-toggle" onclick="toggleMsg(this)">第 3 天匯款提醒範本 <span class="arr">›</span></button>
+        <div class="num n-gold num-h" style="font-size:15px;">D0</div>
+        <div class="body">
+          <h4>簽約當天 · 啟動審閱期</h4>
+          <p>合約帶回去可以再看，這 5 天同時是合約審閱期。有問題這幾天內提出，確認沒問題後 5 日內匯款。</p>
+          <div class="tags"><span class="tag ag">🙋 代理做</span><span class="tag">5 日內匯款 · 含審閱期</span></div>
+          <button class="msg-toggle" onclick="toggleMsg(this)">簽約當天訊息公版 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head"><span>LINE OA 簽約當天訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-body">[名字]，歡迎加入 🎉
+
+今天簽的合約可以帶回去再看一次，
+這 5 天同時是你的「合約審閱期」，
+有任何問題直接問我，我們都會處理。
+
+確認沒問題後，5 日內完成匯款就正式生效：
+
+💰 入會費：NT$[500,000 / 200,000]
+
+🏦 匯款資訊
+戶名：上山打老虎有限公司
+銀行：103 新光銀行 0444 彰化分行
+帳號：0444-10300-628-3
+
+匯完把後五碼回傳給我，我幫你對帳 🙏</div>
+            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+          </div>
+          <button class="msg-toggle" onclick="toggleMsg(this)">第 3 天匯款提醒 <span class="arr">›</span></button>
           <div class="msg-box">
             <div class="msg-head"><span>LINE OA 第 3 天匯款提醒</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
-            <div class="msg-body">[名字],
+            <div class="msg-body">[名字]，
 
 提醒你 5 日內匯款,今天是第 3 天 🔔
 
@@ -1334,7 +1184,8 @@ https://www.tzgrotw.tw/products/%E7%8F%A0%E5%AF%B6%E4%BB%A3%E7%90%86%E4%B8%80%E5
 銀行:103 新光銀行 0444 彰化分行
 帳號:0444-10300-628-3
 
-匯完把後五碼回傳給我,我幫你對帳 🙏</div>
+匯完把後五碼回傳給我,我幫你對帳 🙏
+合約上有任何想再確認的，也趁這幾天問我 😊</div>
             <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
           </div>
         </div>
@@ -1342,73 +1193,85 @@ https://www.tzgrotw.tw/products/%E7%8F%A0%E5%AF%B6%E4%BB%A3%E7%90%86%E4%B8%80%E5
       <div class="link"><span class="bar"></span><span class="head"></span></div>
 
       <div class="step">
-        <div class="num n-gold">9</div>
+        <div class="num n-gold num-h" style="font-size:15px;">D1</div>
         <div class="body">
-          <h4>合約成立</h4>
-          <p>寄生效通知 + 開店工具包。</p>
-          <button class="msg-toggle" onclick="toggleMsg(this)">️寄出 LINE OA 通知範本 <span class="arr">›</span></button>
+          <h4>到帳 · 身分生效 · 公司開工</h4>
+          <p>確認到帳當天寄生效通知。同時公司開始動工做店，代理只要回覆一件事：店名方向和喜歡的風格。</p>
+          <div class="tags"><span class="tag co">🏢 公司做</span></div>
+          <button class="msg-toggle" onclick="toggleMsg(this)">生效通知公版 <span class="arr">›</span></button>
           <div class="msg-box">
-            <div class="msg-head">
-              <span>LINE OA 合約成立訊息範本</span>
-              <button class="copy-btn" onclick="copyMsg(this)">複製內容</button>
-            </div>
-            <div class="msg-body" id="lineMsg">【LINE OA 合約成立訊息範本】
-🎉 [名字],歡迎正式加入泰熙爾札娜!
+            <div class="msg-head"><span>LINE OA 生效通知</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-body">🎉 [名字]，入會費已確認到帳，你的代理身分正式生效！
 
-入會費已確認到帳,你的代理身分從今天起正式生效。
-
-📅 生效日:[YYYY/MM/DD]
-📅 到期日:[YYYY/MM/DD]
-🏆 代理級別:[A / B]
+📅 生效日：[YYYY/MM/DD]
+📅 到期日：[YYYY/MM/DD]
+🏆 代理級別：[A / B]
 
 ──────────────
 
-🔑【你的開店工具包】
+接下來 3 天，換我們動工 💪
+我們會幫你把 IG 店面「整個做好」——
+店名、頭貼、簡介、連結、首發貼文，一次到位。
 
-1️⃣ 你的專屬連結
-[連結]
-※ 客人從這條進去買,業績才算你的。這條保管好。
+你只需要做一件事：
+👉 回覆我你想要的店名方向＆喜歡的風格
+（沒想法也沒關係，我們會給你 3 個提案選）
 
-2️⃣ SHOPLINE 後台
-帳號:[帳號]
-密碼:[密碼]
-登入:[後台網址]
-
-3️⃣ 寶石知識預備課
-[影片清單連結]
-共 [XX] 支影片,建議一週內看完。
-
-──────────────
-【下一步】
-
-Step 1 ・ 把寶石知識影片看完
-Step 2 ・ 通過線上小考(我會在課程後傳考試連結給你)
-Step 3 ・ 通過後,你在這裡輸入「開始我的線上珠寶店」
-Step 4 ・ 60 天倒數啟動,跟著任務一關一關過
-
-走到終點,還有「與創辦人同拍影片」的禮物等你 🎬
-
-──────────────
-
-歡迎加入 💎</div>
-            <div class="msg-foot">
-              <button class="copy-btn" onclick="copyMsg(this)">複製內容</button>
-            </div>
+Day 3 交店，等你來驗收 🏪</div>
+            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
           </div>
         </div>
       </div>
       <div class="link"><span class="bar"></span><span class="head"></span></div>
 
       <div class="step">
-        <div class="num n-gold">10</div>
-        <div class="body"><h4>寶石知識預備課</h4><p>協助註冊線上課程平台，看完並參加考式</p></div>
+        <div class="num n-gold num-h" style="font-size:13px;">D1-3</div>
+        <div class="body">
+          <h4>公司代建開店包</h4>
+          <p>過去要代理自己闖 15 關的事，現在公司 3 天做完。交付內容：</p>
+          <ul class="checklist">
+            <li>IG 帳號建立 + 店名</li>
+            <li>大頭貼 + 品牌視覺</li>
+            <li>簡介 + 品牌語言</li>
+            <li>訂購 / 聯絡連結</li>
+            <li>首發 9 宮格貼文</li>
+            <li>限動精選封面</li>
+            <li>SHOPLINE 後台帳號</li>
+            <li>專屬歸戶連結</li>
+          </ul>
+          <div class="tags" style="margin-top:12px;"><span class="tag co">🏢 公司做</span><span class="tag">想自己做？可改選自建，我們給模板</span></div>
+        </div>
       </div>
       <div class="link"><span class="bar"></span><span class="head"></span></div>
 
-      <div class="step key">
+      <div class="step" style="border: 1.6px solid var(--zana-pink); background: linear-gradient(180deg, #fff, var(--pink-050)); box-shadow: var(--shadow-pink);">
         <div class="keyflag">✦ 關鍵節點</div>
-        <div class="num keynum num-h">11</div>
-        <div class="body"><h4>線上考試 · 通過解鎖任務</h4><p>通往建店任務的閘門 —— 通過才能開始 60 天挑戰。</p></div>
+        <div class="num num-h" style="background: var(--zana-pink); color: var(--white); font-size:15px;">D3</div>
+        <div class="body">
+          <h4 style="color:var(--dark-pink-700);">交店 · 30 分鐘導覽</h4>
+          <p>你的店開好了。一通 30 分鐘的「交店導覽」：逛一遍你的店、教你登入後台、講清楚接下來 14 天要做什麼。</p>
+          <div class="tags"><span class="tag both">🤝 一起做</span></div>
+          <button class="msg-toggle" onclick="toggleMsg(this)">交店公版 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head"><span>LINE OA 交店訊息</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-body">🎉 [名字]，你的線上珠寶店開好了！
+
+🏪 IG 帳號：@[帳號]
+現在就可以打開看看 ——
+頭貼、簡介、連結、首發 9 篇貼文都幫你完成了。
+
+⚙️ 同時也設定好了：
+・你的專屬訂購連結（客人從這裡買，業績算你的）
+・SHOPLINE 後台帳號：[帳號] / [密碼]
+
+📞 接下來約一通 30 分鐘的「交店導覽」：
+帶你逛一遍你的店、教你怎麼登入、
+講清楚接下來 14 天要做什麼。
+
+你 [MM/DD] 還是 [MM/DD] 方便？</div>
+            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1416,130 +1279,101 @@ Step 4 ・ 60 天倒數啟動,跟著任務一關一關過
   <div class="link" style="--stage-c: var(--dark-pink);"><span class="bar"></span><span class="head"></span></div>
 
   <!-- ============================================================
-       第三段 · 建店養號
+       PHASE C · 14 天上手 Day 4-17
        ============================================================ -->
   <section class="stage" id="s3" style="--stage-c: var(--dark-pink);">
     <div class="stage-head">
-      <div class="stage-no">STAGE 03</div>
-      <h2>建立線上珠寶店</h2>
-      <div class="stage-sub">LINE OA 自動腳本 · 60 天任務挑戰</div>
+      <div class="stage-no">PHASE C · DAY 4–17</div>
+      <h2>14 天上手</h2>
+      <div class="stage-sub">店已經開好了，所以只學三件事：會發、會賣、拿首單。</div>
       <div class="stage-bar"></div>
     </div>
 
     <div class="flow">
-      <!-- trigger -->
-      <div class="trigger">
-        <span class="cmd">「開始我的線上珠寶店」</span>
-        <p>於 LINE OA 輸入指令，啟動自動腳本。</p>
-        <div class="countdown">收到 game01 · 60 天倒數啟動</div>
-      </div>
-      <div class="link"><span class="bar"></span><span class="head"></span></div>
-
-      <!-- two service options -->
-      <div style="width:100%;max-width:640px;">
-        <div style="text-align:center;margin-bottom:14px;">
-          <span class="branch-label" style="display:inline-flex;">建店方式 · 二選一</span>
-        </div>
-        <div class="dec-split">
-          <div class="dec-card" style="border-color:var(--dark-pink);">
-            <div class="dec-head" style="background:var(--pink-050);border-bottom-color:var(--pink-100);">
-              <span class="dec-icon" style="color:var(--dark-pink);">A</span>
-              <strong>自己做</strong>
-              <span class="dec-sub">60 天任務</span>
-            </div>
-            <div class="dec-body-inner">
-              <p style="font-size:12.5px;color:var(--ink-soft);margin:0;line-height:1.65;">跟著 LINE OA 腳本逐關進行，game01 → game15，從開店到養號全部自主完成。</p>
-            </div>
-          </div>
-          <div class="dec-card" style="border-color:var(--gold-300);">
-            <div class="dec-head" style="background:var(--gold-050);border-bottom-color:var(--line-gold);">
-              <span class="dec-icon" style="color:var(--gold-deep);">B</span>
-              <strong>代操服務</strong>
-              <span class="dec-sub">IG 版面代建</span>
-            </div>
-            <div class="dec-body-inner">
-              <p style="font-size:12.5px;color:var(--ink-soft);margin:0;line-height:1.65;">由團隊代為完成完整 IG 版面建置，版面做好後直接交給你接手經營。</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="link"><span class="bar"></span><span class="head"></span></div>
-
-      <!-- parallel two phases -->
       <div class="parallel">
         <div class="phase">
-          <div class="ph-no">階段 1</div>
-          <h4>IG 開店</h4>
-          <div class="range">game01 → game06</div>
-          <div class="ph-meta">把帳號從零開出來</div>
+          <div class="ph-no">WEEK 1</div>
+          <h4>學會發</h4>
+          <div class="range">Day 4 – 10</div>
+          <div class="ph-meta">素材公司給，你只要照著發</div>
           <ul class="games">
-            <li><span class="g">game01</span><div><div class="gt">註冊帳號<span class="game-preview-wrap"><span class="game-preview-icon" onclick="toggleGamePopup(this)">📋 任務說明</span><div class="game-popup"><button class="game-popup-close" onclick="closeGamePopup(this)">✕</button><img src="assets/game01-card.jpg" alt="game01 任務說明" /></div></span></div><div class="gd">建立專屬的 IG 珠寶店帳號。</div></div></li>
-            <li><span class="g">game02</span><div><div class="gt">取店名</div><div class="gd">設定符合品牌調性的名稱。</div></div></li>
-            <li><span class="g">game03</span><div><div class="gt">大頭貼</div><div class="gd">上傳圈裁頭像，建立第一印象。</div></div></li>
-            <li><span class="g">game04</span><div><div class="gt">簡介</div><div class="gd">撰寫個人簡介與品牌語言。</div></div></li>
-            <li><span class="g">game05</span><div><div class="gt">連結</div><div class="gd">放上訂購 / 聯絡連結。</div></div></li>
-            <li><span class="g">game06</span><div><div class="gt">進群</div><div class="gd">加入代理社群，連上資源。</div></div></li>
+            <li><span class="g">每天</span><div><div class="gt">發 1 則限時動態</div><div class="gd">每日素材包直接複製貼上，不用自己想。</div></div></li>
+            <li><span class="g">每週</span><div><div class="gt">發 3 篇貼文</div><div class="gd">照內容日曆排程，文案照抄可微調。</div></div></li>
+            <li><span class="g">每天</span><div><div class="gt">看 1 支寶石短影片</div><div class="gd">邊賣邊學，知識課拆成每天 5 分鐘。</div></div></li>
           </ul>
         </div>
         <div class="phase">
-          <div class="ph-no">階段 2</div>
-          <h4>IG 養號</h4>
-          <div class="range">game07 → game13</div>
-          <div class="ph-meta">把帳號養活、讓內容跩起來</div>
+          <div class="ph-no">WEEK 2</div>
+          <h4>學會賣</h4>
+          <div class="range">Day 11 – 17</div>
+          <div class="ph-meta">目標只有一個：第一筆訂單</div>
           <ul class="games">
-            <li><span class="g">game07</span><div><div class="gt">學發文</div><div class="gd">掌握貯文格式與品牌調性。</div></div></li>
-            <li><span class="g">game08–10</span><div><div class="gt">限時動態</div><div class="gd">常態經營限動，累積互動。</div></div></li>
-            <li><span class="g">game11</span><div><div class="gt">精選封面</div><div class="gd">製作限動精選封面，整理版面。</div></div></li>
-            <li><span class="g">game12–13</span><div><div class="gt">衝量</div><div class="gd">衝貼文、圖文與精選數，咁到達標。</div></div></li>
+            <li><span class="g">話術</span><div><div class="gt">回私訊 · 報價 · 導購</div><div class="gd">話術包給你，照著回就不會漏單。</div></div></li>
+            <li><span class="g">名單</span><div><div class="gt">列 20 個親友名單</div><div class="gd">第一批客人從熟人來，開口公版給你。</div></div></li>
+            <li><span class="g">考試</span><div><div class="gt">完成寶石知識線上考試</div><div class="gd">Day 17 前完成即可，不擋你開店賣貨。</div></div></li>
           </ul>
         </div>
       </div>
-      <div class="parallel-note">兩階段接續進行 · game01 → game13 · 全程由 LINE OA 自動腳本引導</div>
-
-      <!-- merge -->
-      <div class="merge">
-        <svg viewBox="0 0 780 38" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M195 0 V12 Q195 24 390 24 Q585 24 585 12 V0" fill="none" stroke="var(--dark-pink)" stroke-width="2" opacity="0.42"/>
-          <path d="M390 24 V34" fill="none" stroke="var(--dark-pink)" stroke-width="2" opacity="0.42"/>
-          <path d="M384 30 l6 6 l6 -6" fill="none" stroke="var(--dark-pink)" stroke-width="2" opacity="0.55"/>
-        </svg>
-      </div>
-
-      <!-- key node: 大禮 -->
-      <div class="milestone">
-        <div class="keyflag">✦ 關鍵節點</div>
-        <div class="spark">✦</div>
-        <h4>達標領大禮 · game13 三項過關</h4>
-        <p>養號階段的驗收門 —— 三項同時達標才算過關。</p>
-        <div class="metrics">
-          <div class="metric"><div class="mv">5</div><div class="ml">精選類別</div></div>
-          <div class="metric"><div class="mv">12</div><div class="ml">貼文篇數</div></div>
-          <div class="metric"><div class="mv">100</div><div class="ml">圖文個數</div></div>
-        </div>
-        <div class="reward">→ 領大禮：與創辦人同拍影片</div>
-      </div>
+      <div class="parallel-note">每週五固定一通 15 分鐘檢查點通話 · 你不用自己撐</div>
       <div class="link"><span class="bar"></span><span class="head"></span></div>
 
-      <!-- extension: FB -->
       <div class="step">
-        <div class="num n-pink num-h">＋</div>
+        <div class="num n-pink num-h" style="font-size:15px;">週五</div>
         <div class="body">
-          <h4>階段 3 · FB 收尾</h4>
-          <p>game14 → game15 · 把版圖延伸到 Facebook，完整跨平台佈局。</p>
-          <div class="tags">
-            <span class="tag">game14 · 建立 FB 經營</span>
-            <span class="tag">game15 · FB 收尾</span>
+          <h4>每週檢查點 · 15 分鐘</h4>
+          <p>一起看：這週發了什麼、卡在哪、下週做什麼。不是考核，是把問題清掉。</p>
+          <div class="tags"><span class="tag both">🤝 一起做</span></div>
+          <button class="msg-toggle" onclick="toggleMsg(this)">檢查點邀約公版 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head"><span>LINE OA 檢查點邀約</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-body">[名字]，本週辛苦了 💪
+
+我們約週五的 15 分鐘檢查點通話：
+📅 [MM/DD]（週五）[HH:MM]
+
+會一起看：這週發了什麼、卡在哪、下週做什麼。
+不用緊張，這不是考核，是幫你把問題清掉 😊</div>
+            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
           </div>
         </div>
       </div>
       <div class="link"><span class="bar"></span><span class="head"></span></div>
 
-      <!-- key node: 正式成立 -->
       <div class="milestone">
         <div class="keyflag">✦ 關鍵節點</div>
         <div class="spark">✦ ✦ ✦</div>
-        <h4>線上珠寶商 · 正式成立</h4>
-        <p>完成上線，進入正式營運。</p>
+        <h4>首單達成 🎉</h4>
+        <p>上手期的唯一驗收標準 —— 不是發了幾篇文，而是真的賣出第一件。</p>
+        <div class="metrics">
+          <div class="metric"><div class="mv">14</div><div class="ml">天上手期</div></div>
+          <div class="metric"><div class="mv">3</div><div class="ml">件事要學</div></div>
+          <div class="metric"><div class="mv">1</div><div class="ml">筆首單目標</div></div>
+        </div>
+        <div class="reward">🎁 首單禮：與創辦人同拍影片</div>
+        <button class="msg-toggle" onclick="toggleMsg(this)">首單慶祝公版 <span class="arr">›</span></button>
+        <div class="msg-box" style="text-align:left;">
+          <div class="msg-head"><span>LINE OA 首單慶祝</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+          <div class="msg-body">🎉🎉 恭喜 [名字] 拿下第一筆訂單！！
+
+從簽約到首單，你用了 [X] 天，真的很棒 👏
+
+🎁 首單禮「與創辦人同拍影片」的資格已幫你保留，
+我們來約時間完成它！
+
+接下來就是複製這次的成功 ——
+下一單，會比這一單來得快 💎</div>
+          <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+        </div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <div class="step">
+        <div class="num n-pink num-h">＋</div>
+        <div class="body">
+          <h4>版圖延伸（首單後再說）</h4>
+          <p>FB 經營、進階內容、直播 —— 這些都等首單之後才開，一次只給一個新目標，小白不會被淹沒。</p>
+          <div class="tags"><span class="tag">FB 開通</span><span class="tag">進階素材</span><span class="tag">直播入門</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1547,47 +1381,116 @@ Step 4 ・ 60 天倒數啟動,跟著任務一關一關過
   <div class="link" style="--stage-c: var(--tahir-blue);"><span class="bar"></span><span class="head"></span></div>
 
   <!-- ============================================================
-       第四段 · 正式營運
+       PHASE D · 正式營運
        ============================================================ -->
   <section class="stage" id="s4" style="--stage-c: var(--tahir-blue);">
     <div class="stage-head">
-      <div class="stage-no">STAGE 04</div>
+      <div class="stage-no">PHASE D · DAY 18 起</div>
       <h2>正式營運</h2>
-      <div class="stage-sub">賣貨拿傭金 · 公司全包後勤</div>
+      <div class="stage-sub">照著週節奏走就好 —— 素材、課程、出貨、客服，公司全包。</div>
       <div class="stage-bar"></div>
     </div>
 
     <div class="flow">
+      <div class="ops" style="max-width:780px;">
+        <div class="opcard">
+          <div class="oi">週一</div>
+          <h4>收素材包</h4>
+          <p>本週貼文 + 限動素材，直接用。</p>
+        </div>
+        <div class="opcard">
+          <div class="oi">週三</div>
+          <h4>直播課</h4>
+          <p>自由參加，持續精進賣貨技巧。</p>
+        </div>
+        <div class="opcard">
+          <div class="oi">週五</div>
+          <h4>對帳日</h4>
+          <p>本週訂單、傭金、出貨狀態一次看。</p>
+        </div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
       <div class="ops">
         <div class="opcard">
           <div class="oi">01</div>
-          <h4>直播課</h4>
-          <p>自由參加，持續精進。</p>
+          <h4>日常經營</h4>
+          <p>發文 · 互動 · 回私訊，經營客群。</p>
         </div>
         <div class="oparrow">▸</div>
         <div class="opcard">
           <div class="oi">02</div>
-          <h4>日常營運</h4>
-          <p>發文 · 互動，經營客群。</p>
+          <h4>客人下單</h4>
+          <p>從你的專屬連結進來，系統自動歸戶。</p>
         </div>
         <div class="oparrow">▸</div>
         <div class="opcard">
           <div class="oi">03</div>
-          <h4>客人下單</h4>
-          <p>系統自動歸戶。</p>
+          <h4>公司包後勤</h4>
+          <p>出貨、物流、客服全由上山打老虎處理。</p>
         </div>
         <div class="oparrow">▸</div>
         <div class="opcard">
           <div class="oi">04</div>
-          <h4>承辦公司後勤</h4>
-          <p>上山打老虎包辦出貨、物流與客服，代理專心賣貨領傭金。</p>
+          <h4>你領傭金</h4>
+          <p>專心賣貨就好，其他不用管。</p>
+        </div>
+      </div>
+      <div class="link"><span class="bar"></span><span class="head"></span></div>
+
+      <!-- 卡住急救 -->
+      <div class="detour-wrap">
+        <div class="branch-label">⚙ 營運急救 · 代理停下來時，公司主動接住</div>
+        <div class="detour">
+          <div class="dhead">
+            <h5>停滯偵測 → 主動關心</h5>
+            <span>不等代理自己求救，數據到了就出手</span>
+          </div>
+          <div class="bflow">
+            <div class="bstep">
+              <span class="badge">3 天沒發文</span>
+              <div><div class="bt">送素材 + 輕關心</div><div class="bd">把當天素材包直接遞到手上，降低重啟門檻。</div></div>
+            </div>
+            <div class="blink"><span class="bar"></span></div>
+            <div class="bstep">
+              <span class="badge">30 天沒訂單</span>
+              <div><div class="bt">店鋪體檢通話 · 30 分鐘</div><div class="bd">一起看數據、找原因、調整下個月作法。</div></div>
+            </div>
+          </div>
+          <button class="msg-toggle" onclick="toggleMsg(this)">3 天沒發文公版 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head"><span>LINE OA 沒發文關心</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-body">[名字]，這幾天比較忙嗎？😊
+
+你的店 3 天沒有更新了，
+別擔心，今天的素材我幫你挑好了，
+直接複製貼上就能發 → [素材連結]
+
+有卡住的地方隨時跟我說！</div>
+            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+          </div>
+          <button class="msg-toggle" onclick="toggleMsg(this)">30 天體檢邀約公版 <span class="arr">›</span></button>
+          <div class="msg-box">
+            <div class="msg-head"><span>LINE OA 店鋪體檢邀約</span><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+            <div class="msg-body">[名字] 你好，
+
+你上線滿一個月了，
+我幫你約一通 30 分鐘的「店鋪體檢」：
+
+一起看數據、找出還沒有訂單的原因、
+調整下個月的作法。
+
+這通免費，是我們對每位代理的固定服務 😊
+你哪天方便？</div>
+            <div class="msg-foot"><button class="copy-btn" onclick="copyMsg(this)">複製內容</button></div>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="finale">
       <img class="mk" src="assets/logo-gold.png" alt="" />
-      <p>TAHIR ZAINAB · 代理線上商店輔導流程</p>
+      <p>TAHIR ZAINAB · 代理招募與上手流程 2.0</p>
       <p style="margin-top:4px;font-size:12px;">品牌 TAHIR ZAINAB 泰熙爾札娜 · 業務承辦：上山打老虎有限公司</p>
     </div>
   </section>
@@ -1682,15 +1585,14 @@ Step 4 ・ 60 天倒數啟動,跟著任務一關一關過
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // ESC closes overlays / popups
+  // ESC closes overlays
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     document.getElementById('extOverlay').classList.remove('open');
     _extHref = null;
-    document.querySelectorAll('.game-popup.open').forEach(function (p) { p.classList.remove('open'); });
   });
 
-  // intercept all target="_blank" links (except side-rail nav)
+  // intercept all target="_blank" links
   var _extHref = null;
   document.addEventListener('click', function(e) {
     var a = e.target.closest('a[target="_blank"]');
@@ -1710,21 +1612,6 @@ Step 4 ・ 60 天倒數啟動,跟著任務一關一關過
     document.getElementById('extOverlay').classList.remove('open');
     _extHref = null;
   }
-
-  function toggleGamePopup(icon) {
-    var popup = icon.nextElementSibling;
-    var isOpen = popup.classList.contains('open');
-    document.querySelectorAll('.game-popup.open').forEach(function(p){ p.classList.remove('open'); });
-    if (!isOpen) popup.classList.add('open');
-  }
-  function closeGamePopup(btn) {
-    btn.closest('.game-popup').classList.remove('open');
-  }
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.game-preview-wrap')) {
-      document.querySelectorAll('.game-popup.open').forEach(function(p){ p.classList.remove('open'); });
-    }
-  });
 
   function toggleMsg(btn) {
     btn.classList.toggle('open');
