@@ -14,18 +14,22 @@
     --gold: #a8873c;
     --gold-deep: #8a6d2a;
     --gold-pale: #f3ecdd;
-    --paper: #fffdf8;
+    --paper: #fffdf6;
     --bg: #eceae4;
     --line: #ddd6c8;
     --line-soft: #e9e4d8;
-    --red: #a03b2e;
+    --rule: rgba(150, 138, 105, .38);
+    --pen: #26356e;
+    --red: #b3372a;
     --green: #3d6b4f;
+    --serif: 'Noto Serif TC', 'Songti TC', 'LiSong Pro', 'PMingLiU', 'MingLiU', serif;
+    --kai: 'Kaiti TC', 'BiauKai', 'DFKai-SB', '標楷體', 'TW-Kai', 'Noto Serif TC', serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    font-family: 'Noto Sans TC', 'PingFang TC', 'Heiti TC', 'Microsoft JhengHei', sans-serif;
     background: var(--bg);
     color: var(--ink);
     line-height: 1.75;
@@ -42,7 +46,7 @@
   }
   .masthead .emblem {
     display: inline-block;
-    font-family: 'Noto Serif TC', serif;
+    font-family: var(--serif);
     font-size: 12px;
     letter-spacing: .5em;
     text-indent: .5em;
@@ -52,7 +56,7 @@
     margin-bottom: 14px;
   }
   .masthead h1 {
-    font-family: 'Noto Serif TC', serif;
+    font-family: var(--serif);
     font-size: 30px;
     font-weight: 900;
     letter-spacing: .18em;
@@ -81,13 +85,7 @@
   }
 
   /* ── 側欄 ─────────────────────────── */
-  .sidebar {
-    position: sticky;
-    top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
+  .sidebar { position: sticky; top: 20px; display: flex; flex-direction: column; gap: 18px; }
   @media (max-width: 900px) { .sidebar { position: static; } }
 
   .panel {
@@ -98,7 +96,7 @@
     overflow: hidden;
   }
   .panel-title {
-    font-family: 'Noto Serif TC', serif;
+    font-family: var(--serif);
     font-size: 13px;
     font-weight: 700;
     letter-spacing: .3em;
@@ -109,579 +107,306 @@
     background: var(--gold-pale);
   }
   .student-btn {
-    display: block;
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: none;
-    border-bottom: 1px solid var(--line-soft);
-    padding: 13px 16px;
-    cursor: pointer;
-    font-family: inherit;
-    transition: background .15s;
+    display: block; width: 100%; text-align: left;
+    background: none; border: none; border-bottom: 1px solid var(--line-soft);
+    padding: 13px 16px; cursor: pointer; font-family: inherit; transition: background .15s;
   }
   .student-btn:last-child { border-bottom: none; }
   .student-btn:hover { background: #faf7ef; }
-  .student-btn.active {
-    background: #fdf9ef;
-    box-shadow: inset 3px 0 0 var(--gold);
-  }
-  .student-btn .s-name {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: .1em;
-  }
-  .student-btn .s-meta {
-    font-size: 11.5px;
-    color: var(--ink-faint);
-    margin-top: 2px;
-  }
-  .student-btn .s-progress {
-    font-size: 11.5px;
-    margin-top: 4px;
-    color: var(--ink-soft);
-    display: flex;
-    gap: 10px;
-  }
+  .student-btn.active { background: #fdf9ef; box-shadow: inset 3px 0 0 var(--gold); }
+  .student-btn .s-name { font-family: var(--serif); font-size: 17px; font-weight: 700; letter-spacing: .1em; }
+  .student-btn .s-meta { font-size: 11.5px; color: var(--ink-faint); margin-top: 2px; }
+  .student-btn .s-progress { font-size: 11.5px; margin-top: 4px; color: var(--ink-soft); display: flex; gap: 10px; }
   .student-btn .done { color: var(--green); font-weight: 500; }
 
   .tools { padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
   .tool-btn {
-    display: block;
-    width: 100%;
-    padding: 9px 12px;
-    font-family: inherit;
-    font-size: 13px;
-    letter-spacing: .12em;
-    cursor: pointer;
-    border-radius: 4px;
-    border: 1px solid var(--line);
-    background: #fff;
-    color: var(--ink-soft);
-    transition: all .15s;
+    display: block; width: 100%; padding: 9px 12px;
+    font-family: inherit; font-size: 13px; letter-spacing: .12em;
+    cursor: pointer; border-radius: 4px; border: 1px solid var(--line);
+    background: #fff; color: var(--ink-soft); transition: all .15s;
   }
   .tool-btn:hover { border-color: var(--gold); color: var(--gold-deep); }
-  .tool-btn.primary {
-    background: var(--ink);
-    border-color: var(--ink);
-    color: #f0ead9;
-  }
+  .tool-btn.primary { background: var(--ink); border-color: var(--ink); color: #f0ead9; }
   .tool-btn.primary:hover { background: #2a3349; }
-  .save-hint {
-    font-size: 11px;
-    color: var(--ink-faint);
-    text-align: center;
-    padding: 0 14px 12px;
-    letter-spacing: .05em;
-  }
+  .save-hint { font-size: 11px; color: var(--ink-faint); text-align: center; padding: 0 14px 12px; letter-spacing: .05em; }
 
   /* ── 主區:階段頁籤 ─────────────────────── */
-  .stage-tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-  }
+  .stage-tabs { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
   .stage-tab {
-    flex: 1;
-    min-width: 220px;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 13px 18px;
-    cursor: pointer;
-    font-family: inherit;
-    text-align: left;
-    transition: all .15s;
-    box-shadow: 0 2px 8px rgba(28,35,51,.05);
+    flex: 1; min-width: 220px;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 6px;
+    padding: 13px 18px; cursor: pointer; font-family: inherit; text-align: left;
+    transition: all .15s; box-shadow: 0 2px 8px rgba(28,35,51,.05);
   }
   .stage-tab:hover { border-color: var(--gold); }
   .stage-tab.active {
-    border-color: var(--gold);
-    background: #fdf9ef;
+    border-color: var(--gold); background: #fdf9ef;
     box-shadow: inset 0 3px 0 var(--gold), 0 2px 8px rgba(28,35,51,.05);
   }
-  .stage-tab .t-label {
-    font-size: 11px;
-    letter-spacing: .25em;
-    color: var(--gold-deep);
-  }
-  .stage-tab .t-name {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 16.5px;
-    font-weight: 700;
-    letter-spacing: .06em;
-    margin-top: 2px;
-  }
-  .stage-tab .t-stat {
-    font-size: 12px;
-    color: var(--ink-faint);
-    margin-top: 3px;
-  }
+  .stage-tab .t-label { font-size: 11px; letter-spacing: .25em; color: var(--gold-deep); }
+  .stage-tab .t-name { font-family: var(--serif); font-size: 16.5px; font-weight: 700; letter-spacing: .06em; margin-top: 2px; }
+  .stage-tab .t-stat { font-size: 12px; color: var(--ink-faint); margin-top: 3px; }
 
-  /* ── 考卷 ─────────────────────────── */
+  /* ── 考卷(紙本樣式)─────────────────────── */
   .paper {
     background: var(--paper);
     border: 1px solid var(--line);
-    border-radius: 6px;
     box-shadow: 0 4px 22px rgba(28,35,51,.08);
-    overflow: hidden;
+    padding: 16px;
   }
-  .paper-head {
-    padding: 38px 46px 30px;
-    border-bottom: 2px solid var(--ink);
+  .sheet {
+    border: 2px solid var(--ink);
     position: relative;
+    padding: 40px 48px 46px;
   }
-  .paper-head::after {
+  .sheet::after {
     content: '';
     position: absolute;
-    left: 0; right: 0; bottom: -6px;
-    border-bottom: 1px solid var(--ink);
+    inset: 4px;
+    border: 1px solid var(--ink);
+    pointer-events: none;
   }
-  .paper-head .school {
-    font-family: 'Noto Serif TC', serif;
+  @media (max-width: 700px) {
+    .paper { padding: 8px; }
+    .sheet { padding: 26px 18px 32px; }
+  }
+
+  .p-school {
+    font-family: var(--serif);
     text-align: center;
     font-size: 15px;
     letter-spacing: .45em;
     text-indent: .45em;
     color: var(--ink-soft);
   }
-  .paper-head h2 {
-    font-family: 'Noto Serif TC', serif;
+  .p-title {
+    font-family: var(--serif);
     text-align: center;
     font-size: 27px;
     font-weight: 900;
     letter-spacing: .22em;
     text-indent: .22em;
-    margin-top: 8px;
-  }
-  .paper-head .subtitle {
-    text-align: center;
-    font-size: 13px;
-    letter-spacing: .3em;
-    text-indent: .3em;
-    color: var(--gold-deep);
     margin-top: 6px;
   }
-  .candidate {
-    margin-top: 26px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 8px 30px;
-    font-size: 13.5px;
-  }
-  .candidate .field { display: flex; gap: 10px; border-bottom: 1px dotted var(--line); padding-bottom: 4px; }
-  .candidate .field b {
-    font-weight: 500;
-    color: var(--ink-soft);
-    flex-shrink: 0;
-    letter-spacing: .1em;
-  }
-  .candidate .field span { word-break: break-all; }
-
-  .scorebox {
-    margin-top: 24px;
-    display: flex;
-    justify-content: center;
-    gap: 26px;
-    flex-wrap: wrap;
-  }
-  .scorebox .cell {
-    border: 1.5px solid var(--ink);
-    min-width: 150px;
+  .p-sub {
     text-align: center;
-    padding: 8px 22px 12px;
-    background: #fff;
-  }
-  .scorebox .cell .lbl {
-    font-size: 11.5px;
+    font-family: var(--serif);
+    font-size: 13px;
     letter-spacing: .35em;
     text-indent: .35em;
-    color: var(--ink-soft);
+    color: var(--gold-deep);
+    margin-top: 4px;
   }
-  .scorebox .cell .val {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 30px;
-    font-weight: 900;
-    color: var(--red);
-    line-height: 1.25;
-    min-height: 38px;
-  }
-  .scorebox .cell .sub { font-size: 11px; color: var(--ink-faint); }
 
-  /* ── 大題區段 ─────────────────────── */
-  .section-head {
-    margin: 36px 46px 0;
-    padding: 10px 18px;
-    background: var(--ink);
-    color: #f0ead9;
-    font-family: 'Noto Serif TC', serif;
-    font-size: 16px;
+  /* 卷頭資訊表格 */
+  .head-grid {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 22px;
+    font-size: 13px;
+  }
+  .head-grid th, .head-grid td {
+    border: 1px solid var(--ink);
+    padding: 7px 12px;
+    text-align: left;
+    font-weight: 400;
+  }
+  .head-grid th {
+    font-family: var(--serif);
     font-weight: 700;
     letter-spacing: .2em;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    border-radius: 3px;
+    background: var(--gold-pale);
+    white-space: nowrap;
+    width: 1%;
+    text-align: center;
   }
-  .section-head small { font-size: 11.5px; letter-spacing: .1em; color: rgba(240,234,217,.6); font-family: 'Noto Sans TC', sans-serif; }
-
-  /* ── 題目 ─────────────────────────── */
-  .question {
-    margin: 26px 46px;
-    border: 1px solid var(--line);
-    border-radius: 5px;
-    overflow: hidden;
-    background: #fff;
-  }
-  @media (max-width: 700px) {
-    .paper-head { padding: 28px 20px 24px; }
-    .section-head { margin: 28px 16px 0; }
-    .question { margin: 20px 16px; }
-  }
-  .q-head {
-    display: flex;
-    gap: 14px;
-    padding: 15px 20px;
-    background: #f8f5ec;
-    border-bottom: 1px solid var(--line-soft);
-    align-items: flex-start;
-  }
-  .q-num {
-    flex-shrink: 0;
-    font-family: 'Noto Serif TC', serif;
-    font-weight: 900;
-    font-size: 15px;
-    color: #fff;
-    background: var(--gold);
-    width: 34px; height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    margin-top: 2px;
-  }
-  .q-text {
-    font-weight: 500;
-    font-size: 15px;
-    color: var(--ink);
-  }
-  .answer {
-    padding: 18px 22px;
-    font-size: 14.5px;
-    color: var(--ink-soft);
-    white-space: pre-wrap;
-    word-break: break-word;
-    border-left: 3px solid var(--gold-pale);
-    margin: 14px 20px;
-    background: #fbfaf6;
-  }
-  .answer-label {
-    font-size: 11px;
-    letter-spacing: .3em;
-    color: var(--gold-deep);
-    margin: 14px 20px -8px;
-    font-weight: 500;
-  }
-  .answer.empty { color: var(--ink-faint); font-style: italic; }
-
-  /* ── 評分區 ─────────────────────── */
-  .grading {
-    border-top: 1px dashed var(--line);
-    background: linear-gradient(180deg, #fdfbf4 0%, #faf6ea 100%);
-    padding: 14px 20px 18px;
-  }
-  .grading .g-label {
-    font-size: 11px;
-    letter-spacing: .3em;
-    color: var(--red);
-    font-weight: 500;
-    margin-bottom: 8px;
-  }
-  .g-row {
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-  .g-score {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .g-score label { font-size: 13px; color: var(--ink-soft); letter-spacing: .1em; }
-  .g-score input {
-    width: 76px;
-    padding: 8px 10px;
-    font-family: 'Noto Serif TC', serif;
-    font-size: 18px;
+  .head-grid td { word-break: break-all; }
+  .head-grid .v-cell {
+    font-family: var(--kai);
+    font-size: 17px;
     font-weight: 700;
+    letter-spacing: .2em;
     color: var(--red);
     text-align: center;
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    background: #fff;
-    outline: none;
-    transition: border .15s, box-shadow .15s;
   }
-  .g-score input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(168,135,60,.15); }
-  .g-score .unit { font-size: 12.5px; color: var(--ink-faint); }
-  .g-comment { flex: 1; min-width: 240px; }
-  .g-comment textarea {
-    width: 100%;
-    min-height: 58px;
-    padding: 9px 12px;
-    font-family: inherit;
+  .head-grid .stat-line { letter-spacing: .04em; color: var(--ink-soft); }
+  .head-grid .stat-line b { color: var(--red); font-weight: 700; }
+
+  /* 大題標題 */
+  .sec-title {
+    font-family: var(--serif);
+    font-size: 16.5px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    margin: 34px 0 6px;
+    padding-bottom: 5px;
+    border-bottom: 3px double var(--ink);
+  }
+  .sec-title small {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: .08em;
+    color: var(--ink-faint);
+    margin-left: 10px;
+  }
+
+  /* 題目與作答 */
+  .question { margin: 26px 0 30px; }
+  .q-line {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 15.5px;
+    display: flex;
+    gap: 4px;
+  }
+  .q-line .q-no { flex-shrink: 0; font-weight: 900; }
+  .answer {
+    font-family: var(--kai);
+    font-size: 15px;
+    color: var(--pen);
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 8px 0 0 26px;
+    padding: 0 2px;
+    line-height: 2.15;
+    min-height: 2.15em;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(2.15em - 1px),
+      var(--rule) calc(2.15em - 1px),
+      var(--rule) 2.15em
+    );
+  }
+  .answer.empty { color: var(--ink-faint); }
+
+  /* 紅筆評閱區 */
+  .mark-row {
+    margin: 10px 0 0 26px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .mark-label {
+    font-family: var(--kai);
+    color: var(--red);
     font-size: 13.5px;
-    line-height: 1.7;
-    color: var(--ink);
-    border: 1px solid var(--line);
+    letter-spacing: .25em;
+    border: 1px solid var(--red);
+    border-radius: 50%;
+    width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    opacity: .85;
+  }
+  .mark-opts { display: flex; gap: 8px; flex-shrink: 0; margin-top: 2px; }
+  .mark-opt {
+    font-family: var(--kai);
+    font-size: 14.5px;
+    letter-spacing: .12em;
+    color: var(--red);
+    background: transparent;
+    border: 1.5px solid rgba(179,55,42,.55);
     border-radius: 4px;
-    background: #fff;
+    padding: 3px 13px;
+    cursor: pointer;
+    transition: all .12s;
+  }
+  .mark-opt:hover { border-color: var(--red); background: rgba(179,55,42,.06); }
+  .mark-opt.sel {
+    background: var(--red);
+    color: #fff;
+    border-color: var(--red);
+    box-shadow: 1px 1px 0 rgba(179,55,42,.3);
+  }
+  .mark-comment { flex: 1; min-width: 220px; }
+  .mark-comment textarea {
+    width: 100%;
+    font-family: var(--kai);
+    font-size: 14.5px;
+    color: var(--red);
+    line-height: 2;
+    min-height: 2em;
+    padding: 2px 4px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px dashed rgba(179,55,42,.6);
     resize: vertical;
     outline: none;
-    transition: border .15s, box-shadow .15s;
   }
-  .g-comment textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(168,135,60,.15); }
-  .g-comment textarea::placeholder { color: #b8bcc6; }
+  .mark-comment textarea:focus { border-bottom-color: var(--red); background: rgba(179,55,42,.04); }
+  .mark-comment textarea::placeholder { color: rgba(179,55,42,.4); }
 
-  /* ── 總評 ─────────────────────── */
+  /* 總評與評定 */
   .overall {
-    margin: 34px 46px 40px;
+    margin-top: 40px;
     border: 1.5px solid var(--ink);
-    border-radius: 5px;
-    overflow: hidden;
   }
-  @media (max-width: 700px) { .overall { margin: 26px 16px 30px; } }
   .overall .o-head {
-    background: var(--ink);
-    color: #f0ead9;
-    font-family: 'Noto Serif TC', serif;
+    font-family: var(--serif);
     font-size: 15px;
     font-weight: 700;
-    letter-spacing: .3em;
-    text-indent: .3em;
-    padding: 9px 18px;
+    letter-spacing: .35em;
+    text-indent: .35em;
+    text-align: center;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--ink);
+    background: var(--gold-pale);
   }
-  .overall .o-body { padding: 16px 20px 20px; background: #fdfbf4; }
-  .overall textarea {
-    width: 100%;
-    min-height: 90px;
-    padding: 10px 14px;
-    font-family: inherit;
-    font-size: 14px;
-    line-height: 1.8;
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    background: #fff;
-    resize: vertical;
-    outline: none;
-  }
-  .overall textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(168,135,60,.15); }
-  .o-summary {
-    display: flex;
-    gap: 26px;
-    flex-wrap: wrap;
-    margin-bottom: 14px;
-    font-size: 13.5px;
-    color: var(--ink-soft);
-  }
-  .o-summary b { font-family: 'Noto Serif TC', serif; font-size: 19px; color: var(--red); }
-
+  .overall .o-body { padding: 16px 20px 20px; }
   .o-verdict {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 14px;
     flex-wrap: wrap;
     margin-bottom: 14px;
-    padding: 10px 14px;
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    font-size: 14px;
   }
-  .o-verdict .v-label { letter-spacing: .15em; color: var(--ink-soft); font-weight: 500; }
-  .o-verdict label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
-    padding: 3px 12px;
-    border-radius: 100px;
-    border: 1px solid transparent;
-    transition: all .15s;
-  }
-  .o-verdict label:hover { background: #faf7ef; }
-  .o-verdict input { accent-color: var(--gold-deep); cursor: pointer; }
-  .o-verdict label.on-pass { border-color: var(--green); color: var(--green); font-weight: 700; background: #f1f6f2; }
-  .o-verdict label.on-retake { border-color: var(--red); color: var(--red); font-weight: 700; background: #faf1ef; }
-
-  /* ── 學員成績通知單(PDF 輸出)─────────── */
-  #reportArea { display: none; }
-  body.report-mode .masthead,
-  body.report-mode .layout,
-  body.report-mode .toast { display: none !important; }
-  body.report-mode #reportArea { display: block; }
-
-  .report {
-    max-width: 820px;
-    margin: 0 auto;
-    padding: 46px 52px 60px;
-    background: #fff;
+  .o-verdict .v-label {
+    font-family: var(--serif);
+    letter-spacing: .2em;
     color: var(--ink);
-    font-size: 13.5px;
-  }
-  .report .r-school {
-    font-family: 'Noto Serif TC', serif;
-    text-align: center;
-    font-size: 15px;
-    letter-spacing: .45em;
-    text-indent: .45em;
-    color: var(--ink-soft);
-  }
-  .report h2 {
-    font-family: 'Noto Serif TC', serif;
-    text-align: center;
-    font-size: 26px;
-    font-weight: 900;
-    letter-spacing: .3em;
-    text-indent: .3em;
-    margin-top: 6px;
-    border-bottom: 2.5px double var(--ink);
-    padding-bottom: 14px;
-  }
-  .report .r-info {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px 30px;
-    flex-wrap: wrap;
-    margin-top: 16px;
-    font-size: 13px;
-    color: var(--ink-soft);
-  }
-  .report .r-info b { color: var(--ink); font-weight: 500; margin-left: 6px; }
-
-  .r-verdict-wrap { position: relative; margin-top: 22px; }
-  .r-stamp {
-    position: absolute;
-    right: 6px; top: -30px;
-    background: rgba(255,255,255,.75);
-    font-family: 'Noto Serif TC', serif;
-    font-size: 22px;
-    font-weight: 900;
-    letter-spacing: .3em;
-    text-indent: .3em;
-    padding: 8px 16px;
-    border: 3px double;
-    border-radius: 6px;
-    transform: rotate(-7deg);
-    opacity: .9;
-  }
-  .r-stamp.pass { color: var(--red); border-color: var(--red); }
-  .r-stamp.retake { color: var(--red); border-color: var(--red); }
-
-  .r-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    font-size: 13px;
-  }
-  .r-table th, .r-table td {
-    border: 1px solid var(--ink);
-    padding: 8px 12px;
-    text-align: center;
-  }
-  .r-table th {
-    background: var(--gold-pale);
-    font-family: 'Noto Serif TC', serif;
-    font-weight: 700;
-    letter-spacing: .15em;
-  }
-  .r-table .v-pass { color: var(--green); font-weight: 700; letter-spacing: .1em; }
-  .r-table .v-retake { color: var(--red); font-weight: 700; letter-spacing: .1em; }
-
-  .r-stage {
-    margin-top: 34px;
-    break-inside: auto;
-  }
-  .r-stage-head {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: .18em;
-    padding: 8px 14px;
-    background: var(--ink);
-    color: #f0ead9;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
-  .r-stage-head small { font-family: 'Noto Sans TC', sans-serif; font-size: 12px; letter-spacing: .08em; color: rgba(240,234,217,.75); }
-  .r-sec {
-    font-family: 'Noto Serif TC', serif;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 14px;
-    letter-spacing: .15em;
-    margin: 20px 0 4px;
-    color: var(--gold-deep);
-    border-bottom: 1px solid var(--line);
-    padding-bottom: 4px;
   }
-  .r-q { margin-top: 14px; break-inside: avoid; }
-  .r-q .r-q-title {
-    font-weight: 500;
-    display: flex;
-    gap: 8px;
-  }
-  .r-q .r-q-title .no { color: var(--gold-deep); font-family: 'Noto Serif TC', serif; font-weight: 700; flex-shrink: 0; }
-  .r-q .r-ans {
-    white-space: pre-wrap;
-    word-break: break-word;
-    color: var(--ink-soft);
-    background: #fbfaf6;
-    border-left: 3px solid var(--line);
-    padding: 8px 12px;
-    margin: 6px 0 0 22px;
-    font-size: 13px;
-  }
-  .r-q .r-mark {
-    margin: 6px 0 0 22px;
-    padding: 7px 12px;
-    border: 1px dashed var(--red);
+  .o-verdict label {
+    display: flex; align-items: center; gap: 6px;
+    cursor: pointer;
+    font-family: var(--kai);
+    font-size: 15px;
+    color: var(--red);
+    padding: 2px 12px;
+    border: 1.5px solid rgba(179,55,42,.45);
     border-radius: 4px;
-    background: #fdf7f5;
-    font-size: 13px;
+    transition: all .12s;
   }
-  .r-q .r-mark .sc { color: var(--red); font-weight: 700; font-family: 'Noto Serif TC', serif; }
-  .r-q .r-mark .cm { white-space: pre-wrap; word-break: break-word; }
-  .r-overall {
-    margin-top: 18px;
-    padding: 10px 14px;
-    border: 1px solid var(--ink);
-    border-radius: 4px;
-    background: #fdfbf4;
-    white-space: pre-wrap;
-    word-break: break-word;
+  .o-verdict label:hover { border-color: var(--red); }
+  .o-verdict input { accent-color: var(--red); cursor: pointer; }
+  .o-verdict label.on { background: var(--red); color: #fff; border-color: var(--red); }
+  .overall textarea {
+    width: 100%;
+    min-height: 84px;
+    font-family: var(--kai);
+    font-size: 15px;
+    color: var(--red);
+    line-height: 2.15;
+    padding: 0 4px;
+    background: transparent;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(2.15em - 1px),
+      rgba(179,55,42,.25) calc(2.15em - 1px),
+      rgba(179,55,42,.25) 2.15em
+    );
+    border: none;
+    resize: vertical;
+    outline: none;
   }
-  .r-overall .lbl { font-family: 'Noto Serif TC', serif; font-weight: 700; letter-spacing: .2em; color: var(--ink); display: block; margin-bottom: 4px; }
-  .r-foot {
-    margin-top: 44px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 30px;
-    flex-wrap: wrap;
-    font-size: 13px;
-    color: var(--ink-soft);
-  }
-  .r-foot .sign {
-    min-width: 220px;
-    text-align: center;
-  }
-  .r-foot .sign .line { border-bottom: 1px solid var(--ink); height: 44px; }
-  .r-foot .sign .cap { margin-top: 6px; letter-spacing: .3em; text-indent: .3em; }
+  .overall textarea::placeholder { color: rgba(179,55,42,.4); }
 
   .toast {
     position: fixed;
@@ -699,16 +424,215 @@
   }
   .toast.show { transform: translateX(-50%) translateY(0); }
 
+  /* ── 學員成績通知單(PDF 輸出)─────────── */
+  #reportArea { display: none; }
+  body.report-mode .masthead,
+  body.report-mode .layout,
+  body.report-mode .toast { display: none !important; }
+  body.report-mode #reportArea { display: block; }
+
+  .report {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 30px 60px;
+    background: #fff;
+    color: var(--ink);
+    font-size: 13.5px;
+  }
+  .report .r-sheet {
+    border: 2px solid var(--ink);
+    position: relative;
+    padding: 40px 46px 46px;
+  }
+  .report .r-sheet::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid var(--ink);
+    pointer-events: none;
+  }
+  .report .r-school {
+    font-family: var(--serif);
+    text-align: center;
+    font-size: 15px;
+    letter-spacing: .45em;
+    text-indent: .45em;
+    color: var(--ink-soft);
+  }
+  .report h2 {
+    font-family: var(--serif);
+    text-align: center;
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: .3em;
+    text-indent: .3em;
+    margin-top: 6px;
+  }
+  .r-verdict-wrap { position: relative; margin-top: 20px; }
+  .r-stamp {
+    position: absolute;
+    right: 0; top: -64px;
+    font-family: var(--kai);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: .3em;
+    text-indent: .3em;
+    padding: 8px 16px;
+    border: 3px double var(--red);
+    border-radius: 6px;
+    color: var(--red);
+    transform: rotate(-7deg);
+    background: rgba(255,255,255,.75);
+    opacity: .92;
+    z-index: 2;
+  }
+
+  .r-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 13px;
+  }
+  .r-table th, .r-table td {
+    border: 1px solid var(--ink);
+    padding: 8px 12px;
+    text-align: center;
+  }
+  .r-table th {
+    background: var(--gold-pale);
+    font-family: var(--serif);
+    font-weight: 700;
+    letter-spacing: .15em;
+  }
+  .r-table .v-pass { color: var(--green); font-weight: 700; letter-spacing: .1em; }
+  .r-table .v-retake { color: var(--red); font-weight: 700; letter-spacing: .1em; }
+
+  .r-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px 30px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .r-info b { color: var(--ink); font-weight: 500; margin-left: 6px; }
+
+  .r-stage { margin-top: 34px; }
+  .r-stage-head {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .15em;
+    padding-bottom: 5px;
+    border-bottom: 3px double var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .r-stage-head small {
+    font-family: var(--kai);
+    font-size: 13.5px;
+    font-weight: 400;
+    letter-spacing: .08em;
+    color: var(--red);
+  }
+  .r-sec {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: .15em;
+    margin: 20px 0 2px;
+    color: var(--gold-deep);
+  }
+  .r-q { margin-top: 16px; break-inside: avoid; }
+  .r-q .r-q-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    display: flex;
+    gap: 4px;
+  }
+  .r-q .r-q-title .no { font-weight: 900; flex-shrink: 0; }
+  .r-q .r-ans {
+    font-family: var(--kai);
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: var(--pen);
+    margin: 4px 0 0 24px;
+    font-size: 14px;
+    line-height: 2.1;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(2.1em - 1px),
+      var(--rule) calc(2.1em - 1px),
+      var(--rule) 2.1em
+    );
+  }
+  .r-q .r-mark {
+    margin: 6px 0 0 24px;
+    font-family: var(--kai);
+    font-size: 14px;
+    color: var(--red);
+    line-height: 1.9;
+  }
+  .r-q .r-mark .r-m-stamp {
+    display: inline-block;
+    border: 1.5px solid var(--red);
+    border-radius: 4px;
+    padding: 0 10px;
+    margin-right: 10px;
+    letter-spacing: .12em;
+  }
+  .r-q .r-mark .cm { white-space: pre-wrap; word-break: break-word; }
+  .r-overall {
+    margin-top: 20px;
+    border: 1.5px solid var(--ink);
+    padding: 10px 16px 12px;
+  }
+  .r-overall .lbl {
+    font-family: var(--serif);
+    font-weight: 700;
+    letter-spacing: .25em;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .r-overall .txt {
+    font-family: var(--kai);
+    color: var(--red);
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-size: 14.5px;
+    line-height: 2;
+  }
+  .r-foot {
+    margin-top: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 30px;
+    flex-wrap: wrap;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  .r-foot .sign { min-width: 220px; text-align: center; }
+  .r-foot .sign .line { border-bottom: 1px solid var(--ink); height: 44px; }
+  .r-foot .sign .cap { margin-top: 6px; letter-spacing: .3em; text-indent: .3em; font-family: var(--serif); }
+
   /* ── 列印 ─────────────────────── */
   @media print {
     body { background: #fff; }
     .masthead, .sidebar, .stage-tabs { display: none !important; }
     .layout { display: block; padding: 0; max-width: none; }
-    .paper { border: none; box-shadow: none; border-radius: 0; }
+    .paper { border: none; box-shadow: none; padding: 0; }
     .question { break-inside: avoid; }
-    .grading { background: #fff; }
-    textarea, input { border: none !important; box-shadow: none !important; }
-    textarea { resize: none; }
+    .mark-opt:not(.sel) { display: none; }
+    .mark-comment textarea:placeholder-shown { visibility: hidden; }
+    .o-verdict label:not(.on) { display: none; }
+    .o-verdict input { display: none; }
+    textarea { resize: none; border: none !important; }
     body.report-mode .report { max-width: none; padding: 0; }
   }
 </style>
@@ -732,12 +656,12 @@
       <div class="tools">
         <button class="tool-btn primary" onclick="exportReport()">輸出學員成績單 (PDF)</button>
         <button class="tool-btn" onclick="window.print()">列印評閱中考卷</button>
-        <button class="tool-btn" onclick="exportCSV()">匯出評分總表 (CSV)</button>
-        <button class="tool-btn" onclick="exportJSON()">備份評分資料 (JSON)</button>
-        <button class="tool-btn" onclick="importJSON()">還原評分資料</button>
-        <button class="tool-btn" onclick="clearCurrent()" style="color:var(--red)">清除本卷評分</button>
+        <button class="tool-btn" onclick="exportCSV()">匯出評閱總表 (CSV)</button>
+        <button class="tool-btn" onclick="exportJSON()">備份評閱資料 (JSON)</button>
+        <button class="tool-btn" onclick="importJSON()">還原評閱資料</button>
+        <button class="tool-btn" onclick="clearCurrent()" style="color:var(--red)">清除本卷評閱</button>
       </div>
-      <div class="save-hint">評分內容輸入後自動儲存於此瀏覽器</div>
+      <div class="save-hint">評閱內容輸入後自動儲存於此瀏覽器</div>
     </div>
   </aside>
 
@@ -1156,9 +1080,25 @@ N件訂製戒指
 
 /* ═══════════════ 狀態與儲存 ═══════════════ */
 
-const STORE_KEY = 'examGrades_v1';
+const STORE_KEY = 'examGrades_v2';
+const MARK_KEYS = ['pass', 'ok', 'improve'];
+const MARKS = { pass: '通過', ok: '合格', improve: '需要優化' };
+const VERDICTS = { pass: '過關', retake: '需補考' };
+
 let grades = {};
 try { grades = JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch (e) { grades = {}; }
+// 由 v1(打分數版)搬移評語/總評/評定;分數制已停用,不搬移
+try {
+  if (!Object.keys(grades).length) {
+    const old = JSON.parse(localStorage.getItem('examGrades_v1'));
+    if (old) {
+      for (const k in old) {
+        grades[k] = { marks: {}, comments: old[k].comments || {}, overall: old[k].overall || '', verdict: old[k].verdict || '' };
+      }
+      localStorage.setItem(STORE_KEY, JSON.stringify(grades));
+    }
+  }
+} catch (e) {}
 
 let currentStudent = 0;
 let currentStage = 'stage1';
@@ -1166,11 +1106,11 @@ let currentStage = 'stage1';
 function gkey(sIdx, stage) { return STUDENTS[sIdx].name + '|' + stage; }
 function getGrade(sIdx, stage) {
   const k = gkey(sIdx, stage);
-  if (!grades[k]) grades[k] = { scores: {}, comments: {}, overall: '', verdict: '' };
+  if (!grades[k]) grades[k] = { marks: {}, comments: {}, overall: '', verdict: '' };
+  if (!grades[k].marks) grades[k].marks = {};
   if (grades[k].verdict === undefined) grades[k].verdict = '';
   return grades[k];
 }
-const VERDICTS = { pass: '過關', retake: '需補考' };
 let saveTimer = null;
 function persist() {
   clearTimeout(saveTimer);
@@ -1179,23 +1119,29 @@ function persist() {
   }, 250);
 }
 
-function flatQuestions(exam) {
-  const out = [];
-  exam.sections.forEach((sec, si) => {
-    sec.questions.forEach((q, qi) => out.push({ sec: sec.name, si, qi, text: q, id: si + '-' + qi }));
-  });
-  return out;
+function flatIndex(exam, sec, qi) {
+  let idx = 0;
+  for (const s of exam.sections) {
+    if (s === sec) return idx + qi;
+    idx += s.questions.length;
+  }
+  return idx;
 }
 
 function stageStats(sIdx, stage) {
   const exam = EXAMS.find(e => e.id === stage);
-  const total = flatQuestions(exam).length;
+  const total = exam.sections.reduce((n, s) => n + s.questions.length, 0);
   const g = getGrade(sIdx, stage);
-  let scored = 0, sum = 0;
-  Object.values(g.scores).forEach(v => {
-    if (v !== '' && v != null && !isNaN(parseFloat(v))) { scored++; sum += parseFloat(v); }
-  });
-  return { total, scored, sum };
+  const c = { pass: 0, ok: 0, improve: 0 };
+  Object.values(g.marks).forEach(v => { if (c[v] !== undefined) c[v]++; });
+  return { total, done: c.pass + c.ok + c.improve, c };
+}
+
+function esc(str) {
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function statLine(st) {
+  return `已評 <b>${st.done}</b> / ${st.total} 題　　通過 <b>${st.c.pass}</b>　合格 <b>${st.c.ok}</b>　需要優化 <b>${st.c.improve}</b>`;
 }
 
 /* ═══════════════ 渲染 ═══════════════ */
@@ -1204,7 +1150,7 @@ function renderSidebar() {
   const el = document.getElementById('studentList');
   el.innerHTML = STUDENTS.map((s, i) => {
     const s1 = stageStats(i, 'stage1'), s2 = stageStats(i, 'stage2');
-    const p = (st) => `<span class="${st.scored === st.total ? 'done' : ''}">${st.scored}/${st.total} 題</span>`;
+    const p = (st) => `<span class="${st.done === st.total ? 'done' : ''}">${st.done}/${st.total} 題</span>`;
     return `<button class="student-btn ${i === currentStudent ? 'active' : ''}" onclick="selectStudent(${i})">
       <div class="s-name">${s.name}</div>
       <div class="s-meta">LINE:${s.line}</div>
@@ -1225,41 +1171,31 @@ function renderPaper() {
     return `<button class="stage-tab ${e.id === currentStage ? 'active' : ''}" onclick="selectStage('${e.id}')">
       <div class="t-label">${e.label}</div>
       <div class="t-name">${e.title}</div>
-      <div class="t-stat">已評 ${st.scored} / ${st.total} 題 · 合計 ${fmt(st.sum)} 分</div>
+      <div class="t-stat">已評 ${st.done} / ${st.total} 題</div>
     </button>`;
   }).join('') + `</div>`;
 
   let qGlobal = 0;
-  const body = exam.sections.map(sec => {
-    const secHead = exam.sections.length > 1
-      ? `<div class="section-head"><span>${sec.name}</span><small>${sec.note}</small></div>`
-      : `<div class="section-head"><span>試 題 與 作 答</span><small>${sec.note}</small></div>`;
+  const body = exam.sections.map((sec, secI) => {
+    const secHead = `<div class="sec-title">${exam.sections.length > 1 ? sec.name : '本 卷 試 題'}<small>${sec.note}</small></div>`;
     const qs = sec.questions.map((q, qi) => {
       qGlobal++;
-      const id = exam.sections.indexOf(sec) + '-' + qi;
+      const id = secI + '-' + qi;
       const ans = (sub.answers[flatIndex(exam, sec, qi)] || '').trim();
-      const score = g.scores[id] ?? '';
+      const mark = g.marks[id] || '';
       const comment = g.comments[id] ?? '';
+      const opts = MARK_KEYS.map(k =>
+        `<button class="mark-opt ${mark === k ? 'sel' : ''}" data-q="${id}" data-v="${k}"
+                 onclick="setMark('${id}','${k}')">${MARKS[k]}</button>`).join('');
       return `<div class="question">
-        <div class="q-head">
-          <div class="q-num">${qGlobal}</div>
-          <div class="q-text">${esc(q)}</div>
-        </div>
-        <div class="answer-label">學 員 作 答</div>
+        <div class="q-line"><span class="q-no">${qGlobal}、</span><span>${esc(q)}</span></div>
         <div class="answer ${ans ? '' : 'empty'}">${ans ? esc(ans) : '(未作答)'}</div>
-        <div class="grading">
-          <div class="g-label">評 閱 區</div>
-          <div class="g-row">
-            <div class="g-score">
-              <label>得分</label>
-              <input type="number" step="0.5" inputmode="decimal" value="${score}"
-                     oninput="setScore('${id}', this.value)">
-              <span class="unit">分</span>
-            </div>
-            <div class="g-comment">
-              <textarea placeholder="評語、訂正或修改建議…"
-                        oninput="setComment('${id}', this.value)">${esc(comment)}</textarea>
-            </div>
+        <div class="mark-row">
+          <span class="mark-label">評</span>
+          <div class="mark-opts">${opts}</div>
+          <div class="mark-comment">
+            <textarea rows="1" placeholder="紅筆評語、訂正…"
+                      oninput="setComment('${id}', this.value)">${esc(comment)}</textarea>
           </div>
         </div>
       </div>`;
@@ -1268,74 +1204,48 @@ function renderPaper() {
   }).join('');
 
   document.getElementById('paperArea').innerHTML = tabs + `
-  <article class="paper">
-    <div class="paper-head">
-      <div class="school">泰 熙 爾 札 娜 寶 石 學 院</div>
-      <h2>${exam.title}</h2>
-      <div class="subtitle">${exam.label.replace(/\s/g, '')} 考 核 評 分 卷</div>
-      <div class="candidate">
-        <div class="field"><b>姓名</b><span>${s.name}</span></div>
-        <div class="field"><b>LINE 名稱</b><span>${s.line}</span></div>
-        <div class="field"><b>電子郵件</b><span>${s.email}</span></div>
-        <div class="field"><b>繳卷時間</b><span>${sub.time}</span></div>
-      </div>
-      <div class="scorebox">
-        <div class="cell">
-          <div class="lbl">總 分</div>
-          <div class="val" id="totalScore">${fmt(stats.sum)}</div>
-          <div class="sub">各題得分自動加總</div>
-        </div>
-        <div class="cell">
-          <div class="lbl">評 閱 進 度</div>
-          <div class="val" id="progressVal" style="color:var(--ink)">${stats.scored}<span style="font-size:16px;color:var(--ink-faint)"> / ${stats.total}</span></div>
-          <div class="sub">已評題數</div>
-        </div>
-      </div>
-    </div>
+  <article class="paper"><div class="sheet">
+    <div class="p-school">泰 熙 爾 札 娜 寶 石 學 院</div>
+    <h2 class="p-title">${exam.title}</h2>
+    <div class="p-sub">${exam.label.replace(/\s/g, '')} 考 核 試 卷</div>
+    <table class="head-grid">
+      <tr>
+        <th>姓　名</th><td>${s.name}</td>
+        <th>LINE 名稱</th><td>${s.line}</td>
+        <th>繳卷時間</th><td>${sub.time}</td>
+      </tr>
+      <tr>
+        <th>電子郵件</th><td colspan="3">${s.email}</td>
+        <th>本卷評定</th><td class="v-cell" id="verdictCell">${g.verdict ? VERDICTS[g.verdict] : '評閱中'}</td>
+      </tr>
+      <tr>
+        <th>評閱統計</th><td colspan="5" class="stat-line" id="statCell">${statLine(stats)}</td>
+      </tr>
+    </table>
     ${body}
     <div class="overall">
-      <div class="o-head">總 評 與 覆 核 意 見</div>
+      <div class="o-head">總 評 與 評 定</div>
       <div class="o-body">
-        <div class="o-summary">
-          <span>應試學員:<b style="font-size:15px;color:var(--ink)">${s.name}</b></span>
-          <span>本卷總分:<b id="totalScore2">${fmt(stats.sum)}</b> 分</span>
-        </div>
         <div class="o-verdict" id="verdictRow">
           <span class="v-label">本卷評定:</span>
-          <label class="${g.verdict === 'pass' ? 'on-pass' : ''}">
+          <label class="${g.verdict === 'pass' ? 'on' : ''}">
             <input type="radio" name="verdict-${currentStage}" value="pass" ${g.verdict === 'pass' ? 'checked' : ''}
                    onchange="setVerdict('pass')">過關
           </label>
-          <label class="${g.verdict === 'retake' ? 'on-retake' : ''}">
+          <label class="${g.verdict === 'retake' ? 'on' : ''}">
             <input type="radio" name="verdict-${currentStage}" value="retake" ${g.verdict === 'retake' ? 'checked' : ''}
                    onchange="setVerdict('retake')">需補考
           </label>
-          <label>
+          <label class="${!g.verdict ? 'on' : ''}">
             <input type="radio" name="verdict-${currentStage}" value="" ${!g.verdict ? 'checked' : ''}
                    onchange="setVerdict('')">尚未評定
           </label>
         </div>
-        <textarea placeholder="整體評語、後續培訓建議、複試備註…"
+        <textarea placeholder="整體評語、後續培訓建議、補考範圍…"
                   oninput="setOverall(this.value)">${esc(g.overall || '')}</textarea>
       </div>
     </div>
-  </article>`;
-}
-
-function flatIndex(exam, sec, qi) {
-  let idx = 0;
-  for (const s of exam.sections) {
-    if (s === sec) return idx + qi;
-    idx += s.questions.length;
-  }
-  return idx;
-}
-
-function esc(str) {
-  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
-function fmt(n) {
-  return Number.isInteger(n) ? String(n) : n.toFixed(1);
+  </div></article>`;
 }
 
 /* ═══════════════ 互動 ═══════════════ */
@@ -1351,11 +1261,15 @@ function selectStage(id) {
   renderPaper();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-function setScore(id, val) {
-  getGrade(currentStudent, currentStage).scores[id] = val;
+function setMark(id, val) {
+  const g = getGrade(currentStudent, currentStage);
+  g.marks[id] = (g.marks[id] === val) ? '' : val;   // 再點一次可取消
+  if (!g.marks[id]) delete g.marks[id];
   persist();
-  refreshTotals();
-  renderSidebar();
+  document.querySelectorAll(`.mark-opt[data-q="${id}"]`).forEach(b => {
+    b.classList.toggle('sel', b.dataset.v === g.marks[id]);
+  });
+  refreshStats();
 }
 function setComment(id, val) {
   getGrade(currentStudent, currentStage).comments[id] = val;
@@ -1366,25 +1280,26 @@ function setOverall(val) {
   persist();
 }
 function setVerdict(val) {
-  getGrade(currentStudent, currentStage).verdict = val;
+  const g = getGrade(currentStudent, currentStage);
+  g.verdict = val;
   persist();
   const row = document.getElementById('verdictRow');
-  row.querySelectorAll('label').forEach(l => l.classList.remove('on-pass', 'on-retake'));
-  if (val === 'pass') row.children[1].classList.add('on-pass');
-  if (val === 'retake') row.children[2].classList.add('on-retake');
+  const labels = row.querySelectorAll('label');
+  labels.forEach(l => l.classList.remove('on'));
+  if (val === 'pass') labels[0].classList.add('on');
+  else if (val === 'retake') labels[1].classList.add('on');
+  else labels[2].classList.add('on');
+  document.getElementById('verdictCell').textContent = val ? VERDICTS[val] : '評閱中';
 }
-function refreshTotals() {
+function refreshStats() {
   const stats = stageStats(currentStudent, currentStage);
-  document.getElementById('totalScore').textContent = fmt(stats.sum);
-  document.getElementById('totalScore2').textContent = fmt(stats.sum);
-  document.getElementById('progressVal').innerHTML =
-    stats.scored + '<span style="font-size:16px;color:var(--ink-faint)"> / ' + stats.total + '</span>';
+  document.getElementById('statCell').innerHTML = statLine(stats);
   const tabs = document.querySelectorAll('.stage-tab');
   EXAMS.forEach((e, i) => {
     const st = stageStats(currentStudent, e.id);
-    if (tabs[i]) tabs[i].querySelector('.t-stat').textContent =
-      `已評 ${st.scored} / ${st.total} 題 · 合計 ${fmt(st.sum)} 分`;
+    if (tabs[i]) tabs[i].querySelector('.t-stat').textContent = `已評 ${st.done} / ${st.total} 題`;
   });
+  renderSidebar();
 }
 
 /* ═══════════════ 學員成績單 PDF ═══════════════ */
@@ -1393,7 +1308,6 @@ function exportReport() {
   const sIdx = currentStudent;
   const s = STUDENTS[sIdx];
 
-  // 檢查兩卷是否皆已評定
   const pending = EXAMS.filter(e => !getGrade(sIdx, e.id).verdict).map(e => e.title);
   if (pending.length) {
     if (!confirm(`「${s.name}」尚未評定:${pending.join('、')}(總評區的「本卷評定」)。\n仍要輸出成績單嗎?未評定的卷將標示「評閱中」。`)) return;
@@ -1402,8 +1316,8 @@ function exportReport() {
   const anyRetake = EXAMS.some(e => getGrade(sIdx, e.id).verdict === 'retake');
   const allPass = EXAMS.every(e => getGrade(sIdx, e.id).verdict === 'pass');
   const stampHtml = anyRetake
-    ? '<div class="r-stamp retake">需 補 考</div>'
-    : (allPass ? '<div class="r-stamp pass">合 格</div>' : '');
+    ? '<div class="r-stamp">需 補 考</div>'
+    : (allPass ? '<div class="r-stamp">合 格</div>' : '');
 
   const summaryRows = EXAMS.map(e => {
     const st = stageStats(sIdx, e.id);
@@ -1414,8 +1328,9 @@ function exportReport() {
     return `<tr>
       <td>${e.label.replace(/\s/g, '')}</td>
       <td style="text-align:left">${e.title}</td>
-      <td>${st.scored} / ${st.total}</td>
-      <td><b>${fmt(st.sum)}</b> 分</td>
+      <td>${st.c.pass}</td>
+      <td>${st.c.ok}</td>
+      <td>${st.c.improve}</td>
       <td>${vHtml}</td>
     </tr>`;
   }).join('');
@@ -1423,28 +1338,25 @@ function exportReport() {
   const stages = EXAMS.map(exam => {
     const g = getGrade(sIdx, exam.id);
     const sub = s.submissions[exam.id];
-    const st = stageStats(sIdx, exam.id);
     let n = 0;
     const body = exam.sections.map((sec, secI) => {
       const qs = sec.questions.map((q, qi) => {
         n++;
         const id = secI + '-' + qi;
         const ans = (sub.answers[flatIndex(exam, sec, qi)] || '').trim();
-        const score = g.scores[id];
+        const mark = g.marks[id] || '';
         const comment = (g.comments[id] || '').trim();
-        const hasScore = score !== '' && score != null && !isNaN(parseFloat(score));
-        let mark = '';
-        if (hasScore || comment) {
-          mark = `<div class="r-mark">` +
-            (hasScore ? `<span class="sc">得分:${fmt(parseFloat(score))} 分</span>` : '') +
-            (hasScore && comment ? '<span style="color:var(--line)"> │ </span>' : '') +
-            (comment ? `<span class="cm">教師評語:${esc(comment)}</span>` : '') +
+        let markHtml = '';
+        if (mark || comment) {
+          markHtml = `<div class="r-mark">` +
+            (mark ? `<span class="r-m-stamp">${MARKS[mark]}</span>` : '') +
+            (comment ? `<span class="cm">${esc(comment)}</span>` : '') +
             `</div>`;
         }
         return `<div class="r-q">
-          <div class="r-q-title"><span class="no">${n}.</span><span>${esc(q)}</span></div>
+          <div class="r-q-title"><span class="no">${n}、</span><span>${esc(q)}</span></div>
           <div class="r-ans">${ans ? esc(ans) : '(未作答)'}</div>
-          ${mark}
+          ${markHtml}
         </div>`;
       }).join('');
       return (exam.sections.length > 1 ? `<div class="r-sec">${sec.name}(${sec.note})</div>` : '') + qs;
@@ -1454,17 +1366,17 @@ function exportReport() {
     return `<section class="r-stage">
       <div class="r-stage-head">
         <span>${exam.label.replace(/\s/g, '')}|${exam.title}</span>
-        <small>總分 ${fmt(st.sum)} 分 · 評定:${vTxt}</small>
+        <small>評定:${vTxt}</small>
       </div>
       ${body}
-      ${overall ? `<div class="r-overall"><span class="lbl">本 卷 總 評</span>${esc(overall)}</div>` : ''}
+      ${overall ? `<div class="r-overall"><span class="lbl">本 卷 總 評</span><div class="txt">${esc(overall)}</div></div>` : ''}
     </section>`;
   }).join('');
 
   const today = new Date();
   const dateStr = `${today.getFullYear()} 年 ${today.getMonth() + 1} 月 ${today.getDate()} 日`;
 
-  document.getElementById('reportArea').innerHTML = `<div class="report">
+  document.getElementById('reportArea').innerHTML = `<div class="report"><div class="r-sheet">
     <div class="r-school">泰 熙 爾 札 娜 寶 石 學 院</div>
     <h2>考核成績通知單</h2>
     <div class="r-info">
@@ -1475,7 +1387,7 @@ function exportReport() {
     <div class="r-verdict-wrap">
       ${stampHtml}
       <table class="r-table">
-        <thead><tr><th>階段</th><th>考核名稱</th><th>已評題數</th><th>總分</th><th>評定結果</th></tr></thead>
+        <thead><tr><th>階段</th><th>考核名稱</th><th>通過</th><th>合格</th><th>需要優化</th><th>評定結果</th></tr></thead>
         <tbody>${summaryRows}</tbody>
       </table>
     </div>
@@ -1484,7 +1396,7 @@ function exportReport() {
       <span>本通知單由泰熙爾札娜寶石學院評閱後發出,如對成績有疑問請與學院聯繫。</span>
       <div class="sign"><div class="line"></div><div class="cap">評 閱 教 師 簽 章</div></div>
     </div>
-  </div>`;
+  </div></div>`;
 
   document.body.classList.add('report-mode');
   const cleanup = () => {
@@ -1499,7 +1411,7 @@ function exportReport() {
 /* ═══════════════ 匯出/還原 ═══════════════ */
 
 function exportCSV() {
-  const rows = [['學員姓名', '考核階段', '大題', '題號', '題目', '得分', '評語', '評定結果']];
+  const rows = [['學員姓名', '考核階段', '大題', '題號', '題目', '評閱結果', '評語', '本卷評定']];
   STUDENTS.forEach((s, si) => {
     EXAMS.forEach(exam => {
       const g = getGrade(si, exam.id);
@@ -1508,20 +1420,23 @@ function exportCSV() {
         sec.questions.forEach((q, qi) => {
           n++;
           const id = secI + '-' + qi;
-          rows.push([s.name, exam.title, sec.name, n, q, g.scores[id] ?? '', g.comments[id] ?? '', '']);
+          rows.push([s.name, exam.title, sec.name, n, q, g.marks[id] ? MARKS[g.marks[id]] : '', g.comments[id] ?? '', '']);
         });
       });
-      rows.push([s.name, exam.title, '—', '', '總評', stageStats(si, exam.id).sum, g.overall ?? '', g.verdict ? VERDICTS[g.verdict] : '未評定']);
+      const st = stageStats(si, exam.id);
+      rows.push([s.name, exam.title, '—', '', '總評',
+        `通過${st.c.pass}/合格${st.c.ok}/需優化${st.c.improve}`,
+        g.overall ?? '', g.verdict ? VERDICTS[g.verdict] : '未評定']);
     });
   });
-  const csv = '﻿' + rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\r\n');
-  download(new Blob([csv], { type: 'text/csv;charset=utf-8' }), '學員考核評分總表.csv');
-  toast('已匯出評分總表');
+  const csv = '\ufeff' + rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\r\n');
+  download(new Blob([csv], { type: 'text/csv;charset=utf-8' }), '學員考核評閱總表.csv');
+  toast('已匯出評閱總表');
 }
 
 function exportJSON() {
-  download(new Blob([JSON.stringify(grades, null, 2)], { type: 'application/json' }), '評分資料備份.json');
-  toast('已匯出評分備份');
+  download(new Blob([JSON.stringify(grades, null, 2)], { type: 'application/json' }), '評閱資料備份.json');
+  toast('已匯出評閱備份');
 }
 
 function importJSON() {
@@ -1536,7 +1451,7 @@ function importJSON() {
         persist();
         renderSidebar();
         renderPaper();
-        toast('已還原評分資料');
+        toast('已還原評閱資料');
       } catch (e) { toast('檔案格式錯誤,無法還原'); }
       input.value = '';
     };
@@ -1548,12 +1463,12 @@ function importJSON() {
 function clearCurrent() {
   const s = STUDENTS[currentStudent];
   const exam = EXAMS.find(e => e.id === currentStage);
-  if (!confirm(`確定清除「${s.name} — ${exam.title}」的所有評分與評語?`)) return;
+  if (!confirm(`確定清除「${s.name} — ${exam.title}」的所有評閱與評語?`)) return;
   delete grades[gkey(currentStudent, currentStage)];
   persist();
   renderSidebar();
   renderPaper();
-  toast('已清除本卷評分');
+  toast('已清除本卷評閱');
 }
 
 function download(blob, filename) {
