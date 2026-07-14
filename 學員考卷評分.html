@@ -490,6 +490,199 @@
   }
   .o-summary b { font-family: 'Noto Serif TC', serif; font-size: 19px; color: var(--red); }
 
+  .o-verdict {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+    padding: 10px 14px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .o-verdict .v-label { letter-spacing: .15em; color: var(--ink-soft); font-weight: 500; }
+  .o-verdict label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    padding: 3px 12px;
+    border-radius: 100px;
+    border: 1px solid transparent;
+    transition: all .15s;
+  }
+  .o-verdict label:hover { background: #faf7ef; }
+  .o-verdict input { accent-color: var(--gold-deep); cursor: pointer; }
+  .o-verdict label.on-pass { border-color: var(--green); color: var(--green); font-weight: 700; background: #f1f6f2; }
+  .o-verdict label.on-retake { border-color: var(--red); color: var(--red); font-weight: 700; background: #faf1ef; }
+
+  /* ── 學員成績通知單(PDF 輸出)─────────── */
+  #reportArea { display: none; }
+  body.report-mode .masthead,
+  body.report-mode .layout,
+  body.report-mode .toast { display: none !important; }
+  body.report-mode #reportArea { display: block; }
+
+  .report {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 46px 52px 60px;
+    background: #fff;
+    color: var(--ink);
+    font-size: 13.5px;
+  }
+  .report .r-school {
+    font-family: 'Noto Serif TC', serif;
+    text-align: center;
+    font-size: 15px;
+    letter-spacing: .45em;
+    text-indent: .45em;
+    color: var(--ink-soft);
+  }
+  .report h2 {
+    font-family: 'Noto Serif TC', serif;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: .3em;
+    text-indent: .3em;
+    margin-top: 6px;
+    border-bottom: 2.5px double var(--ink);
+    padding-bottom: 14px;
+  }
+  .report .r-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px 30px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .report .r-info b { color: var(--ink); font-weight: 500; margin-left: 6px; }
+
+  .r-verdict-wrap { position: relative; margin-top: 22px; }
+  .r-stamp {
+    position: absolute;
+    right: 6px; top: -30px;
+    background: rgba(255,255,255,.75);
+    font-family: 'Noto Serif TC', serif;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: .3em;
+    text-indent: .3em;
+    padding: 8px 16px;
+    border: 3px double;
+    border-radius: 6px;
+    transform: rotate(-7deg);
+    opacity: .9;
+  }
+  .r-stamp.pass { color: var(--red); border-color: var(--red); }
+  .r-stamp.retake { color: var(--red); border-color: var(--red); }
+
+  .r-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 13px;
+  }
+  .r-table th, .r-table td {
+    border: 1px solid var(--ink);
+    padding: 8px 12px;
+    text-align: center;
+  }
+  .r-table th {
+    background: var(--gold-pale);
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 700;
+    letter-spacing: .15em;
+  }
+  .r-table .v-pass { color: var(--green); font-weight: 700; letter-spacing: .1em; }
+  .r-table .v-retake { color: var(--red); font-weight: 700; letter-spacing: .1em; }
+
+  .r-stage {
+    margin-top: 34px;
+    break-inside: auto;
+  }
+  .r-stage-head {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    padding: 8px 14px;
+    background: var(--ink);
+    color: #f0ead9;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .r-stage-head small { font-family: 'Noto Sans TC', sans-serif; font-size: 12px; letter-spacing: .08em; color: rgba(240,234,217,.75); }
+  .r-sec {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: .15em;
+    margin: 20px 0 4px;
+    color: var(--gold-deep);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 4px;
+  }
+  .r-q { margin-top: 14px; break-inside: avoid; }
+  .r-q .r-q-title {
+    font-weight: 500;
+    display: flex;
+    gap: 8px;
+  }
+  .r-q .r-q-title .no { color: var(--gold-deep); font-family: 'Noto Serif TC', serif; font-weight: 700; flex-shrink: 0; }
+  .r-q .r-ans {
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: var(--ink-soft);
+    background: #fbfaf6;
+    border-left: 3px solid var(--line);
+    padding: 8px 12px;
+    margin: 6px 0 0 22px;
+    font-size: 13px;
+  }
+  .r-q .r-mark {
+    margin: 6px 0 0 22px;
+    padding: 7px 12px;
+    border: 1px dashed var(--red);
+    border-radius: 4px;
+    background: #fdf7f5;
+    font-size: 13px;
+  }
+  .r-q .r-mark .sc { color: var(--red); font-weight: 700; font-family: 'Noto Serif TC', serif; }
+  .r-q .r-mark .cm { white-space: pre-wrap; word-break: break-word; }
+  .r-overall {
+    margin-top: 18px;
+    padding: 10px 14px;
+    border: 1px solid var(--ink);
+    border-radius: 4px;
+    background: #fdfbf4;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .r-overall .lbl { font-family: 'Noto Serif TC', serif; font-weight: 700; letter-spacing: .2em; color: var(--ink); display: block; margin-bottom: 4px; }
+  .r-foot {
+    margin-top: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 30px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .r-foot .sign {
+    min-width: 220px;
+    text-align: center;
+  }
+  .r-foot .sign .line { border-bottom: 1px solid var(--ink); height: 44px; }
+  .r-foot .sign .cap { margin-top: 6px; letter-spacing: .3em; text-indent: .3em; }
+
   .toast {
     position: fixed;
     bottom: 26px; left: 50%;
@@ -516,6 +709,7 @@
     .grading { background: #fff; }
     textarea, input { border: none !important; box-shadow: none !important; }
     textarea { resize: none; }
+    body.report-mode .report { max-width: none; padding: 0; }
   }
 </style>
 </head>
@@ -536,7 +730,8 @@
     <div class="panel">
       <div class="panel-title">卷 宗 工 具</div>
       <div class="tools">
-        <button class="tool-btn primary" onclick="window.print()">列印本卷 / 存為 PDF</button>
+        <button class="tool-btn primary" onclick="exportReport()">輸出學員成績單 (PDF)</button>
+        <button class="tool-btn" onclick="window.print()">列印評閱中考卷</button>
         <button class="tool-btn" onclick="exportCSV()">匯出評分總表 (CSV)</button>
         <button class="tool-btn" onclick="exportJSON()">備份評分資料 (JSON)</button>
         <button class="tool-btn" onclick="importJSON()">還原評分資料</button>
@@ -550,6 +745,7 @@
 </div>
 
 <div class="toast" id="toast"></div>
+<div id="reportArea"></div>
 <input type="file" id="importFile" accept=".json" style="display:none">
 
 <script>
@@ -970,9 +1166,11 @@ let currentStage = 'stage1';
 function gkey(sIdx, stage) { return STUDENTS[sIdx].name + '|' + stage; }
 function getGrade(sIdx, stage) {
   const k = gkey(sIdx, stage);
-  if (!grades[k]) grades[k] = { scores: {}, comments: {}, overall: '' };
+  if (!grades[k]) grades[k] = { scores: {}, comments: {}, overall: '', verdict: '' };
+  if (grades[k].verdict === undefined) grades[k].verdict = '';
   return grades[k];
 }
+const VERDICTS = { pass: '過關', retake: '需補考' };
 let saveTimer = null;
 function persist() {
   clearTimeout(saveTimer);
@@ -1102,6 +1300,21 @@ function renderPaper() {
           <span>應試學員:<b style="font-size:15px;color:var(--ink)">${s.name}</b></span>
           <span>本卷總分:<b id="totalScore2">${fmt(stats.sum)}</b> 分</span>
         </div>
+        <div class="o-verdict" id="verdictRow">
+          <span class="v-label">本卷評定:</span>
+          <label class="${g.verdict === 'pass' ? 'on-pass' : ''}">
+            <input type="radio" name="verdict-${currentStage}" value="pass" ${g.verdict === 'pass' ? 'checked' : ''}
+                   onchange="setVerdict('pass')">過關
+          </label>
+          <label class="${g.verdict === 'retake' ? 'on-retake' : ''}">
+            <input type="radio" name="verdict-${currentStage}" value="retake" ${g.verdict === 'retake' ? 'checked' : ''}
+                   onchange="setVerdict('retake')">需補考
+          </label>
+          <label>
+            <input type="radio" name="verdict-${currentStage}" value="" ${!g.verdict ? 'checked' : ''}
+                   onchange="setVerdict('')">尚未評定
+          </label>
+        </div>
         <textarea placeholder="整體評語、後續培訓建議、複試備註…"
                   oninput="setOverall(this.value)">${esc(g.overall || '')}</textarea>
       </div>
@@ -1152,6 +1365,14 @@ function setOverall(val) {
   getGrade(currentStudent, currentStage).overall = val;
   persist();
 }
+function setVerdict(val) {
+  getGrade(currentStudent, currentStage).verdict = val;
+  persist();
+  const row = document.getElementById('verdictRow');
+  row.querySelectorAll('label').forEach(l => l.classList.remove('on-pass', 'on-retake'));
+  if (val === 'pass') row.children[1].classList.add('on-pass');
+  if (val === 'retake') row.children[2].classList.add('on-retake');
+}
 function refreshTotals() {
   const stats = stageStats(currentStudent, currentStage);
   document.getElementById('totalScore').textContent = fmt(stats.sum);
@@ -1166,10 +1387,119 @@ function refreshTotals() {
   });
 }
 
+/* ═══════════════ 學員成績單 PDF ═══════════════ */
+
+function exportReport() {
+  const sIdx = currentStudent;
+  const s = STUDENTS[sIdx];
+
+  // 檢查兩卷是否皆已評定
+  const pending = EXAMS.filter(e => !getGrade(sIdx, e.id).verdict).map(e => e.title);
+  if (pending.length) {
+    if (!confirm(`「${s.name}」尚未評定:${pending.join('、')}(總評區的「本卷評定」)。\n仍要輸出成績單嗎?未評定的卷將標示「評閱中」。`)) return;
+  }
+
+  const anyRetake = EXAMS.some(e => getGrade(sIdx, e.id).verdict === 'retake');
+  const allPass = EXAMS.every(e => getGrade(sIdx, e.id).verdict === 'pass');
+  const stampHtml = anyRetake
+    ? '<div class="r-stamp retake">需 補 考</div>'
+    : (allPass ? '<div class="r-stamp pass">合 格</div>' : '');
+
+  const summaryRows = EXAMS.map(e => {
+    const st = stageStats(sIdx, e.id);
+    const v = getGrade(sIdx, e.id).verdict;
+    const vHtml = v === 'pass' ? '<span class="v-pass">過關</span>'
+                : v === 'retake' ? '<span class="v-retake">需補考</span>'
+                : '<span style="color:var(--ink-faint)">評閱中</span>';
+    return `<tr>
+      <td>${e.label.replace(/\s/g, '')}</td>
+      <td style="text-align:left">${e.title}</td>
+      <td>${st.scored} / ${st.total}</td>
+      <td><b>${fmt(st.sum)}</b> 分</td>
+      <td>${vHtml}</td>
+    </tr>`;
+  }).join('');
+
+  const stages = EXAMS.map(exam => {
+    const g = getGrade(sIdx, exam.id);
+    const sub = s.submissions[exam.id];
+    const st = stageStats(sIdx, exam.id);
+    let n = 0;
+    const body = exam.sections.map((sec, secI) => {
+      const qs = sec.questions.map((q, qi) => {
+        n++;
+        const id = secI + '-' + qi;
+        const ans = (sub.answers[flatIndex(exam, sec, qi)] || '').trim();
+        const score = g.scores[id];
+        const comment = (g.comments[id] || '').trim();
+        const hasScore = score !== '' && score != null && !isNaN(parseFloat(score));
+        let mark = '';
+        if (hasScore || comment) {
+          mark = `<div class="r-mark">` +
+            (hasScore ? `<span class="sc">得分:${fmt(parseFloat(score))} 分</span>` : '') +
+            (hasScore && comment ? '<span style="color:var(--line)"> │ </span>' : '') +
+            (comment ? `<span class="cm">教師評語:${esc(comment)}</span>` : '') +
+            `</div>`;
+        }
+        return `<div class="r-q">
+          <div class="r-q-title"><span class="no">${n}.</span><span>${esc(q)}</span></div>
+          <div class="r-ans">${ans ? esc(ans) : '(未作答)'}</div>
+          ${mark}
+        </div>`;
+      }).join('');
+      return (exam.sections.length > 1 ? `<div class="r-sec">${sec.name}(${sec.note})</div>` : '') + qs;
+    }).join('');
+    const vTxt = g.verdict ? VERDICTS[g.verdict] : '評閱中';
+    const overall = (g.overall || '').trim();
+    return `<section class="r-stage">
+      <div class="r-stage-head">
+        <span>${exam.label.replace(/\s/g, '')}|${exam.title}</span>
+        <small>總分 ${fmt(st.sum)} 分 · 評定:${vTxt}</small>
+      </div>
+      ${body}
+      ${overall ? `<div class="r-overall"><span class="lbl">本 卷 總 評</span>${esc(overall)}</div>` : ''}
+    </section>`;
+  }).join('');
+
+  const today = new Date();
+  const dateStr = `${today.getFullYear()} 年 ${today.getMonth() + 1} 月 ${today.getDate()} 日`;
+
+  document.getElementById('reportArea').innerHTML = `<div class="report">
+    <div class="r-school">泰 熙 爾 札 娜 寶 石 學 院</div>
+    <h2>考核成績通知單</h2>
+    <div class="r-info">
+      <span>學員姓名:<b>${s.name}</b></span>
+      <span>LINE 名稱:<b>${s.line}</b></span>
+      <span>發送日期:<b>${dateStr}</b></span>
+    </div>
+    <div class="r-verdict-wrap">
+      ${stampHtml}
+      <table class="r-table">
+        <thead><tr><th>階段</th><th>考核名稱</th><th>已評題數</th><th>總分</th><th>評定結果</th></tr></thead>
+        <tbody>${summaryRows}</tbody>
+      </table>
+    </div>
+    ${stages}
+    <div class="r-foot">
+      <span>本通知單由泰熙爾札娜寶石學院評閱後發出,如對成績有疑問請與學院聯繫。</span>
+      <div class="sign"><div class="line"></div><div class="cap">評 閱 教 師 簽 章</div></div>
+    </div>
+  </div>`;
+
+  document.body.classList.add('report-mode');
+  const cleanup = () => {
+    document.body.classList.remove('report-mode');
+    document.getElementById('reportArea').innerHTML = '';
+    window.removeEventListener('afterprint', cleanup);
+  };
+  window.addEventListener('afterprint', cleanup);
+  setTimeout(() => window.print(), 50);
+}
+
 /* ═══════════════ 匯出/還原 ═══════════════ */
 
 function exportCSV() {
-  const rows = [['學員姓名', '考核階段', '大題', '題號', '題目', '得分', '評語']];
+  const rows = [['學員姓名', '考核階段', '大題', '題號', '題目', '得分', '評語', '評定結果']];
   STUDENTS.forEach((s, si) => {
     EXAMS.forEach(exam => {
       const g = getGrade(si, exam.id);
@@ -1178,10 +1508,10 @@ function exportCSV() {
         sec.questions.forEach((q, qi) => {
           n++;
           const id = secI + '-' + qi;
-          rows.push([s.name, exam.title, sec.name, n, q, g.scores[id] ?? '', g.comments[id] ?? '']);
+          rows.push([s.name, exam.title, sec.name, n, q, g.scores[id] ?? '', g.comments[id] ?? '', '']);
         });
       });
-      rows.push([s.name, exam.title, '—', '', '總評', stageStats(si, exam.id).sum, g.overall ?? '']);
+      rows.push([s.name, exam.title, '—', '', '總評', stageStats(si, exam.id).sum, g.overall ?? '', g.verdict ? VERDICTS[g.verdict] : '未評定']);
     });
   });
   const csv = '﻿' + rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\r\n');
