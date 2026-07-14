@@ -28,6 +28,11 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;   /* 鎖定水平方向,頁面只能上下捲動 */
+  }
+
   body {
     font-family: 'Noto Sans TC', 'PingFang TC', 'Heiti TC', 'Microsoft JhengHei', sans-serif;
     background: var(--bg);
@@ -199,40 +204,54 @@
     margin-top: 4px;
   }
 
-  /* 卷頭資訊表格 */
+  /* 卷頭資訊表格(CSS grid,窄螢幕自動改為兩欄直式)*/
   .head-grid {
-    width: 100%;
-    border-collapse: collapse;
+    display: grid;
+    grid-template-columns: max-content minmax(0,1fr) max-content minmax(0,1fr) max-content minmax(0,1fr);
+    gap: 1px;
+    background: var(--ink);
+    border: 1px solid var(--ink);
     margin-top: 22px;
     font-size: 13px;
   }
-  .head-grid th, .head-grid td {
-    border: 1px solid var(--ink);
-    padding: 7px 12px;
-    text-align: left;
-    font-weight: 400;
-  }
-  .head-grid th {
+  .hg-th {
     font-family: var(--serif);
     font-weight: 700;
     letter-spacing: .2em;
     background: var(--gold-pale);
     white-space: nowrap;
-    width: 1%;
-    text-align: center;
+    padding: 7px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .head-grid td { word-break: break-all; }
-  .head-grid .v-cell {
+  .hg-td {
+    background: var(--paper);
+    padding: 7px 12px;
+    display: flex;
+    align-items: center;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+  .hg-td.hg-w { grid-column: span 3; }
+  .hg-td.hg-full { grid-column: span 5; }
+  .hg-td.v-cell {
     font-family: var(--kai);
     font-size: 17px;
     font-weight: 700;
     letter-spacing: .2em;
     color: var(--red);
-    text-align: center;
+    justify-content: center;
   }
-  .head-grid .stat-line { letter-spacing: .04em; color: var(--ink-soft); }
-  .head-grid .stat-line b { color: var(--red); font-weight: 700; }
-  .head-grid .legend-line { font-size: 12px; color: var(--ink-faint); letter-spacing: .03em; }
+  .hg-td.stat-line { letter-spacing: .04em; color: var(--ink-soft); display: block; }
+  .hg-td.stat-line b { color: var(--red); font-weight: 700; }
+  .hg-td.legend-line { font-size: 12px; color: var(--ink-faint); letter-spacing: .03em; display: block; }
+  @media (max-width: 640px) {
+    .head-grid { grid-template-columns: max-content minmax(0,1fr); }
+    .hg-td.hg-w, .hg-td.hg-full { grid-column: span 1; }
+    .hg-th { letter-spacing: .1em; padding: 7px 9px; }
+  }
 
   /* 大題標題 */
   .sec-title {
@@ -460,6 +479,10 @@
     border: 1px solid var(--ink);
     pointer-events: none;
   }
+  @media (max-width: 640px) {
+    .report { padding: 16px 8px 40px; }
+    .report .r-sheet { padding: 26px 16px 32px; }
+  }
   .report .r-school {
     font-family: var(--serif);
     text-align: center;
@@ -496,10 +519,11 @@
     z-index: 2;
   }
 
+  .r-scroll { overflow-x: auto; margin-top: 10px; }
   .r-table {
     width: 100%;
+    min-width: 460px;
     border-collapse: collapse;
-    margin-top: 10px;
     font-size: 13px;
   }
   .r-table th, .r-table td {
@@ -649,6 +673,7 @@
     .o-verdict label:not(.on) { display: none; }
     .o-verdict input { display: none; }
     textarea { resize: none; border: none !important; }
+    .r-scroll { overflow: visible; }
     body.report-mode .report { max-width: none; padding: 0; }
   }
 </style>
@@ -1235,23 +1260,15 @@ function renderPaper() {
     <div class="p-school">泰 熙 爾 札 娜 寶 石 學 院</div>
     <h2 class="p-title">${exam.title}</h2>
     <div class="p-sub">${exam.label.replace(/\s/g, '')} 考 核 試 卷</div>
-    <table class="head-grid">
-      <tr>
-        <th>姓　名</th><td>${s.name}</td>
-        <th>LINE 名稱</th><td>${s.line}</td>
-        <th>繳卷時間</th><td>${sub.time}</td>
-      </tr>
-      <tr>
-        <th>電子郵件</th><td colspan="3">${s.email}</td>
-        <th>本卷評定</th><td class="v-cell" id="verdictCell">${g.verdict ? VERDICTS[g.verdict] : '評閱中'}</td>
-      </tr>
-      <tr>
-        <th>評閱統計</th><td colspan="5" class="stat-line" id="statCell">${statLine(stats)}</td>
-      </tr>
-      <tr>
-        <th>評閱說明</th><td colspan="5" class="legend-line">合格=已確實掌握;再加強=大致掌握,請依評語複習;不合格=尚未掌握,需重新學習後補考。</td>
-      </tr>
-    </table>
+    <div class="head-grid">
+      <div class="hg-th">姓　名</div><div class="hg-td">${s.name}</div>
+      <div class="hg-th">LINE 名稱</div><div class="hg-td">${s.line}</div>
+      <div class="hg-th">繳卷時間</div><div class="hg-td">${sub.time}</div>
+      <div class="hg-th">電子郵件</div><div class="hg-td hg-w">${s.email}</div>
+      <div class="hg-th">本卷評定</div><div class="hg-td v-cell" id="verdictCell">${g.verdict ? VERDICTS[g.verdict] : '評閱中'}</div>
+      <div class="hg-th">評閱統計</div><div class="hg-td hg-full stat-line" id="statCell">${statLine(stats)}</div>
+      <div class="hg-th">評閱說明</div><div class="hg-td hg-full legend-line">合格=已確實掌握;再加強=大致掌握,請依評語複習;不合格=尚未掌握,需重新學習後補考。</div>
+    </div>
     ${body}
     <div class="overall">
       <div class="o-head">總 評 與 評 定</div>
@@ -1427,10 +1444,10 @@ function exportReport() {
     </div>
     <div class="r-verdict-wrap">
       ${stampHtml}
-      <table class="r-table">
+      <div class="r-scroll"><table class="r-table">
         <thead><tr><th>階段</th><th>考核名稱</th><th>合格</th><th>再加強</th><th>不合格</th><th>評定結果</th></tr></thead>
         <tbody>${summaryRows}</tbody>
-      </table>
+      </table></div>
       <div class="r-legend">評閱等級說明:合格=已確實掌握;再加強=大致掌握,請依紅筆評語複習加強;不合格=尚未掌握,請重新學習後補考。</div>
     </div>
     ${stages}
