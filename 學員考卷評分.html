@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>學員考核評分卷宗</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
+  :root {
+    --ink: #1c2333;
+    --ink-soft: #4a5266;
+    --ink-faint: #8a90a0;
+    --gold: #a8873c;
+    --gold-deep: #8a6d2a;
+    --gold-pale: #f3ecdd;
+    --paper: #fffdf8;
+    --bg: #eceae4;
+    --line: #ddd6c8;
+    --line-soft: #e9e4d8;
+    --red: #a03b2e;
+    --green: #3d6b4f;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  /* ── 頂部橫幅 ─────────────────────────── */
+  .masthead {
+    background: linear-gradient(135deg, #1c2333 0%, #2a3349 60%, #1c2333 100%);
+    color: #f5f1e8;
+    padding: 34px 24px 30px;
+    text-align: center;
+    border-bottom: 3px solid var(--gold);
+  }
+  .masthead .emblem {
+    display: inline-block;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 12px;
+    letter-spacing: .5em;
+    text-indent: .5em;
+    color: #cdb877;
+    border: 1px solid rgba(205,184,119,.45);
+    padding: 4px 14px;
+    margin-bottom: 14px;
+  }
+  .masthead h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: .18em;
+    text-indent: .18em;
+  }
+  .masthead p {
+    margin-top: 8px;
+    font-size: 13px;
+    letter-spacing: .25em;
+    text-indent: .25em;
+    color: rgba(245,241,232,.65);
+  }
+
+  /* ── 版面 ─────────────────────────── */
+  .layout {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 28px 20px 80px;
+    display: grid;
+    grid-template-columns: 250px minmax(0,1fr);
+    gap: 26px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+
+  /* ── 側欄 ─────────────────────────── */
+  .sidebar {
+    position: sticky;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  @media (max-width: 900px) { .sidebar { position: static; } }
+
+  .panel {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(28,35,51,.06);
+    overflow: hidden;
+  }
+  .panel-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .3em;
+    text-indent: .3em;
+    color: var(--gold-deep);
+    padding: 12px 16px 10px;
+    border-bottom: 1px solid var(--line-soft);
+    background: var(--gold-pale);
+  }
+  .student-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--line-soft);
+    padding: 13px 16px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background .15s;
+  }
+  .student-btn:last-child { border-bottom: none; }
+  .student-btn:hover { background: #faf7ef; }
+  .student-btn.active {
+    background: #fdf9ef;
+    box-shadow: inset 3px 0 0 var(--gold);
+  }
+  .student-btn .s-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: .1em;
+  }
+  .student-btn .s-meta {
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    margin-top: 2px;
+  }
+  .student-btn .s-progress {
+    font-size: 11.5px;
+    margin-top: 4px;
+    color: var(--ink-soft);
+    display: flex;
+    gap: 10px;
+  }
+  .student-btn .done { color: var(--green); font-weight: 500; }
+
+  .tools { padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .tool-btn {
+    display: block;
+    width: 100%;
+    padding: 9px 12px;
+    font-family: inherit;
+    font-size: 13px;
+    letter-spacing: .12em;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink-soft);
+    transition: all .15s;
+  }
+  .tool-btn:hover { border-color: var(--gold); color: var(--gold-deep); }
+  .tool-btn.primary {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #f0ead9;
+  }
+  .tool-btn.primary:hover { background: #2a3349; }
+  .save-hint {
+    font-size: 11px;
+    color: var(--ink-faint);
+    text-align: center;
+    padding: 0 14px 12px;
+    letter-spacing: .05em;
+  }
+
+  /* ── 主區:階段頁籤 ─────────────────────── */
+  .stage-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .stage-tab {
+    flex: 1;
+    min-width: 220px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 13px 18px;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    transition: all .15s;
+    box-shadow: 0 2px 8px rgba(28,35,51,.05);
+  }
+  .stage-tab:hover { border-color: var(--gold); }
+  .stage-tab.active {
+    border-color: var(--gold);
+    background: #fdf9ef;
+    box-shadow: inset 0 3px 0 var(--gold), 0 2px 8px rgba(28,35,51,.05);
+  }
+  .stage-tab .t-label {
+    font-size: 11px;
+    letter-spacing: .25em;
+    color: var(--gold-deep);
+  }
+  .stage-tab .t-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 16.5px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    margin-top: 2px;
+  }
+  .stage-tab .t-stat {
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-top: 3px;
+  }
+
+  /* ── 考卷 ─────────────────────────── */
+  .paper {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    box-shadow: 0 4px 22px rgba(28,35,51,.08);
+    overflow: hidden;
+  }
+  .paper-head {
+    padding: 38px 46px 30px;
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+  }
+  .paper-head::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -6px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .paper-head .school {
+    font-family: 'Noto Serif TC', serif;
+    text-align: center;
+    font-size: 15px;
+    letter-spacing: .45em;
+    text-indent: .45em;
+    color: var(--ink-soft);
+  }
+  .paper-head h2 {
+    font-family: 'Noto Serif TC', serif;
+    text-align: center;
+    font-size: 27px;
+    font-weight: 900;
+    letter-spacing: .22em;
+    text-indent: .22em;
+    margin-top: 8px;
+  }
+  .paper-head .subtitle {
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: .3em;
+    text-indent: .3em;
+    color: var(--gold-deep);
+    margin-top: 6px;
+  }
+  .candidate {
+    margin-top: 26px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px 30px;
+    font-size: 13.5px;
+  }
+  .candidate .field { display: flex; gap: 10px; border-bottom: 1px dotted var(--line); padding-bottom: 4px; }
+  .candidate .field b {
+    font-weight: 500;
+    color: var(--ink-soft);
+    flex-shrink: 0;
+    letter-spacing: .1em;
+  }
+  .candidate .field span { word-break: break-all; }
+
+  .scorebox {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 26px;
+    flex-wrap: wrap;
+  }
+  .scorebox .cell {
+    border: 1.5px solid var(--ink);
+    min-width: 150px;
+    text-align: center;
+    padding: 8px 22px 12px;
+    background: #fff;
+  }
+  .scorebox .cell .lbl {
+    font-size: 11.5px;
+    letter-spacing: .35em;
+    text-indent: .35em;
+    color: var(--ink-soft);
+  }
+  .scorebox .cell .val {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--red);
+    line-height: 1.25;
+    min-height: 38px;
+  }
+  .scorebox .cell .sub { font-size: 11px; color: var(--ink-faint); }
+
+  /* ── 大題區段 ─────────────────────── */
+  .section-head {
+    margin: 36px 46px 0;
+    padding: 10px 18px;
+    background: var(--ink);
+    color: #f0ead9;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-radius: 3px;
+  }
+  .section-head small { font-size: 11.5px; letter-spacing: .1em; color: rgba(240,234,217,.6); font-family: 'Noto Sans TC', sans-serif; }
+
+  /* ── 題目 ─────────────────────────── */
+  .question {
+    margin: 26px 46px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    overflow: hidden;
+    background: #fff;
+  }
+  @media (max-width: 700px) {
+    .paper-head { padding: 28px 20px 24px; }
+    .section-head { margin: 28px 16px 0; }
+    .question { margin: 20px 16px; }
+  }
+  .q-head {
+    display: flex;
+    gap: 14px;
+    padding: 15px 20px;
+    background: #f8f5ec;
+    border-bottom: 1px solid var(--line-soft);
+    align-items: flex-start;
+  }
+  .q-num {
+    flex-shrink: 0;
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 900;
+    font-size: 15px;
+    color: #fff;
+    background: var(--gold);
+    width: 34px; height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-top: 2px;
+  }
+  .q-text {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .answer {
+    padding: 18px 22px;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    white-space: pre-wrap;
+    word-break: break-word;
+    border-left: 3px solid var(--gold-pale);
+    margin: 14px 20px;
+    background: #fbfaf6;
+  }
+  .answer-label {
+    font-size: 11px;
+    letter-spacing: .3em;
+    color: var(--gold-deep);
+    margin: 14px 20px -8px;
+    font-weight: 500;
+  }
+  .answer.empty { color: var(--ink-faint); font-style: italic; }
+
+  /* ── 評分區 ─────────────────────── */
+  .grading {
+    border-top: 1px dashed var(--line);
+    background: linear-gradient(180deg, #fdfbf4 0%, #faf6ea 100%);
+    padding: 14px 20px 18px;
+  }
+  .grading .g-label {
+    font-size: 11px;
+    letter-spacing: .3em;
+    color: var(--red);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .g-row {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .g-score {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .g-score label { font-size: 13px; color: var(--ink-soft); letter-spacing: .1em; }
+  .g-score input {
+    width: 76px;
+    padding: 8px 10px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--red);
+    text-align: center;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: #fff;
+    outline: none;
+    transition: border .15s, box-shadow .15s;
+  }
+  .g-score input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(168,135,60,.15); }
+  .g-score .unit { font-size: 12.5px; color: var(--ink-faint); }
+  .g-comment { flex: 1; min-width: 240px; }
+  .g-comment textarea {
+    width: 100%;
+    min-height: 58px;
+    padding: 9px 12px;
+    font-family: inherit;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: #fff;
+    resize: vertical;
+    outline: none;
+    transition: border .15s, box-shadow .15s;
+  }
+  .g-comment textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(168,135,60,.15); }
+  .g-comment textarea::placeholder { color: #b8bcc6; }
+
+  /* ── 總評 ─────────────────────── */
+  .overall {
+    margin: 34px 46px 40px;
+    border: 1.5px solid var(--ink);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  @media (max-width: 700px) { .overall { margin: 26px 16px 30px; } }
+  .overall .o-head {
+    background: var(--ink);
+    color: #f0ead9;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .3em;
+    text-indent: .3em;
+    padding: 9px 18px;
+  }
+  .overall .o-body { padding: 16px 20px 20px; background: #fdfbf4; }
+  .overall textarea {
+    width: 100%;
+    min-height: 90px;
+    padding: 10px 14px;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.8;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: #fff;
+    resize: vertical;
+    outline: none;
+  }
+  .overall textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(168,135,60,.15); }
+  .o-summary {
+    display: flex;
+    gap: 26px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+  .o-summary b { font-family: 'Noto Serif TC', serif; font-size: 19px; color: var(--red); }
+
+  .toast {
+    position: fixed;
+    bottom: 26px; left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--ink);
+    color: #f0ead9;
+    font-size: 13px;
+    letter-spacing: .15em;
+    padding: 10px 26px;
+    border-radius: 100px;
+    box-shadow: 0 6px 24px rgba(28,35,51,.3);
+    transition: transform .3s ease;
+    z-index: 99;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ── 列印 ─────────────────────── */
+  @media print {
+    body { background: #fff; }
+    .masthead, .sidebar, .stage-tabs { display: none !important; }
+    .layout { display: block; padding: 0; max-width: none; }
+    .paper { border: none; box-shadow: none; border-radius: 0; }
+    .question { break-inside: avoid; }
+    .grading { background: #fff; }
+    textarea, input { border: none !important; box-shadow: none !important; }
+    textarea { resize: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="emblem">TASHIR ZARNA GEM ACADEMY</div>
+  <h1>學員考核評分卷宗</h1>
+  <p>泰熙爾札娜寶石學院 · 代理培訓兩階段考核</p>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="panel">
+      <div class="panel-title">應 試 學 員</div>
+      <div id="studentList"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">卷 宗 工 具</div>
+      <div class="tools">
+        <button class="tool-btn primary" onclick="window.print()">列印本卷 / 存為 PDF</button>
+        <button class="tool-btn" onclick="exportCSV()">匯出評分總表 (CSV)</button>
+        <button class="tool-btn" onclick="exportJSON()">備份評分資料 (JSON)</button>
+        <button class="tool-btn" onclick="importJSON()">還原評分資料</button>
+        <button class="tool-btn" onclick="clearCurrent()" style="color:var(--red)">清除本卷評分</button>
+      </div>
+      <div class="save-hint">評分內容輸入後自動儲存於此瀏覽器</div>
+    </div>
+  </aside>
+
+  <main id="paperArea"></main>
+</div>
+
+<div class="toast" id="toast"></div>
+<input type="file" id="importFile" accept=".json" style="display:none">
+
+<script>
+/* ═══════════════ 考卷資料(來源:Google 表單回覆)═══════════════ */
+
+const EXAMS = [
+  {
+    id: 'stage1',
+    label: '第 一 階 段',
+    title: '代理制度與銷售實務筆試',
+    sections: [
+      {
+        name: '筆試題目',
+        note: '共 15 題',
+        questions: [
+          '請說明「學徒」與「代理」之間的差異。請條列各項差異重點。',
+          '當客人提出「訂製戒指」需求時,請說明你與客人溝通與確認需求的完整流程(請條列步驟)。',
+          '代理可以透過哪些方式將公司商品分享給客人?請條列方式並簡述實際做法。',
+          '請說明你本人及生活圈朋友平時可接受的珠寶消費價格帶,並列出你們常使用的網路平台(如:Facebook、Instagram、蝦皮等),同時說明選擇該平台的原因。',
+          '若訂製客人因對珠寶不夠熟悉,無法清楚評估自身預算,你會如何引導?請條列你的引導方式。',
+          '當客人預算不足以製作理想中的珠寶時,你是否能協助調整?若可以,請條列你會如何協助客人完成調整。',
+          '請說明「代理 0 成本銷售」的操作方式,並條列實際執行步驟。',
+          '若客人希望訂製具有「紀念意義」的珠寶,除了預算之外,你還會詢問哪些資訊?請條列具體問題。',
+          '當客人在了解款式規格與價格後,回覆「我再考慮一下」或「好的,謝謝」等購買意願偏低的話語時,你會如何提高其購買意願?請條列你的做法。',
+          '若客人表示其他店家有相似款式(如紅寶石戒指),且價格與本公司存在落差,你會如何向客人說明「市面珠寶價格不一、無統一定價」的原因?請條列說明重點。',
+          '請說明「電商銷售模式」相較於「傳統實體珠寶店」的優勢,至少列出三項以上差異。',
+          '若客人偏好「紅色系寶石」(暫不考量預算),你可以推薦哪些寶石?請條列說明。',
+          '你認為「直播賣貨」最能吸引客人購買的優點為何?請至少條列三項優點。',
+          '完成本次考核後,請說明你接下來會從哪裡開始著手行動,並簡述一份個人小計畫。',
+          '請提出你對課程、制度或實務操作仍想進一步了解的問題;若無,請填寫「無」。'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'stage2',
+    label: '第 二 階 段',
+    title: '直播銷售實務考核',
+    sections: [
+      {
+        name: '壹、直播前準備',
+        note: '共 4 題',
+        questions: [
+          '直播需要哪些工具是必備的?請條列出來。',
+          '直播前要準備那些東西?價錢從哪邊找?',
+          '怎麼發直播預告?要發到哪些地方?',
+          '公司背景經歷理念?請填寫出來。'
+        ]
+      },
+      {
+        name: '貳、直播進行中',
+        note: '共 10 題',
+        questions: [
+          '直播中有什麼要注意?',
+          '開播了有哪些話術?',
+          '怎麼炒的氣氛拉人進場?',
+          '怎麼抓節奏感?',
+          '直播當下客人點菜沒貨怎麼辦?',
+          '開播後,直播當下客人要的東西沒有怎麼處理?',
+          '客人開價出來不上的時候怎麼辦?該做什麼事?',
+          '裸石怎麼賣?用什麼燈?',
+          '珠寶成品怎麼賣?用什麼燈?',
+          '客人怎麼進線官方 LINE?'
+        ]
+      },
+      {
+        name: '參、直播後作業',
+        note: '共 9 題',
+        questions: [
+          '直播後要做什麼工作?',
+          '得標信怎麼發?有哪些規定?客人怎麼用官網下單連結?怎麼做直播線下的成交?',
+          '怎麼訂製後續珠寶?訂製客戶怎麼回覆?標準流程與問答有哪些?',
+          '直播記錄回報怎麼做?',
+          '直播完怎麼交接班閉店?',
+          '主播紀錄表怎麼打?',
+          '直播個人業績,非直播的業績怎麼算?',
+          '兩個人一起播的時候怎麼算?',
+          '訂製珠寶、寶石跟金工是不是要分開打怎麼打?'
+        ]
+      }
+    ]
+  }
+];
+
+const STUDENTS = [
+  {
+    name: '林祐如',
+    line: '林祐如',
+    email: 'yo0958324310@gmail.com',
+    submissions: {
+      stage1: {
+        time: '2026-04-20 21:57',
+        answers: [
+          `學徒:不用付權利金,但要簽約跟3年,商品傭金跟代理不同
+代理:根據一級、二級有不同權利金,一年簽一次約`,
+          `1.確認設計:有理想的設計圖或想法嗎?
+2.有預算範圍嗎?
+3.確認想要客人想要的主石及尺寸、訂製款式或造型、款式的材質(例如:925銀、18k)、是否有想要的配石、電鍍需求
+4.根據客人想要的提供專業建議:例如925銀材質軟可能有掉鑽風險、祖母綠適合的鑲嵌方式。`,
+          `1可以直接提供泰希爾札納的官方網址
+2提供代理專屬的代碼商品連結`,
+          `同輩同事或朋友:三萬以下 大於10歲同事或長輩:10萬以下
+雖然大家常用的平台是Fb和ig,但如果是購物,還是會先看看是否有官網的存在,因為感覺官網,有較齊全的商品及商品資訊,以及品牌故事及各種寶石知識,讓人覺得比較有公信力,而不會像詐騙,但是最吸引目光的還是會是fb和ig。`,
+          `1先了解情境需求:是要自己配戴收藏或者節日送禮
+2了解是否有比較喜歡或理想的款式
+3給予價錢區間及商品種類:根據情境需求及款式需求,提供不同價位範圍的商品
+4看看客人比較想了解哪個部分,藉此了解可接受的預算範圍`,
+          `挑選不同產地但寶石相同且一樣漂亮的寶石,如果同個寶石一樣還是很貴,就提供同顏色一樣漂亮的寶石。`,
+          `利用ig、fb、tiktok展示商品,可以利用公司資源轉貼專業文章或圖片,或者拍攝自己配戴的圖文或者reels紀錄,拍攝珠寶專業知識影片,或者直播展示商品。`,
+          `有需要雷射文字在飾品上?有想要什麼樣的材質嗎?或者需要特殊包裝嗎?`,
+          `了解,沒關係,您可以再考慮考慮,我們家的珠寶品質你可以放心相信我們,如果在我們網站還有看到其他喜歡的商品,也歡迎隨時詢問!謝謝`,
+          `因為我們的寶石來自世界各地,品質非常好又漂亮;加上我們做了十幾年珠寶生意,所以我們不只珠寶漂亮,在珠寶的切工,飾品的金工,都比別人純熟,我們是一個團隊,所以也有完善的售後服務,不需要擔心。`,
+          `1.無實體店面需求
+2.銷售無國界
+3.24小時都有人光顧網站`,
+          `紅寶石:絢麗奪目。
+尖晶石:漂亮有價值,馬亨蓋投資好前景。
+石榴石:寶石初階,預算不會那麼高,漂亮好入手。`,
+          `1客人信任賣家及商品:看起來不像詐騙
+2直播可以即時互動:迅速讓客人了解商品資訊及解決客人問題
+3直播像表演:可以吸引目光`,
+          `我會想要從ig出發,這是基本的,再來就是我希望可以直播。`,
+          `無。`
+        ]
+      },
+      stage2: {
+        time: '2026-05-18 10:53',
+        answers: [
+          `手機、手機架、檯燈(IKEA)、展示盤、珠寶燈、麂皮布、裸石盤、星光鏡、官方LINE牌、得標標籤、小夾鏈袋、裸石夾、筆、戒圍棒`,
+          `商品,並做好相關功課(預習寶石知識或小故事)
+價錢前一天先詢問老師。`,
+          `發到IG限時動態`,
+          `泰熙爾札娜是一個珠寶商,經營15年的珠寶生意,擁有來自世界各地的寶石,從原礦的開挖,寶石的切磨、金工的製作,一條龍產業鏈一手包辦,包含珠寶訂製,直播銷售,完善的售後服務,希望把最好的帶給客人。`,
+          `不要透漏溱姐行程
+不要告訴別人自己是新人主播
+不要透漏客人的名字
+不要說沒貨`,
+          `開局先簡單自我介紹1分鐘,然後大概說明今天會要介紹什麼好料的。`,
+          `聊時事時尚話題,流行話題,星座,寶石小故事。`,
+          `5-10分鐘一件商品,除非是大貨才需要10分鐘以上`,
+          `請客人加入官方LINE,丟個訊息,我們會有專人服務。`,
+          `請客人加入官方LINE,丟個訊息,我們會有專人服務。`,
+          `請客人加入官方LINE,丟個訊息,我們會有專人服務。`,
+          `裸石販售以錢/克拉,裸石請以IKEA燈拍攝`,
+          `根據不同的首飾,拿取方式不同;使用珠寶燈或者IKEA檯燈都行,記得手機鏡頭一定要夾上星光鏡,才可以看出美麗的火彩,盡量不要有其他光源干擾。`,
+          `直播時桌上放官LINE的牌子,請客人加入。`,
+          `整理客人商品。
+裸石珠寶排列整齊拍照且物歸原位。
+發布得標信給客人`,
+          `(日期)得標確認信
+親愛的貴賓XXX您好,感謝您在泰希爾札那直播中購買下列商品
+購買商品(品項數量金額)
+商品總金額_____
+運費150元
+共計(商品+運費)______`,
+          `請客人加入官方LINE,發得標信跟客人確認/請客人先付裸石金額/是否要訂製珠寶/預算是多少/接著填寫報價單,跟師父確認價錢/報價給客人,確認是否可以接受價格/匯款後進入金工`,
+          `打開「本月份直播紀錄表」將今天賣出的商品資訊key上去自己的業績報表。
+計算今日直播總業績,打在「主播每日業績總結」報表裡。`,
+          `依照範本回報今日業績、時數、直播交接內容至「主播內部群」`,
+          `將剛剛拍的商品全部上傳到「主播內部群」設立記事本標題打上日期姓名,例如5/18 祐如直播`,
+          `不知道、課程/講義沒看到。`,
+          `不知道、課程/講義沒看到。`,
+          `不知道、課程/講義沒看到,分開打什麼意思?`
+        ]
+      }
+    }
+  },
+  {
+    name: '張梓育',
+    line: '梓育',
+    email: 'asd20140520@gmail.com',
+    submissions: {
+      stage1: {
+        time: '2026-04-21 16:28',
+        answers: [
+          `學徒,可以學得比較專精,但需要耗時。
+代理,上手容易快速,有公司資源,無囤貨壓力,制度分明。`,
+          `詢問客人訂製戒指的用途,比如紀念日之類的,要做什麼樣的設計風格,寶石的需求比如藍寶石紅寶石,戒指的材質,價格預算。`,
+          `可以用FB的方式及LINE的朋友圈,公司有推廣的活動,就可以轉發到FB,朋友圈,主要價格也不會太高。`,
+          `朋友圈裡其實對珠寶沒有太多的概念也不會去買珠寶,依他們平時的消費狀況,品質不錯,大約預算落在一千到一萬左右。
+會選擇FB,平常用FB比較多朋友圈也都在FB,蝦皮搜尋率蠻高的,我也比較喜歡蝦皮愛比價之外品質也是重點。`,
+          `先了解客人大約想要設計什麼樣的款式,再設計不同的款式讓客人做選擇。`,
+          `會先跟客人討論,是否可以簡化一些設計的細節比如說金屬的材質或是寶石的種類。`,
+          `可以作電商或是直播等,沒有庫存壓力,客人下單由總公司出貨。`,
+          `訂製紀念意義珠寶請問是紀念什麼樣的場合比如說生日結婚週年之類的,要自己配戴還是要送人,大約偏向哪一方面的款式。`,
+          `我會先詢問了解客人顧慮在哪?是猶豫價格還是款式或是有哪些地方還說明不清楚。`,
+          `我會先認同客人再引導他,稍微跟客人說明寶石及材質的差異。`,
+          `電商銷售模式可以透過fb,直播等銷售,懶得出門就可在家瀏覽與購買,搭配直播或是短影音可以增加購買率。
+傳統實體珠寶店價格較高外還有一些租金人事成本,現場庫存也有限更新珠寶款式等速度會比較慢。`,
+          `推薦鴿血紅品質不錯有收藏價值`,
+          `直播帶貨能夠讓客人看到你,增加信任度
+帶動珠寶回購率,下單機率也高。`,
+          `我會先從FB及朋友圈開始著手。
+之後希望能夠帶著兩三位朋友一起從事珠寶行業成為A級代理。`,
+          `目前無`
+        ]
+      },
+      stage2: {
+        time: '2026-04-22 20:16',
+        answers: [
+          `直播需要的工具有:手機,手機架,珠寶燈,展示盤,裸石夾,官LINE展示牌,麂皮布,得標標籤。`,
+          `必備的工具以外,還有直播的商品,筆記價錢及庫存,價錢需一小時前詢問公司。`,
+          `直播前拍攝大約10秒內的影片或是商品的照片,編輯後發fb或是IG的限時動態等。`,
+          `我們是泰希爾札那寶石學院是一個寶石批發商,我們有15年的寶石批發,珠寶製作及切磨經驗。`,
+          `不要說自己是新人直播主`,
+          `沒概念`,
+          `沒概念`,
+          `沒概念`,
+          `可以先請客人加官方LINE,線下下播後再回覆給客人`,
+          `先請客人加官方LINE`,
+          `請客人加入官line,線下回覆`,
+          `裸石販售都是克拉,一克拉多少錢,用IKEA的燈`,
+          `可以直播,販賣前詢問老師價位,用IKEA的燈。`,
+          `拿官LINE的展示牌,直接請客人掃碼加入。`,
+          `打開官line找得標的客人訊息
+整理直播商品及道具歸位`,
+          `親愛的貴賓某某你好感謝你在幾月幾號與泰熙爾札那寶石學院直播購買下列的活動商品。確認共幾件商品,多少錢,如需開發票稅外加5%,確認客人的收件資訊。
+透過我們發布的得標信,有一個連結可以到官網下單。`,
+          `張小姐你好,我是助理XXX,請問你的預算是多少,想要的材質,想要怎樣的款式。`,
+          `幾月幾號的業績多少錢,工作時間,直播者。`,
+          `未付款的客人請店務協助留意,然後訂單總表連結回報`,
+          `有主播每日業績報表的連結`,
+          `不了解`,
+          `不了解`,
+          `是要分開,但是不知道怎麼打`
+        ]
+      }
+    }
+  },
+  {
+    name: '謝雯惠',
+    line: 'V',
+    email: 'w098904372885@gmail.com',
+    submissions: {
+      stage1: {
+        time: '2026-07-08 00:09',
+        answers: [
+          `1.以B級代理為例
+權利金:學徒(簽約3年)16800
+    B級代理20萬起
+
+佣金抽成:學徒(盈利30%)
+     代理(個人業績5%)
+
+下線獎金:學徒(無)
+     B級代理(無)但A級以上(10%)
+
+團隊獎金:學徒(無)
+     B級代理(無)但A級以上有獎金`,
+          `-先確認預算抓多少$
+-因訂製需要時間,確認是否為急單(個人作法)
+-要做什麼形式及尺寸(戒指、項鍊、耳墜等…)
+-確認設計概念(有無理想設計)
+-再來挑選主石、戒臺、材質、配鑽、電鍍
+*以上過程要填寫訂製表格並寄回給公司確認報價及起版`,
+          `*可以在自己經營的平台或管道,將產品po到銷售平台來經營,po文、限動、直播等方式吸引客戶(公流域)
+*將商品連結發送給客戶或客戶群,讓客戶輸入專屬折扣碼來結帳(私領域)`,
+          `*朋友圈珠寶消費價格帶:3000~3、4萬
+*目前最常使用instagram
+1.使用者多
+2.演算法可增加曝光,互動高的內容可能被推薦給陌生人,增加觸及
+3.經營頻道可以增加客人信任感,也比傳統冷冰的商品頁有趣`,
+          `*先把需求分層:入門基礎(8萬內)、標準設計(8-20萬)、收藏設計(20萬以上)
+*從公司現有的圖,抓出五個客人大致想要的款式風格圖片做參考
+*若客人有概念後,要再縮小範圍
+*希望主石大一點,還是設計配石精緻一點
+*比較在意寶石的等級,還是整體設計完整
+(讓客人知道,寶石設計價格均可調整,而非釘死某款設計的價格)`,
+          `*將整體設計先拆成三部分:主石、設計感、工藝細節
+(在有限的資金內,客人最想保留哪一個)
+*若是跟理想差距過大,可以先求有再求好
+(先做主石版本,未來可以再做升級)`,
+          `-四大銷售:官網成品、裸石、訂製珠寶、課程銷售
+*無需押貨
+*註冊會員-獲得專屬優惠碼-開始選品-放入私領域及公流域銷售即可
+(出貨及客服皆由公司操作)`,
+          `-紀念的原因(故事)
+-對象(年齡、職業、穿搭風格)
+-佩戴習慣(平常是否佩戴、習慣哪一種飾品)
+-飾品風格(高級簡約、復古、華麗…)
+-寶石及材質
+-有想加入什麼紀念元素(如:刻字)`,
+          `-認同而不急於推銷(希望對方是很喜歡也認真考慮過才決定購買)
+
+-詢問考慮的原因(可以再幫客人縮小範圍找適配的珠寶)
+
+-讓客人有現在買的理由(寶石不是量產,每一顆都是獨一無二,這顆賣出去了,基本上找不出一樣的)
+
+-引導加入line群組,讓客人也可以在群組看看有無喜歡的珠寶,也可以留下客人資料,為其物色一些更適合的商品推給他(不強求今天成交,但可以留給未來一個成交機會)`,
+          `-天然寶石每一顆都與眾不同:顏色、淨度、克拉數、切工都會影響價格
+-產地不同(稀缺性、國際市場價值)
+-有燒無燒
+-戒臺材質跟工藝
+-品牌跟售後`,
+          `-無需全權仰賴實體店面,可透過網路提高品牌曝光度(省一筆租金)
+-透過網路流量,擴大客人量
+-直播方式,不受大小月影響銷售量`,
+          `紅寶石(四大寶石之一、具收藏價值、硬度高)
+尖晶石(近年來收藏價值持續升高:絕地武士)
+石榴石(價格親民、內部潔淨)
+托帕石
+碧璽(很像紅寶石Rubylike)`,
+          `1.可以即時回應客人問題,增加信任感
+2.限時的優惠跟活動,可以促進客人在直播間購買
+3.直播平台引流量推薦容易觸及新客`,
+          `*官網登入會員,取得自己的折扣碼
+*先以instagram為主,將選品發到自己的平台
+*TikTok也會同步發圖文(為未來開始直播預熱)
+*過程中會大量增加寶石知識,以便拍攝reels需要`,
+          `1.競標方式是什麼,是指直播過程寶石只提供底價,最終成交價是由客人之間在直播間競標所得嗎?
+2.直播的商品由我決定,那價格呢?(由我定多少優惠價格,是否有底價)
+3.商品影片可否由我拍攝,以個人風格呈現
+4.訂製表格部分,影片中提到兩種方式,第一種是代理承接客戶訂製或翻新維修,但第二種:代理自身訂製珠寶商品銷售,我不太理解
+5.訂製的設計費用是算在哪一部分
+6.因沒有電商經營的經驗,請問從開始準備經營平台,到正式開始直播銷售,過程都會有陪跑或是有老師可以協助任何問題嗎?
+7.直播時間有一定限制要多長時間嗎?
+*以上問題是影片中沒有特別說明,或是可能我檔案中沒有的影片而提出`
+        ]
+      },
+      stage2: {
+        time: '2026-07-09 04:33',
+        answers: [
+          `裸石燈/聚光燈/投射燈
+得標貼紙
+珠寶秤
+裸石展示台&官方line牌子
+手機&手機支架
+擦拭布
+計算機
+筆記本&筆(記錄客人選的商品)`,
+          `本次直播主題的商品&寶石的故事或文案
+自我介紹
+公司背景
+*珠寶成品在直播販售前,先詢問老師價位是多少,老師開價4500看個直播主往上加,不能低於底價。`,
+          `直播前半小時~一小時拍小短片介紹今天直播的主題,放到官方line、社群、ig限動、TK限動作為預告預熱`,
+          `泰熙爾札娜是擁有18年經驗的跨國珠寶批發商,從上中下游都有涉略,涵蓋了寶石原礦-切割、切磨、珠寶設計、珠寶精工,以及珠寶直播等一整條產業鏈。本公司掌握上游礦區資源,致力於以完善且優惠的價格為每一位客人服務。`,
+          `1.不要說自己是新人主播
+2.如果有客人詢問裸石或珠寶不能說店裡沒有貨
+3.節奏不要拖沓,心情不要受人數影響`,
+          `開場留人:「家人們先別劃走!今天這場我直接把你們最關心的三個問題講清楚。」`,
+          `*引導留言
+*製造互動
+*限時福利
+*分享故事,不只是介紹產品規格`,
+          `5-10分鐘一件商品,除非是高單價(10-30萬)的大貨才需要拉長時間。`,
+          `請客人加line,直播播完後幫客人處理或是幫他找貨,避免直接說沒貨。`,
+          `請客人加line,直播播完後幫客人處理或是幫他找貨,避免直接說沒貨。`,
+          `我的回答是:因為今天直播的價格很優惠,沒有把握住的話,我們只能先留給候補的其他人了`,
+          `搭配裸石夾單顆特寫裸石狀態、使用柔光燈拍攝`,
+          `可上手展示、使用聚光燈搭配星光鏡拍攝`,
+          `透過小名牌或是直播主提到的@vmo7014k進入官方Line,也可以透過TikTok帳號中的首頁連結進入官方Line。`,
+          `*整理商品,客人個別分開放,不要同一天放一起,找來找去會不見。
+*商品品質檢查,若發現掉鑽、刮傷、污跡等嚴禁出貨,必須直接重新調貨或重製。
+*直播後物歸原位,裸石放回去裸石的地方,珠寶放回拿珠寶的地方,器具也是。
+*發佈得標信給直播中購買的客人。`,
+          `(發佈得標信日期)得標確認信
+
+親愛的貴賓(客人LINE名稱)您好
+
+感謝您在(購買日期)號於泰熙爾札娜寶石學院直播購買下列優惠活動商品:
+
+1.購買商品(裸石要含克拉數)數量 價位
+
+共N件商品
+
+N件訂製戒指
+
+總金額(總金額)元
+
+運費150元
+
+共計(總金額含運費)元
+往下拉為shopline連結,記得上平台下單填寫確定訂單完成才會成立呦!
+*透過我們發布的得標信,底下會有官網下單連結即可查看`,
+          `1.購買珠寶後,請客人加入官方line
+2.發得標信,請客人先付珠寶的價格
+3.詢問是否要訂製珠寶?
+4.客人預算是多少?
+5.依據客人的預算建議925銀或是18k
+6.詢問客人要訂製簡約款還是豪華款?
+7.依據客人的答覆去官網上找簡約或是豪華款給客人(最多一次五張圖)
+8.詢問客人的尺寸
+9.客人選定款式後將客人選擇的圖片傳送給老師詢問老師訂製這款的報價
+10.確定完價格先發佈完成品得標信給客人,請客人在期限內匯款
+11.客人匯款完後進入金工`,
+          `*凡是直播賣出商品,不論是否付款、現貨/非現貨,樣品與否,一律記錄。
+*統一客人商品集中紀錄禁止分散`,
+          `1.填寫直播記錄表
+2.商品檢查、歸位
+3.售出商品處理
+4.售出商品拍照存證+上金工
+5.櫃位,桌面整理乾淨`,
+          `日期/時段
+主播名稱
+銷售數據
+今日總業績
+福利活動
+最多人&最少人詢問的商品`,
+          `依據合約內容標示的商品區間的抽成`,
+          `開播前就要有合約簽訂好如何分潤抽成`,
+          `主石/材質/品項/配鑽/尺寸/鍍金/戒圍/金額
+以上分類打完以及拍攝完後傳給後台確認付款完成才可進入下一步`
+        ]
+      }
+    }
+  }
+];
+
+/* ═══════════════ 狀態與儲存 ═══════════════ */
+
+const STORE_KEY = 'examGrades_v1';
+let grades = {};
+try { grades = JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch (e) { grades = {}; }
+
+let currentStudent = 0;
+let currentStage = 'stage1';
+
+function gkey(sIdx, stage) { return STUDENTS[sIdx].name + '|' + stage; }
+function getGrade(sIdx, stage) {
+  const k = gkey(sIdx, stage);
+  if (!grades[k]) grades[k] = { scores: {}, comments: {}, overall: '' };
+  return grades[k];
+}
+let saveTimer = null;
+function persist() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    localStorage.setItem(STORE_KEY, JSON.stringify(grades));
+  }, 250);
+}
+
+function flatQuestions(exam) {
+  const out = [];
+  exam.sections.forEach((sec, si) => {
+    sec.questions.forEach((q, qi) => out.push({ sec: sec.name, si, qi, text: q, id: si + '-' + qi }));
+  });
+  return out;
+}
+
+function stageStats(sIdx, stage) {
+  const exam = EXAMS.find(e => e.id === stage);
+  const total = flatQuestions(exam).length;
+  const g = getGrade(sIdx, stage);
+  let scored = 0, sum = 0;
+  Object.values(g.scores).forEach(v => {
+    if (v !== '' && v != null && !isNaN(parseFloat(v))) { scored++; sum += parseFloat(v); }
+  });
+  return { total, scored, sum };
+}
+
+/* ═══════════════ 渲染 ═══════════════ */
+
+function renderSidebar() {
+  const el = document.getElementById('studentList');
+  el.innerHTML = STUDENTS.map((s, i) => {
+    const s1 = stageStats(i, 'stage1'), s2 = stageStats(i, 'stage2');
+    const p = (st) => `<span class="${st.scored === st.total ? 'done' : ''}">${st.scored}/${st.total} 題</span>`;
+    return `<button class="student-btn ${i === currentStudent ? 'active' : ''}" onclick="selectStudent(${i})">
+      <div class="s-name">${s.name}</div>
+      <div class="s-meta">LINE:${s.line}</div>
+      <div class="s-progress">一階 ${p(s1)} · 二階 ${p(s2)}</div>
+    </button>`;
+  }).join('');
+}
+
+function renderPaper() {
+  const s = STUDENTS[currentStudent];
+  const exam = EXAMS.find(e => e.id === currentStage);
+  const sub = s.submissions[currentStage];
+  const g = getGrade(currentStudent, currentStage);
+  const stats = stageStats(currentStudent, currentStage);
+
+  const tabs = `<div class="stage-tabs">` + EXAMS.map(e => {
+    const st = stageStats(currentStudent, e.id);
+    return `<button class="stage-tab ${e.id === currentStage ? 'active' : ''}" onclick="selectStage('${e.id}')">
+      <div class="t-label">${e.label}</div>
+      <div class="t-name">${e.title}</div>
+      <div class="t-stat">已評 ${st.scored} / ${st.total} 題 · 合計 ${fmt(st.sum)} 分</div>
+    </button>`;
+  }).join('') + `</div>`;
+
+  let qGlobal = 0;
+  const body = exam.sections.map(sec => {
+    const secHead = exam.sections.length > 1
+      ? `<div class="section-head"><span>${sec.name}</span><small>${sec.note}</small></div>`
+      : `<div class="section-head"><span>試 題 與 作 答</span><small>${sec.note}</small></div>`;
+    const qs = sec.questions.map((q, qi) => {
+      qGlobal++;
+      const id = exam.sections.indexOf(sec) + '-' + qi;
+      const ans = (sub.answers[flatIndex(exam, sec, qi)] || '').trim();
+      const score = g.scores[id] ?? '';
+      const comment = g.comments[id] ?? '';
+      return `<div class="question">
+        <div class="q-head">
+          <div class="q-num">${qGlobal}</div>
+          <div class="q-text">${esc(q)}</div>
+        </div>
+        <div class="answer-label">學 員 作 答</div>
+        <div class="answer ${ans ? '' : 'empty'}">${ans ? esc(ans) : '(未作答)'}</div>
+        <div class="grading">
+          <div class="g-label">評 閱 區</div>
+          <div class="g-row">
+            <div class="g-score">
+              <label>得分</label>
+              <input type="number" step="0.5" inputmode="decimal" value="${score}"
+                     oninput="setScore('${id}', this.value)">
+              <span class="unit">分</span>
+            </div>
+            <div class="g-comment">
+              <textarea placeholder="評語、訂正或修改建議…"
+                        oninput="setComment('${id}', this.value)">${esc(comment)}</textarea>
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+    return secHead + qs;
+  }).join('');
+
+  document.getElementById('paperArea').innerHTML = tabs + `
+  <article class="paper">
+    <div class="paper-head">
+      <div class="school">泰 熙 爾 札 娜 寶 石 學 院</div>
+      <h2>${exam.title}</h2>
+      <div class="subtitle">${exam.label.replace(/\s/g, '')} 考 核 評 分 卷</div>
+      <div class="candidate">
+        <div class="field"><b>姓名</b><span>${s.name}</span></div>
+        <div class="field"><b>LINE 名稱</b><span>${s.line}</span></div>
+        <div class="field"><b>電子郵件</b><span>${s.email}</span></div>
+        <div class="field"><b>繳卷時間</b><span>${sub.time}</span></div>
+      </div>
+      <div class="scorebox">
+        <div class="cell">
+          <div class="lbl">總 分</div>
+          <div class="val" id="totalScore">${fmt(stats.sum)}</div>
+          <div class="sub">各題得分自動加總</div>
+        </div>
+        <div class="cell">
+          <div class="lbl">評 閱 進 度</div>
+          <div class="val" id="progressVal" style="color:var(--ink)">${stats.scored}<span style="font-size:16px;color:var(--ink-faint)"> / ${stats.total}</span></div>
+          <div class="sub">已評題數</div>
+        </div>
+      </div>
+    </div>
+    ${body}
+    <div class="overall">
+      <div class="o-head">總 評 與 覆 核 意 見</div>
+      <div class="o-body">
+        <div class="o-summary">
+          <span>應試學員:<b style="font-size:15px;color:var(--ink)">${s.name}</b></span>
+          <span>本卷總分:<b id="totalScore2">${fmt(stats.sum)}</b> 分</span>
+        </div>
+        <textarea placeholder="整體評語、後續培訓建議、複試備註…"
+                  oninput="setOverall(this.value)">${esc(g.overall || '')}</textarea>
+      </div>
+    </div>
+  </article>`;
+}
+
+function flatIndex(exam, sec, qi) {
+  let idx = 0;
+  for (const s of exam.sections) {
+    if (s === sec) return idx + qi;
+    idx += s.questions.length;
+  }
+  return idx;
+}
+
+function esc(str) {
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function fmt(n) {
+  return Number.isInteger(n) ? String(n) : n.toFixed(1);
+}
+
+/* ═══════════════ 互動 ═══════════════ */
+
+function selectStudent(i) {
+  currentStudent = i;
+  renderSidebar();
+  renderPaper();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function selectStage(id) {
+  currentStage = id;
+  renderPaper();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function setScore(id, val) {
+  getGrade(currentStudent, currentStage).scores[id] = val;
+  persist();
+  refreshTotals();
+  renderSidebar();
+}
+function setComment(id, val) {
+  getGrade(currentStudent, currentStage).comments[id] = val;
+  persist();
+}
+function setOverall(val) {
+  getGrade(currentStudent, currentStage).overall = val;
+  persist();
+}
+function refreshTotals() {
+  const stats = stageStats(currentStudent, currentStage);
+  document.getElementById('totalScore').textContent = fmt(stats.sum);
+  document.getElementById('totalScore2').textContent = fmt(stats.sum);
+  document.getElementById('progressVal').innerHTML =
+    stats.scored + '<span style="font-size:16px;color:var(--ink-faint)"> / ' + stats.total + '</span>';
+  const tabs = document.querySelectorAll('.stage-tab');
+  EXAMS.forEach((e, i) => {
+    const st = stageStats(currentStudent, e.id);
+    if (tabs[i]) tabs[i].querySelector('.t-stat').textContent =
+      `已評 ${st.scored} / ${st.total} 題 · 合計 ${fmt(st.sum)} 分`;
+  });
+}
+
+/* ═══════════════ 匯出/還原 ═══════════════ */
+
+function exportCSV() {
+  const rows = [['學員姓名', '考核階段', '大題', '題號', '題目', '得分', '評語']];
+  STUDENTS.forEach((s, si) => {
+    EXAMS.forEach(exam => {
+      const g = getGrade(si, exam.id);
+      let n = 0;
+      exam.sections.forEach((sec, secI) => {
+        sec.questions.forEach((q, qi) => {
+          n++;
+          const id = secI + '-' + qi;
+          rows.push([s.name, exam.title, sec.name, n, q, g.scores[id] ?? '', g.comments[id] ?? '']);
+        });
+      });
+      rows.push([s.name, exam.title, '—', '', '總評', stageStats(si, exam.id).sum, g.overall ?? '']);
+    });
+  });
+  const csv = '﻿' + rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\r\n');
+  download(new Blob([csv], { type: 'text/csv;charset=utf-8' }), '學員考核評分總表.csv');
+  toast('已匯出評分總表');
+}
+
+function exportJSON() {
+  download(new Blob([JSON.stringify(grades, null, 2)], { type: 'application/json' }), '評分資料備份.json');
+  toast('已匯出評分備份');
+}
+
+function importJSON() {
+  const input = document.getElementById('importFile');
+  input.onchange = () => {
+    const f = input.files[0];
+    if (!f) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        grades = JSON.parse(reader.result);
+        persist();
+        renderSidebar();
+        renderPaper();
+        toast('已還原評分資料');
+      } catch (e) { toast('檔案格式錯誤,無法還原'); }
+      input.value = '';
+    };
+    reader.readAsText(f);
+  };
+  input.click();
+}
+
+function clearCurrent() {
+  const s = STUDENTS[currentStudent];
+  const exam = EXAMS.find(e => e.id === currentStage);
+  if (!confirm(`確定清除「${s.name} — ${exam.title}」的所有評分與評語?`)) return;
+  delete grades[gkey(currentStudent, currentStage)];
+  persist();
+  renderSidebar();
+  renderPaper();
+  toast('已清除本卷評分');
+}
+
+function download(blob, filename) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+
+let toastTimer = null;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
+}
+
+/* ═══════════════ 啟動 ═══════════════ */
+renderSidebar();
+renderPaper();
+</script>
+</body>
+</html>
