@@ -232,6 +232,7 @@
   }
   .head-grid .stat-line { letter-spacing: .04em; color: var(--ink-soft); }
   .head-grid .stat-line b { color: var(--red); font-weight: 700; }
+  .head-grid .legend-line { font-size: 12px; color: var(--ink-faint); letter-spacing: .03em; }
 
   /* 大題標題 */
   .sec-title {
@@ -303,6 +304,14 @@
     margin-top: 2px;
     opacity: .85;
   }
+  .mark-main { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 6px; }
+  .mark-opts-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .mark-hint {
+    font-size: 12px;
+    color: rgba(179,55,42,.62);
+    letter-spacing: .04em;
+    min-height: 1em;
+  }
   .mark-opts { display: flex; gap: 8px; flex-shrink: 0; margin-top: 2px; }
   .mark-opt {
     font-family: var(--kai);
@@ -323,7 +332,7 @@
     border-color: var(--red);
     box-shadow: 1px 1px 0 rgba(179,55,42,.3);
   }
-  .mark-comment { flex: 1; min-width: 220px; }
+  .mark-comment { width: 100%; }
   .mark-comment textarea {
     width: 100%;
     font-family: var(--kai);
@@ -506,6 +515,12 @@
   }
   .r-table .v-pass { color: var(--green); font-weight: 700; letter-spacing: .1em; }
   .r-table .v-retake { color: var(--red); font-weight: 700; letter-spacing: .1em; }
+  .r-legend {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: .03em;
+  }
 
   .r-info {
     display: flex;
@@ -629,6 +644,7 @@
     .paper { border: none; box-shadow: none; padding: 0; }
     .question { break-inside: avoid; }
     .mark-opt:not(.sel) { display: none; }
+    .mark-hint { display: none; }
     .mark-comment textarea:placeholder-shown { visibility: hidden; }
     .o-verdict label:not(.on) { display: none; }
     .o-verdict input { display: none; }
@@ -1082,7 +1098,12 @@ N件訂製戒指
 
 const STORE_KEY = 'examGrades_v2';
 const MARK_KEYS = ['pass', 'ok', 'improve'];
-const MARKS = { pass: '通過', ok: '合格', improve: '需要優化' };
+const MARKS = { pass: '合格', ok: '再加強', improve: '不合格' };
+const HINTS = {
+  pass: '已確實掌握本題內容,無需補考',
+  ok: '大致掌握,請依紅筆評語複習加強',
+  improve: '尚未掌握,請重新學習後補考本題'
+};
 const VERDICTS = { pass: '過關', retake: '需補考' };
 
 let grades = {};
@@ -1141,7 +1162,7 @@ function esc(str) {
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 function statLine(st) {
-  return `已評 <b>${st.done}</b> / ${st.total} 題　　通過 <b>${st.c.pass}</b>　合格 <b>${st.c.ok}</b>　需要優化 <b>${st.c.improve}</b>`;
+  return `已評 <b>${st.done}</b> / ${st.total} 題　　合格 <b>${st.c.pass}</b>　再加強 <b>${st.c.ok}</b>　不合格 <b>${st.c.improve}</b>`;
 }
 
 /* ═══════════════ 渲染 ═══════════════ */
@@ -1185,17 +1206,23 @@ function renderPaper() {
       const mark = g.marks[id] || '';
       const comment = g.comments[id] ?? '';
       const opts = MARK_KEYS.map(k =>
-        `<button class="mark-opt ${mark === k ? 'sel' : ''}" data-q="${id}" data-v="${k}"
-                 onclick="setMark('${id}','${k}')">${MARKS[k]}</button>`).join('');
+        `<button class="mark-opt ${mark === k ? 'sel' : ''}" data-q="${id}" data-v="${k}" title="${HINTS[k]}"
+                 onclick="setMark('${id}','${k}')"
+                 onmouseenter="showHint('${id}','${k}')" onmouseleave="restoreHint('${id}')">${MARKS[k]}</button>`).join('');
       return `<div class="question">
         <div class="q-line"><span class="q-no">${qGlobal}、</span><span>${esc(q)}</span></div>
         <div class="answer ${ans ? '' : 'empty'}">${ans ? esc(ans) : '(未作答)'}</div>
         <div class="mark-row">
           <span class="mark-label">評</span>
-          <div class="mark-opts">${opts}</div>
-          <div class="mark-comment">
-            <textarea rows="1" placeholder="紅筆評語、訂正…"
-                      oninput="setComment('${id}', this.value)">${esc(comment)}</textarea>
+          <div class="mark-main">
+            <div class="mark-opts-row">
+              <div class="mark-opts">${opts}</div>
+              <span class="mark-hint" id="hint-${id}">${mark ? HINTS[mark] : ''}</span>
+            </div>
+            <div class="mark-comment">
+              <textarea rows="1" placeholder="紅筆評語、訂正…"
+                        oninput="setComment('${id}', this.value)">${esc(comment)}</textarea>
+            </div>
           </div>
         </div>
       </div>`;
@@ -1220,6 +1247,9 @@ function renderPaper() {
       </tr>
       <tr>
         <th>評閱統計</th><td colspan="5" class="stat-line" id="statCell">${statLine(stats)}</td>
+      </tr>
+      <tr>
+        <th>評閱說明</th><td colspan="5" class="legend-line">合格=已確實掌握;再加強=大致掌握,請依評語複習;不合格=尚未掌握,需重新學習後補考。</td>
       </tr>
     </table>
     ${body}
@@ -1269,11 +1299,22 @@ function setMark(id, val) {
   document.querySelectorAll(`.mark-opt[data-q="${id}"]`).forEach(b => {
     b.classList.toggle('sel', b.dataset.v === g.marks[id]);
   });
+  restoreHint(id);
   refreshStats();
 }
 function setComment(id, val) {
   getGrade(currentStudent, currentStage).comments[id] = val;
   persist();
+}
+function showHint(id, k) {
+  const el = document.getElementById('hint-' + id);
+  if (el) el.textContent = HINTS[k];
+}
+function restoreHint(id) {
+  const el = document.getElementById('hint-' + id);
+  if (!el) return;
+  const m = getGrade(currentStudent, currentStage).marks[id];
+  el.textContent = m ? HINTS[m] : '';
 }
 function setOverall(val) {
   getGrade(currentStudent, currentStage).overall = val;
@@ -1387,9 +1428,10 @@ function exportReport() {
     <div class="r-verdict-wrap">
       ${stampHtml}
       <table class="r-table">
-        <thead><tr><th>階段</th><th>考核名稱</th><th>通過</th><th>合格</th><th>需要優化</th><th>評定結果</th></tr></thead>
+        <thead><tr><th>階段</th><th>考核名稱</th><th>合格</th><th>再加強</th><th>不合格</th><th>評定結果</th></tr></thead>
         <tbody>${summaryRows}</tbody>
       </table>
+      <div class="r-legend">評閱等級說明:合格=已確實掌握;再加強=大致掌握,請依紅筆評語複習加強;不合格=尚未掌握,請重新學習後補考。</div>
     </div>
     ${stages}
     <div class="r-foot">
@@ -1425,7 +1467,7 @@ function exportCSV() {
       });
       const st = stageStats(si, exam.id);
       rows.push([s.name, exam.title, '—', '', '總評',
-        `通過${st.c.pass}/合格${st.c.ok}/需優化${st.c.improve}`,
+        `合格${st.c.pass}/再加強${st.c.ok}/不合格${st.c.improve}`,
         g.overall ?? '', g.verdict ? VERDICTS[g.verdict] : '未評定']);
     });
   });
