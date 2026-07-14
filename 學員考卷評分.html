@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>學員考核評分卷宗</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
+  :root {
+    --ink: #1c2333;
+    --ink-soft: #4a5266;
+    --ink-faint: #8a90a0;
+    --gold: #a8873c;
+    --gold-deep: #8a6d2a;
+    --gold-pale: #f3ecdd;
+    --paper: #fffdf6;
+    --bg: #eceae4;
+    --line: #ddd6c8;
+    --line-soft: #e9e4d8;
+    --rule: rgba(150, 138, 105, .38);
+    --pen: #26356e;
+    --red: #b3372a;
+    --green: #3d6b4f;
+    --serif: 'Noto Serif TC', 'Songti TC', 'LiSong Pro', 'PMingLiU', 'MingLiU', serif;
+    --kai: 'Kaiti TC', 'BiauKai', 'DFKai-SB', '標楷體', 'TW-Kai', 'Noto Serif TC', serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;   /* 鎖定水平方向,頁面只能上下捲動 */
+  }
+
+  body {
+    font-family: 'Noto Sans TC', 'PingFang TC', 'Heiti TC', 'Microsoft JhengHei', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  /* ── 頂部橫幅 ─────────────────────────── */
+  .masthead {
+    background: linear-gradient(135deg, #1c2333 0%, #2a3349 60%, #1c2333 100%);
+    color: #f5f1e8;
+    padding: 34px 24px 30px;
+    text-align: center;
+    border-bottom: 3px solid var(--gold);
+  }
+  .masthead .emblem {
+    display: inline-block;
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: .5em;
+    text-indent: .5em;
+    color: #cdb877;
+    border: 1px solid rgba(205,184,119,.45);
+    padding: 4px 14px;
+    margin-bottom: 14px;
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: .18em;
+    text-indent: .18em;
+  }
+  .masthead p {
+    margin-top: 8px;
+    font-size: 13px;
+    letter-spacing: .25em;
+    text-indent: .25em;
+    color: rgba(245,241,232,.65);
+  }
+
+  /* ── 版面 ─────────────────────────── */
+  .layout {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 28px 20px 80px;
+    display: grid;
+    grid-template-columns: 250px minmax(0,1fr);
+    gap: 26px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+
+  /* ── 側欄 ─────────────────────────── */
+  .sidebar { position: sticky; top: 20px; display: flex; flex-direction: column; gap: 18px; }
+  @media (max-width: 900px) { .sidebar { position: static; } }
+
+  .panel {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(28,35,51,.06);
+    overflow: hidden;
+  }
+  .panel-title {
+    font-family: var(--serif);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .3em;
+    text-indent: .3em;
+    color: var(--gold-deep);
+    padding: 12px 16px 10px;
+    border-bottom: 1px solid var(--line-soft);
+    background: var(--gold-pale);
+  }
+  .student-btn {
+    display: block; width: 100%; text-align: left;
+    background: none; border: none; border-bottom: 1px solid var(--line-soft);
+    padding: 13px 16px; cursor: pointer; font-family: inherit; transition: background .15s;
+  }
+  .student-btn:last-child { border-bottom: none; }
+  .student-btn:hover { background: #faf7ef; }
+  .student-btn.active { background: #fdf9ef; box-shadow: inset 3px 0 0 var(--gold); }
+  .student-btn .s-name { font-family: var(--serif); font-size: 17px; font-weight: 700; letter-spacing: .1em; }
+  .student-btn .s-meta { font-size: 11.5px; color: var(--ink-faint); margin-top: 2px; }
+  .student-btn .s-progress { font-size: 11.5px; margin-top: 4px; color: var(--ink-soft); display: flex; gap: 10px; }
+  .student-btn .done { color: var(--green); font-weight: 500; }
+
+  .tools { padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .tool-btn {
+    display: block; width: 100%; padding: 9px 12px;
+    font-family: inherit; font-size: 13px; letter-spacing: .12em;
+    cursor: pointer; border-radius: 4px; border: 1px solid var(--line);
+    background: #fff; color: var(--ink-soft); transition: all .15s;
+  }
+  .tool-btn:hover { border-color: var(--gold); color: var(--gold-deep); }
+  .tool-btn.primary { background: var(--ink); border-color: var(--ink); color: #f0ead9; }
+  .tool-btn.primary:hover { background: #2a3349; }
+  .save-hint { font-size: 11px; color: var(--ink-faint); text-align: center; padding: 0 14px 12px; letter-spacing: .05em; }
+
+  /* ── 主區:階段頁籤 ─────────────────────── */
+  .stage-tabs { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+  .stage-tab {
+    flex: 1; min-width: 220px;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 6px;
+    padding: 13px 18px; cursor: pointer; font-family: inherit; text-align: left;
+    transition: all .15s; box-shadow: 0 2px 8px rgba(28,35,51,.05);
+  }
+  .stage-tab:hover { border-color: var(--gold); }
+  .stage-tab.active {
+    border-color: var(--gold); background: #fdf9ef;
+    box-shadow: inset 0 3px 0 var(--gold), 0 2px 8px rgba(28,35,51,.05);
+  }
+  .stage-tab .t-label { font-size: 11px; letter-spacing: .25em; color: var(--gold-deep); }
+  .stage-tab .t-name { font-family: var(--serif); font-size: 16.5px; font-weight: 700; letter-spacing: .06em; margin-top: 2px; }
+  .stage-tab .t-stat { font-size: 12px; color: var(--ink-faint); margin-top: 3px; }
+
+  /* ── 考卷(紙本樣式)─────────────────────── */
+  .paper {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    box-shadow: 0 4px 22px rgba(28,35,51,.08);
+    padding: 16px;
+  }
+  .sheet {
+    border: 2px solid var(--ink);
+    position: relative;
+    padding: 40px 48px 46px;
+  }
+  .sheet::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid var(--ink);
+    pointer-events: none;
+  }
+  @media (max-width: 700px) {
+    .paper { padding: 8px; }
+    .sheet { padding: 26px 18px 32px; }
+  }
+
+  .p-school {
+    font-family: var(--serif);
+    text-align: center;
+    font-size: 15px;
+    letter-spacing: .45em;
+    text-indent: .45em;
+    color: var(--ink-soft);
+  }
+  .p-title {
+    font-family: var(--serif);
+    text-align: center;
+    font-size: 27px;
+    font-weight: 900;
+    letter-spacing: .22em;
+    text-indent: .22em;
+    margin-top: 6px;
+  }
+  .p-sub {
+    text-align: center;
+    font-family: var(--serif);
+    font-size: 13px;
+    letter-spacing: .35em;
+    text-indent: .35em;
+    color: var(--gold-deep);
+    margin-top: 4px;
+  }
+
+  /* 卷頭資訊表格(CSS grid,窄螢幕自動改為兩欄直式)*/
+  .head-grid {
+    display: grid;
+    grid-template-columns: max-content minmax(0,1fr) max-content minmax(0,1fr) max-content minmax(0,1fr);
+    gap: 1px;
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    margin-top: 22px;
+    font-size: 13px;
+  }
+  .hg-th {
+    font-family: var(--serif);
+    font-weight: 700;
+    letter-spacing: .2em;
+    background: var(--gold-pale);
+    white-space: nowrap;
+    padding: 7px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hg-td {
+    background: var(--paper);
+    padding: 7px 12px;
+    display: flex;
+    align-items: center;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+  .hg-td.hg-w { grid-column: span 3; }
+  .hg-td.hg-full { grid-column: span 5; }
+  .hg-td.v-cell {
+    font-family: var(--kai);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    color: var(--red);
+    justify-content: center;
+  }
+  .hg-td.stat-line { letter-spacing: .04em; color: var(--ink-soft); display: block; }
+  .hg-td.stat-line b { color: var(--red); font-weight: 700; }
+  .hg-td.legend-line { font-size: 12px; color: var(--ink-faint); letter-spacing: .03em; display: block; }
+  @media (max-width: 640px) {
+    .head-grid { grid-template-columns: max-content minmax(0,1fr); }
+    .hg-td.hg-w, .hg-td.hg-full { grid-column: span 1; }
+    .hg-th { letter-spacing: .1em; padding: 7px 9px; }
+  }
+
+  /* 大題標題 */
+  .sec-title {
+    font-family: var(--serif);
+    font-size: 16.5px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    margin: 34px 0 6px;
+    padding-bottom: 5px;
+    border-bottom: 3px double var(--ink);
+  }
+  .sec-title small {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: .08em;
+    color: var(--ink-faint);
+    margin-left: 10px;
+  }
+
+  /* 題目與作答 */
+  .question { margin: 26px 0 30px; }
+  .q-line {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 15.5px;
+    display: flex;
+    gap: 4px;
+  }
+  .q-line .q-no { flex-shrink: 0; font-weight: 900; }
+  .answer {
+    font-family: var(--kai);
+    font-size: 15px;
+    color: var(--pen);
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 8px 0 0 26px;
+    padding: 0 2px;
+    line-height: 2.15;
+    min-height: 2.15em;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(2.15em - 1px),
+      var(--rule) calc(2.15em - 1px),
+      var(--rule) 2.15em
+    );
+  }
+  .answer.empty { color: var(--ink-faint); }
+
+  /* 紅筆評閱區 */
+  .mark-row {
+    margin: 10px 0 0 26px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .mark-label {
+    font-family: var(--kai);
+    color: var(--red);
+    font-size: 13.5px;
+    letter-spacing: .25em;
+    border: 1px solid var(--red);
+    border-radius: 50%;
+    width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    opacity: .85;
+  }
+  .mark-main { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 6px; }
+  .mark-opts-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .mark-hint {
+    font-size: 12px;
+    color: rgba(179,55,42,.62);
+    letter-spacing: .04em;
+    min-height: 1em;
+  }
+  .mark-opts { display: flex; gap: 8px; flex-shrink: 0; margin-top: 2px; }
+  .mark-opt {
+    font-family: var(--kai);
+    font-size: 14.5px;
+    letter-spacing: .12em;
+    color: var(--red);
+    background: transparent;
+    border: 1.5px solid rgba(179,55,42,.55);
+    border-radius: 4px;
+    padding: 3px 13px;
+    cursor: pointer;
+    transition: all .12s;
+  }
+  .mark-opt:hover { border-color: var(--red); background: rgba(179,55,42,.06); }
+  .mark-opt.sel {
+    background: var(--red);
+    color: #fff;
+    border-color: var(--red);
+    box-shadow: 1px 1px 0 rgba(179,55,42,.3);
+  }
+  .mark-comment { width: 100%; }
+  .mark-comment textarea {
+    width: 100%;
+    font-family: var(--kai);
+    font-size: 14.5px;
+    color: var(--red);
+    line-height: 2;
+    min-height: 2em;
+    padding: 2px 4px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px dashed rgba(179,55,42,.6);
+    resize: vertical;
+    outline: none;
+  }
+  .mark-comment textarea:focus { border-bottom-color: var(--red); background: rgba(179,55,42,.04); }
+  .mark-comment textarea::placeholder { color: rgba(179,55,42,.4); }
+
+  /* 總評與評定 */
+  .overall {
+    margin-top: 40px;
+    border: 1.5px solid var(--ink);
+  }
+  .overall .o-head {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .35em;
+    text-indent: .35em;
+    text-align: center;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--ink);
+    background: var(--gold-pale);
+  }
+  .overall .o-body { padding: 16px 20px 20px; }
+  .o-verdict {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .o-verdict .v-label {
+    font-family: var(--serif);
+    letter-spacing: .2em;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .o-verdict label {
+    display: flex; align-items: center; gap: 6px;
+    cursor: pointer;
+    font-family: var(--kai);
+    font-size: 15px;
+    color: var(--red);
+    padding: 2px 12px;
+    border: 1.5px solid rgba(179,55,42,.45);
+    border-radius: 4px;
+    transition: all .12s;
+  }
+  .o-verdict label:hover { border-color: var(--red); }
+  .o-verdict input { accent-color: var(--red); cursor: pointer; }
+  .o-verdict label.on { background: var(--red); color: #fff; border-color: var(--red); }
+  .overall textarea {
+    width: 100%;
+    min-height: 84px;
+    font-family: var(--kai);
+    font-size: 15px;
+    color: var(--red);
+    line-height: 2.15;
+    padding: 0 4px;
+    background: transparent;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(2.15em - 1px),
+      rgba(179,55,42,.25) calc(2.15em - 1px),
+      rgba(179,55,42,.25) 2.15em
+    );
+    border: none;
+    resize: vertical;
+    outline: none;
+  }
+  .overall textarea::placeholder { color: rgba(179,55,42,.4); }
+
+  .toast {
+    position: fixed;
+    bottom: 26px; left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--ink);
+    color: #f0ead9;
+    font-size: 13px;
+    letter-spacing: .15em;
+    padding: 10px 26px;
+    border-radius: 100px;
+    box-shadow: 0 6px 24px rgba(28,35,51,.3);
+    transition: transform .3s ease;
+    z-index: 99;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ── 學員成績通知單(PDF 輸出)─────────── */
+  #reportArea { display: none; }
+  body.report-mode .masthead,
+  body.report-mode .layout,
+  body.report-mode .toast { display: none !important; }
+  body.report-mode #reportArea { display: block; }
+  body.report-mode { background: #e3e1da; }
+
+  .report-bar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--ink);
+    padding: 10px 14px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 12px rgba(28,35,51,.25);
+  }
+  .report-bar button {
+    font-family: inherit;
+    font-size: 14px;
+    letter-spacing: .12em;
+    padding: 9px 22px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid rgba(240,234,217,.5);
+    background: transparent;
+    color: #f0ead9;
+  }
+  .report-bar button.go {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff;
+    font-weight: 700;
+  }
+  .report-bar .bar-hint {
+    flex-basis: 100%;
+    text-align: center;
+    font-size: 11.5px;
+    color: rgba(240,234,217,.6);
+    letter-spacing: .05em;
+  }
+
+  /* 頁面內建確認框(App 內建瀏覽器會擋原生 confirm)*/
+  .modal-mask {
+    position: fixed;
+    inset: 0;
+    background: rgba(28,35,51,.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 20px;
+  }
+  .modal-mask.show { display: flex; }
+  .modal {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    max-width: 380px;
+    width: 100%;
+    padding: 22px 22px 18px;
+    box-shadow: 0 10px 40px rgba(28,35,51,.35);
+  }
+  .modal .m-msg { font-size: 14.5px; line-height: 1.9; }
+  .modal .m-btns { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; }
+  .modal .m-btns button {
+    font-family: inherit;
+    font-size: 13.5px;
+    letter-spacing: .1em;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink-soft);
+  }
+  .modal .m-btns button.danger {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .report {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 30px 60px;
+    background: #fff;
+    color: var(--ink);
+    font-size: 13.5px;
+  }
+  .report .r-sheet {
+    border: 2px solid var(--ink);
+    position: relative;
+    padding: 40px 46px 46px;
+  }
+  .report .r-sheet::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid var(--ink);
+    pointer-events: none;
+  }
+  @media (max-width: 640px) {
+    .report { padding: 16px 8px 40px; }
+    .report .r-sheet { padding: 26px 16px 32px; }
+  }
+  .report .r-school {
+    font-family: var(--serif);
+    text-align: center;
+    font-size: 15px;
+    letter-spacing: .45em;
+    text-indent: .45em;
+    color: var(--ink-soft);
+  }
+  .report h2 {
+    font-family: var(--serif);
+    text-align: center;
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: .3em;
+    text-indent: .3em;
+    margin-top: 6px;
+  }
+  .r-verdict-wrap { position: relative; margin-top: 20px; }
+  .r-stamp {
+    position: absolute;
+    right: 0; top: -64px;
+    font-family: var(--kai);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: .3em;
+    text-indent: .3em;
+    padding: 8px 16px;
+    border: 3px double var(--red);
+    border-radius: 6px;
+    color: var(--red);
+    transform: rotate(-7deg);
+    background: rgba(255,255,255,.75);
+    opacity: .92;
+    z-index: 2;
+  }
+
+  .r-scroll { overflow-x: auto; margin-top: 10px; }
+  .r-table {
+    width: 100%;
+    min-width: 460px;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .r-table th, .r-table td {
+    border: 1px solid var(--ink);
+    padding: 8px 12px;
+    text-align: center;
+  }
+  .r-table th {
+    background: var(--gold-pale);
+    font-family: var(--serif);
+    font-weight: 700;
+    letter-spacing: .15em;
+  }
+  .r-table .v-pass { color: var(--green); font-weight: 700; letter-spacing: .1em; }
+  .r-table .v-retake { color: var(--red); font-weight: 700; letter-spacing: .1em; }
+  .r-legend {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: .03em;
+  }
+
+  .r-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px 30px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .r-info b { color: var(--ink); font-weight: 500; margin-left: 6px; }
+
+  .r-stage { margin-top: 34px; }
+  .r-stage-head {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .15em;
+    padding-bottom: 5px;
+    border-bottom: 3px double var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .r-stage-head small {
+    font-family: var(--kai);
+    font-size: 13.5px;
+    font-weight: 400;
+    letter-spacing: .08em;
+    color: var(--red);
+  }
+  .r-sec {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: .15em;
+    margin: 20px 0 2px;
+    color: var(--gold-deep);
+  }
+  .r-q { margin-top: 16px; break-inside: avoid; }
+  .r-q .r-q-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    display: flex;
+    gap: 4px;
+  }
+  .r-q .r-q-title .no { font-weight: 900; flex-shrink: 0; }
+  .r-q .r-ans {
+    font-family: var(--kai);
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: var(--pen);
+    margin: 4px 0 0 24px;
+    font-size: 14px;
+    line-height: 2.1;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(2.1em - 1px),
+      var(--rule) calc(2.1em - 1px),
+      var(--rule) 2.1em
+    );
+  }
+  .r-q .r-mark {
+    margin: 6px 0 0 24px;
+    font-family: var(--kai);
+    font-size: 14px;
+    color: var(--red);
+    line-height: 1.9;
+  }
+  .r-q .r-mark .r-m-stamp {
+    display: inline-block;
+    border: 1.5px solid var(--red);
+    border-radius: 4px;
+    padding: 0 10px;
+    margin-right: 10px;
+    letter-spacing: .12em;
+  }
+  .r-q .r-mark .cm { white-space: pre-wrap; word-break: break-word; }
+  .r-overall {
+    margin-top: 20px;
+    border: 1.5px solid var(--ink);
+    padding: 10px 16px 12px;
+  }
+  .r-overall .lbl {
+    font-family: var(--serif);
+    font-weight: 700;
+    letter-spacing: .25em;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .r-overall .txt {
+    font-family: var(--kai);
+    color: var(--red);
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-size: 14.5px;
+    line-height: 2;
+  }
+  .r-foot {
+    margin-top: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 30px;
+    flex-wrap: wrap;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  .r-foot .sign { min-width: 220px; text-align: center; }
+  .r-foot .sign .line { border-bottom: 1px solid var(--ink); height: 44px; }
+  .r-foot .sign .cap { margin-top: 6px; letter-spacing: .3em; text-indent: .3em; font-family: var(--serif); }
+
+  /* ── 列印 ─────────────────────── */
+  @media print {
+    body { background: #fff; }
+    .masthead, .sidebar, .stage-tabs { display: none !important; }
+    .layout { display: block; padding: 0; max-width: none; }
+    .paper { border: none; box-shadow: none; padding: 0; }
+    .question { break-inside: avoid; }
+    .mark-opt:not(.sel) { display: none; }
+    .mark-hint { display: none; }
+    .mark-comment textarea:placeholder-shown { visibility: hidden; }
+    .o-verdict label:not(.on) { display: none; }
+    .o-verdict input { display: none; }
+    textarea { resize: none; border: none !important; }
+    .r-scroll { overflow: visible; }
+    .report-bar, .modal-mask { display: none !important; }
+    body.report-mode { background: #fff; }
+    body.report-mode .report { max-width: none; padding: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="emblem">TASHIR ZARNA GEM ACADEMY</div>
+  <h1>學員考核評分卷宗</h1>
+  <p>泰熙爾札娜寶石學院 · 代理培訓兩階段考核</p>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="panel">
+      <div class="panel-title">應 試 學 員</div>
+      <div id="studentList"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">卷 宗 工 具</div>
+      <div class="tools">
+        <button class="tool-btn primary" onclick="exportReport()">輸出學員成績單 (PDF)</button>
+        <button class="tool-btn" onclick="clearCurrent()" style="color:var(--red)">清除本卷,重新評閱</button>
+      </div>
+      <div class="save-hint">評閱內容輸入後自動儲存於此瀏覽器</div>
+    </div>
+  </aside>
+
+  <main id="paperArea"></main>
+</div>
+
+<div class="toast" id="toast"></div>
+<div id="reportArea"></div>
+<div class="modal-mask" id="modalMask">
+  <div class="modal">
+    <div class="m-msg" id="modalMsg"></div>
+    <div class="m-btns">
+      <button onclick="modalCancel()">取消</button>
+      <button class="danger" id="modalOkBtn" onclick="modalOk()">確定清除</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════ 考卷資料(來源:Google 表單回覆)═══════════════ */
+
+const EXAMS = [
+  {
+    id: 'stage1',
+    label: '第 一 階 段',
+    title: '代理制度與銷售實務筆試',
+    sections: [
+      {
+        name: '筆試題目',
+        note: '共 15 題',
+        questions: [
+          '請說明「學徒」與「代理」之間的差異。請條列各項差異重點。',
+          '當客人提出「訂製戒指」需求時,請說明你與客人溝通與確認需求的完整流程(請條列步驟)。',
+          '代理可以透過哪些方式將公司商品分享給客人?請條列方式並簡述實際做法。',
+          '請說明你本人及生活圈朋友平時可接受的珠寶消費價格帶,並列出你們常使用的網路平台(如:Facebook、Instagram、蝦皮等),同時說明選擇該平台的原因。',
+          '若訂製客人因對珠寶不夠熟悉,無法清楚評估自身預算,你會如何引導?請條列你的引導方式。',
+          '當客人預算不足以製作理想中的珠寶時,你是否能協助調整?若可以,請條列你會如何協助客人完成調整。',
+          '請說明「代理 0 成本銷售」的操作方式,並條列實際執行步驟。',
+          '若客人希望訂製具有「紀念意義」的珠寶,除了預算之外,你還會詢問哪些資訊?請條列具體問題。',
+          '當客人在了解款式規格與價格後,回覆「我再考慮一下」或「好的,謝謝」等購買意願偏低的話語時,你會如何提高其購買意願?請條列你的做法。',
+          '若客人表示其他店家有相似款式(如紅寶石戒指),且價格與本公司存在落差,你會如何向客人說明「市面珠寶價格不一、無統一定價」的原因?請條列說明重點。',
+          '請說明「電商銷售模式」相較於「傳統實體珠寶店」的優勢,至少列出三項以上差異。',
+          '若客人偏好「紅色系寶石」(暫不考量預算),你可以推薦哪些寶石?請條列說明。',
+          '你認為「直播賣貨」最能吸引客人購買的優點為何?請至少條列三項優點。',
+          '完成本次考核後,請說明你接下來會從哪裡開始著手行動,並簡述一份個人小計畫。',
+          '請提出你對課程、制度或實務操作仍想進一步了解的問題;若無,請填寫「無」。'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'stage2',
+    label: '第 二 階 段',
+    title: '直播銷售實務考核',
+    sections: [
+      {
+        name: '壹、直播前準備',
+        note: '共 4 題',
+        questions: [
+          '直播需要哪些工具是必備的?請條列出來。',
+          '直播前要準備那些東西?價錢從哪邊找?',
+          '怎麼發直播預告?要發到哪些地方?',
+          '公司背景經歷理念?請填寫出來。'
+        ]
+      },
+      {
+        name: '貳、直播進行中',
+        note: '共 10 題',
+        questions: [
+          '直播中有什麼要注意?',
+          '開播了有哪些話術?',
+          '怎麼炒的氣氛拉人進場?',
+          '怎麼抓節奏感?',
+          '直播當下客人點菜沒貨怎麼辦?',
+          '開播後,直播當下客人要的東西沒有怎麼處理?',
+          '客人開價出來不上的時候怎麼辦?該做什麼事?',
+          '裸石怎麼賣?用什麼燈?',
+          '珠寶成品怎麼賣?用什麼燈?',
+          '客人怎麼進線官方 LINE?'
+        ]
+      },
+      {
+        name: '參、直播後作業',
+        note: '共 9 題',
+        questions: [
+          '直播後要做什麼工作?',
+          '得標信怎麼發?有哪些規定?客人怎麼用官網下單連結?怎麼做直播線下的成交?',
+          '怎麼訂製後續珠寶?訂製客戶怎麼回覆?標準流程與問答有哪些?',
+          '直播記錄回報怎麼做?',
+          '直播完怎麼交接班閉店?',
+          '主播紀錄表怎麼打?',
+          '直播個人業績,非直播的業績怎麼算?',
+          '兩個人一起播的時候怎麼算?',
+          '訂製珠寶、寶石跟金工是不是要分開打怎麼打?'
+        ]
+      }
+    ]
+  }
+];
+
+const STUDENTS = [
+  {
+    name: '林祐如',
+    line: '林祐如',
+    email: 'yo0958324310@gmail.com',
+    submissions: {
+      stage1: {
+        time: '2026-04-20 21:57',
+        answers: [
+          `學徒:不用付權利金,但要簽約跟3年,商品傭金跟代理不同
+代理:根據一級、二級有不同權利金,一年簽一次約`,
+          `1.確認設計:有理想的設計圖或想法嗎?
+2.有預算範圍嗎?
+3.確認想要客人想要的主石及尺寸、訂製款式或造型、款式的材質(例如:925銀、18k)、是否有想要的配石、電鍍需求
+4.根據客人想要的提供專業建議:例如925銀材質軟可能有掉鑽風險、祖母綠適合的鑲嵌方式。`,
+          `1可以直接提供泰希爾札納的官方網址
+2提供代理專屬的代碼商品連結`,
+          `同輩同事或朋友:三萬以下 大於10歲同事或長輩:10萬以下
+雖然大家常用的平台是Fb和ig,但如果是購物,還是會先看看是否有官網的存在,因為感覺官網,有較齊全的商品及商品資訊,以及品牌故事及各種寶石知識,讓人覺得比較有公信力,而不會像詐騙,但是最吸引目光的還是會是fb和ig。`,
+          `1先了解情境需求:是要自己配戴收藏或者節日送禮
+2了解是否有比較喜歡或理想的款式
+3給予價錢區間及商品種類:根據情境需求及款式需求,提供不同價位範圍的商品
+4看看客人比較想了解哪個部分,藉此了解可接受的預算範圍`,
+          `挑選不同產地但寶石相同且一樣漂亮的寶石,如果同個寶石一樣還是很貴,就提供同顏色一樣漂亮的寶石。`,
+          `利用ig、fb、tiktok展示商品,可以利用公司資源轉貼專業文章或圖片,或者拍攝自己配戴的圖文或者reels紀錄,拍攝珠寶專業知識影片,或者直播展示商品。`,
+          `有需要雷射文字在飾品上?有想要什麼樣的材質嗎?或者需要特殊包裝嗎?`,
+          `了解,沒關係,您可以再考慮考慮,我們家的珠寶品質你可以放心相信我們,如果在我們網站還有看到其他喜歡的商品,也歡迎隨時詢問!謝謝`,
+          `因為我們的寶石來自世界各地,品質非常好又漂亮;加上我們做了十幾年珠寶生意,所以我們不只珠寶漂亮,在珠寶的切工,飾品的金工,都比別人純熟,我們是一個團隊,所以也有完善的售後服務,不需要擔心。`,
+          `1.無實體店面需求
+2.銷售無國界
+3.24小時都有人光顧網站`,
+          `紅寶石:絢麗奪目。
+尖晶石:漂亮有價值,馬亨蓋投資好前景。
+石榴石:寶石初階,預算不會那麼高,漂亮好入手。`,
+          `1客人信任賣家及商品:看起來不像詐騙
+2直播可以即時互動:迅速讓客人了解商品資訊及解決客人問題
+3直播像表演:可以吸引目光`,
+          `我會想要從ig出發,這是基本的,再來就是我希望可以直播。`,
+          `無。`
+        ]
+      },
+      stage2: {
+        time: '2026-05-18 10:53',
+        answers: [
+          `手機、手機架、檯燈(IKEA)、展示盤、珠寶燈、麂皮布、裸石盤、星光鏡、官方LINE牌、得標標籤、小夾鏈袋、裸石夾、筆、戒圍棒`,
+          `商品,並做好相關功課(預習寶石知識或小故事)
+價錢前一天先詢問老師。`,
+          `發到IG限時動態`,
+          `泰熙爾札娜是一個珠寶商,經營15年的珠寶生意,擁有來自世界各地的寶石,從原礦的開挖,寶石的切磨、金工的製作,一條龍產業鏈一手包辦,包含珠寶訂製,直播銷售,完善的售後服務,希望把最好的帶給客人。`,
+          `不要透漏溱姐行程
+不要告訴別人自己是新人主播
+不要透漏客人的名字
+不要說沒貨`,
+          `開局先簡單自我介紹1分鐘,然後大概說明今天會要介紹什麼好料的。`,
+          `聊時事時尚話題,流行話題,星座,寶石小故事。`,
+          `5-10分鐘一件商品,除非是大貨才需要10分鐘以上`,
+          `請客人加入官方LINE,丟個訊息,我們會有專人服務。`,
+          `請客人加入官方LINE,丟個訊息,我們會有專人服務。`,
+          `請客人加入官方LINE,丟個訊息,我們會有專人服務。`,
+          `裸石販售以錢/克拉,裸石請以IKEA燈拍攝`,
+          `根據不同的首飾,拿取方式不同;使用珠寶燈或者IKEA檯燈都行,記得手機鏡頭一定要夾上星光鏡,才可以看出美麗的火彩,盡量不要有其他光源干擾。`,
+          `直播時桌上放官LINE的牌子,請客人加入。`,
+          `整理客人商品。
+裸石珠寶排列整齊拍照且物歸原位。
+發布得標信給客人`,
+          `(日期)得標確認信
+親愛的貴賓XXX您好,感謝您在泰希爾札那直播中購買下列商品
+購買商品(品項數量金額)
+商品總金額_____
+運費150元
+共計(商品+運費)______`,
+          `請客人加入官方LINE,發得標信跟客人確認/請客人先付裸石金額/是否要訂製珠寶/預算是多少/接著填寫報價單,跟師父確認價錢/報價給客人,確認是否可以接受價格/匯款後進入金工`,
+          `打開「本月份直播紀錄表」將今天賣出的商品資訊key上去自己的業績報表。
+計算今日直播總業績,打在「主播每日業績總結」報表裡。`,
+          `依照範本回報今日業績、時數、直播交接內容至「主播內部群」`,
+          `將剛剛拍的商品全部上傳到「主播內部群」設立記事本標題打上日期姓名,例如5/18 祐如直播`,
+          `不知道、課程/講義沒看到。`,
+          `不知道、課程/講義沒看到。`,
+          `不知道、課程/講義沒看到,分開打什麼意思?`
+        ]
+      }
+    }
+  },
+  {
+    name: '張梓育',
+    line: '梓育',
+    email: 'asd20140520@gmail.com',
+    submissions: {
+      stage1: {
+        time: '2026-04-21 16:28',
+        answers: [
+          `學徒,可以學得比較專精,但需要耗時。
+代理,上手容易快速,有公司資源,無囤貨壓力,制度分明。`,
+          `詢問客人訂製戒指的用途,比如紀念日之類的,要做什麼樣的設計風格,寶石的需求比如藍寶石紅寶石,戒指的材質,價格預算。`,
+          `可以用FB的方式及LINE的朋友圈,公司有推廣的活動,就可以轉發到FB,朋友圈,主要價格也不會太高。`,
+          `朋友圈裡其實對珠寶沒有太多的概念也不會去買珠寶,依他們平時的消費狀況,品質不錯,大約預算落在一千到一萬左右。
+會選擇FB,平常用FB比較多朋友圈也都在FB,蝦皮搜尋率蠻高的,我也比較喜歡蝦皮愛比價之外品質也是重點。`,
+          `先了解客人大約想要設計什麼樣的款式,再設計不同的款式讓客人做選擇。`,
+          `會先跟客人討論,是否可以簡化一些設計的細節比如說金屬的材質或是寶石的種類。`,
+          `可以作電商或是直播等,沒有庫存壓力,客人下單由總公司出貨。`,
+          `訂製紀念意義珠寶請問是紀念什麼樣的場合比如說生日結婚週年之類的,要自己配戴還是要送人,大約偏向哪一方面的款式。`,
+          `我會先詢問了解客人顧慮在哪?是猶豫價格還是款式或是有哪些地方還說明不清楚。`,
+          `我會先認同客人再引導他,稍微跟客人說明寶石及材質的差異。`,
+          `電商銷售模式可以透過fb,直播等銷售,懶得出門就可在家瀏覽與購買,搭配直播或是短影音可以增加購買率。
+傳統實體珠寶店價格較高外還有一些租金人事成本,現場庫存也有限更新珠寶款式等速度會比較慢。`,
+          `推薦鴿血紅品質不錯有收藏價值`,
+          `直播帶貨能夠讓客人看到你,增加信任度
+帶動珠寶回購率,下單機率也高。`,
+          `我會先從FB及朋友圈開始著手。
+之後希望能夠帶著兩三位朋友一起從事珠寶行業成為A級代理。`,
+          `目前無`
+        ]
+      },
+      stage2: {
+        time: '2026-04-22 20:16',
+        answers: [
+          `直播需要的工具有:手機,手機架,珠寶燈,展示盤,裸石夾,官LINE展示牌,麂皮布,得標標籤。`,
+          `必備的工具以外,還有直播的商品,筆記價錢及庫存,價錢需一小時前詢問公司。`,
+          `直播前拍攝大約10秒內的影片或是商品的照片,編輯後發fb或是IG的限時動態等。`,
+          `我們是泰希爾札那寶石學院是一個寶石批發商,我們有15年的寶石批發,珠寶製作及切磨經驗。`,
+          `不要說自己是新人直播主`,
+          `沒概念`,
+          `沒概念`,
+          `沒概念`,
+          `可以先請客人加官方LINE,線下下播後再回覆給客人`,
+          `先請客人加官方LINE`,
+          `請客人加入官line,線下回覆`,
+          `裸石販售都是克拉,一克拉多少錢,用IKEA的燈`,
+          `可以直播,販賣前詢問老師價位,用IKEA的燈。`,
+          `拿官LINE的展示牌,直接請客人掃碼加入。`,
+          `打開官line找得標的客人訊息
+整理直播商品及道具歸位`,
+          `親愛的貴賓某某你好感謝你在幾月幾號與泰熙爾札那寶石學院直播購買下列的活動商品。確認共幾件商品,多少錢,如需開發票稅外加5%,確認客人的收件資訊。
+透過我們發布的得標信,有一個連結可以到官網下單。`,
+          `張小姐你好,我是助理XXX,請問你的預算是多少,想要的材質,想要怎樣的款式。`,
+          `幾月幾號的業績多少錢,工作時間,直播者。`,
+          `未付款的客人請店務協助留意,然後訂單總表連結回報`,
+          `有主播每日業績報表的連結`,
+          `不了解`,
+          `不了解`,
+          `是要分開,但是不知道怎麼打`
+        ]
+      }
+    }
+  },
+  {
+    name: '謝雯惠',
+    line: 'V',
+    email: 'w098904372885@gmail.com',
+    submissions: {
+      stage1: {
+        time: '2026-07-08 00:09',
+        answers: [
+          `1.以B級代理為例
+權利金:學徒(簽約3年)16800
+    B級代理20萬起
+
+佣金抽成:學徒(盈利30%)
+     代理(個人業績5%)
+
+下線獎金:學徒(無)
+     B級代理(無)但A級以上(10%)
+
+團隊獎金:學徒(無)
+     B級代理(無)但A級以上有獎金`,
+          `-先確認預算抓多少$
+-因訂製需要時間,確認是否為急單(個人作法)
+-要做什麼形式及尺寸(戒指、項鍊、耳墜等…)
+-確認設計概念(有無理想設計)
+-再來挑選主石、戒臺、材質、配鑽、電鍍
+*以上過程要填寫訂製表格並寄回給公司確認報價及起版`,
+          `*可以在自己經營的平台或管道,將產品po到銷售平台來經營,po文、限動、直播等方式吸引客戶(公流域)
+*將商品連結發送給客戶或客戶群,讓客戶輸入專屬折扣碼來結帳(私領域)`,
+          `*朋友圈珠寶消費價格帶:3000~3、4萬
+*目前最常使用instagram
+1.使用者多
+2.演算法可增加曝光,互動高的內容可能被推薦給陌生人,增加觸及
+3.經營頻道可以增加客人信任感,也比傳統冷冰的商品頁有趣`,
+          `*先把需求分層:入門基礎(8萬內)、標準設計(8-20萬)、收藏設計(20萬以上)
+*從公司現有的圖,抓出五個客人大致想要的款式風格圖片做參考
+*若客人有概念後,要再縮小範圍
+*希望主石大一點,還是設計配石精緻一點
+*比較在意寶石的等級,還是整體設計完整
+(讓客人知道,寶石設計價格均可調整,而非釘死某款設計的價格)`,
+          `*將整體設計先拆成三部分:主石、設計感、工藝細節
+(在有限的資金內,客人最想保留哪一個)
+*若是跟理想差距過大,可以先求有再求好
+(先做主石版本,未來可以再做升級)`,
+          `-四大銷售:官網成品、裸石、訂製珠寶、課程銷售
+*無需押貨
+*註冊會員-獲得專屬優惠碼-開始選品-放入私領域及公流域銷售即可
+(出貨及客服皆由公司操作)`,
+          `-紀念的原因(故事)
+-對象(年齡、職業、穿搭風格)
+-佩戴習慣(平常是否佩戴、習慣哪一種飾品)
+-飾品風格(高級簡約、復古、華麗…)
+-寶石及材質
+-有想加入什麼紀念元素(如:刻字)`,
+          `-認同而不急於推銷(希望對方是很喜歡也認真考慮過才決定購買)
+
+-詢問考慮的原因(可以再幫客人縮小範圍找適配的珠寶)
+
+-讓客人有現在買的理由(寶石不是量產,每一顆都是獨一無二,這顆賣出去了,基本上找不出一樣的)
+
+-引導加入line群組,讓客人也可以在群組看看有無喜歡的珠寶,也可以留下客人資料,為其物色一些更適合的商品推給他(不強求今天成交,但可以留給未來一個成交機會)`,
+          `-天然寶石每一顆都與眾不同:顏色、淨度、克拉數、切工都會影響價格
+-產地不同(稀缺性、國際市場價值)
+-有燒無燒
+-戒臺材質跟工藝
+-品牌跟售後`,
+          `-無需全權仰賴實體店面,可透過網路提高品牌曝光度(省一筆租金)
+-透過網路流量,擴大客人量
+-直播方式,不受大小月影響銷售量`,
+          `紅寶石(四大寶石之一、具收藏價值、硬度高)
+尖晶石(近年來收藏價值持續升高:絕地武士)
+石榴石(價格親民、內部潔淨)
+托帕石
+碧璽(很像紅寶石Rubylike)`,
+          `1.可以即時回應客人問題,增加信任感
+2.限時的優惠跟活動,可以促進客人在直播間購買
+3.直播平台引流量推薦容易觸及新客`,
+          `*官網登入會員,取得自己的折扣碼
+*先以instagram為主,將選品發到自己的平台
+*TikTok也會同步發圖文(為未來開始直播預熱)
+*過程中會大量增加寶石知識,以便拍攝reels需要`,
+          `1.競標方式是什麼,是指直播過程寶石只提供底價,最終成交價是由客人之間在直播間競標所得嗎?
+2.直播的商品由我決定,那價格呢?(由我定多少優惠價格,是否有底價)
+3.商品影片可否由我拍攝,以個人風格呈現
+4.訂製表格部分,影片中提到兩種方式,第一種是代理承接客戶訂製或翻新維修,但第二種:代理自身訂製珠寶商品銷售,我不太理解
+5.訂製的設計費用是算在哪一部分
+6.因沒有電商經營的經驗,請問從開始準備經營平台,到正式開始直播銷售,過程都會有陪跑或是有老師可以協助任何問題嗎?
+7.直播時間有一定限制要多長時間嗎?
+*以上問題是影片中沒有特別說明,或是可能我檔案中沒有的影片而提出`
+        ]
+      },
+      stage2: {
+        time: '2026-07-09 04:33',
+        answers: [
+          `裸石燈/聚光燈/投射燈
+得標貼紙
+珠寶秤
+裸石展示台&官方line牌子
+手機&手機支架
+擦拭布
+計算機
+筆記本&筆(記錄客人選的商品)`,
+          `本次直播主題的商品&寶石的故事或文案
+自我介紹
+公司背景
+*珠寶成品在直播販售前,先詢問老師價位是多少,老師開價4500看個直播主往上加,不能低於底價。`,
+          `直播前半小時~一小時拍小短片介紹今天直播的主題,放到官方line、社群、ig限動、TK限動作為預告預熱`,
+          `泰熙爾札娜是擁有18年經驗的跨國珠寶批發商,從上中下游都有涉略,涵蓋了寶石原礦-切割、切磨、珠寶設計、珠寶精工,以及珠寶直播等一整條產業鏈。本公司掌握上游礦區資源,致力於以完善且優惠的價格為每一位客人服務。`,
+          `1.不要說自己是新人主播
+2.如果有客人詢問裸石或珠寶不能說店裡沒有貨
+3.節奏不要拖沓,心情不要受人數影響`,
+          `開場留人:「家人們先別劃走!今天這場我直接把你們最關心的三個問題講清楚。」`,
+          `*引導留言
+*製造互動
+*限時福利
+*分享故事,不只是介紹產品規格`,
+          `5-10分鐘一件商品,除非是高單價(10-30萬)的大貨才需要拉長時間。`,
+          `請客人加line,直播播完後幫客人處理或是幫他找貨,避免直接說沒貨。`,
+          `請客人加line,直播播完後幫客人處理或是幫他找貨,避免直接說沒貨。`,
+          `我的回答是:因為今天直播的價格很優惠,沒有把握住的話,我們只能先留給候補的其他人了`,
+          `搭配裸石夾單顆特寫裸石狀態、使用柔光燈拍攝`,
+          `可上手展示、使用聚光燈搭配星光鏡拍攝`,
+          `透過小名牌或是直播主提到的@vmo7014k進入官方Line,也可以透過TikTok帳號中的首頁連結進入官方Line。`,
+          `*整理商品,客人個別分開放,不要同一天放一起,找來找去會不見。
+*商品品質檢查,若發現掉鑽、刮傷、污跡等嚴禁出貨,必須直接重新調貨或重製。
+*直播後物歸原位,裸石放回去裸石的地方,珠寶放回拿珠寶的地方,器具也是。
+*發佈得標信給直播中購買的客人。`,
+          `(發佈得標信日期)得標確認信
+
+親愛的貴賓(客人LINE名稱)您好
+
+感謝您在(購買日期)號於泰熙爾札娜寶石學院直播購買下列優惠活動商品:
+
+1.購買商品(裸石要含克拉數)數量 價位
+
+共N件商品
+
+N件訂製戒指
+
+總金額(總金額)元
+
+運費150元
+
+共計(總金額含運費)元
+往下拉為shopline連結,記得上平台下單填寫確定訂單完成才會成立呦!
+*透過我們發布的得標信,底下會有官網下單連結即可查看`,
+          `1.購買珠寶後,請客人加入官方line
+2.發得標信,請客人先付珠寶的價格
+3.詢問是否要訂製珠寶?
+4.客人預算是多少?
+5.依據客人的預算建議925銀或是18k
+6.詢問客人要訂製簡約款還是豪華款?
+7.依據客人的答覆去官網上找簡約或是豪華款給客人(最多一次五張圖)
+8.詢問客人的尺寸
+9.客人選定款式後將客人選擇的圖片傳送給老師詢問老師訂製這款的報價
+10.確定完價格先發佈完成品得標信給客人,請客人在期限內匯款
+11.客人匯款完後進入金工`,
+          `*凡是直播賣出商品,不論是否付款、現貨/非現貨,樣品與否,一律記錄。
+*統一客人商品集中紀錄禁止分散`,
+          `1.填寫直播記錄表
+2.商品檢查、歸位
+3.售出商品處理
+4.售出商品拍照存證+上金工
+5.櫃位,桌面整理乾淨`,
+          `日期/時段
+主播名稱
+銷售數據
+今日總業績
+福利活動
+最多人&最少人詢問的商品`,
+          `依據合約內容標示的商品區間的抽成`,
+          `開播前就要有合約簽訂好如何分潤抽成`,
+          `主石/材質/品項/配鑽/尺寸/鍍金/戒圍/金額
+以上分類打完以及拍攝完後傳給後台確認付款完成才可進入下一步`
+        ]
+      }
+    }
+  }
+];
+
+/* ═══════════════ 狀態與儲存 ═══════════════ */
+
+const STORE_KEY = 'examGrades_v2';
+const MARK_KEYS = ['pass', 'ok', 'improve'];
+const MARKS = { pass: '合格', ok: '再加強', improve: '不合格' };
+const HINTS = {
+  pass: '已確實掌握本題內容,無需補考',
+  ok: '大致掌握,請依紅筆評語複習加強',
+  improve: '尚未掌握,請重新學習後補考本題'
+};
+const VERDICTS = { pass: '過關', retake: '需補考' };
+
+let grades = {};
+try { grades = JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch (e) { grades = {}; }
+// 由 v1(打分數版)搬移評語/總評/評定;分數制已停用,不搬移
+try {
+  if (!Object.keys(grades).length) {
+    const old = JSON.parse(localStorage.getItem('examGrades_v1'));
+    if (old) {
+      for (const k in old) {
+        grades[k] = { marks: {}, comments: old[k].comments || {}, overall: old[k].overall || '', verdict: old[k].verdict || '' };
+      }
+      localStorage.setItem(STORE_KEY, JSON.stringify(grades));
+    }
+  }
+} catch (e) {}
+
+let currentStudent = 0;
+let currentStage = 'stage1';
+
+function gkey(sIdx, stage) { return STUDENTS[sIdx].name + '|' + stage; }
+function getGrade(sIdx, stage) {
+  const k = gkey(sIdx, stage);
+  if (!grades[k]) grades[k] = { marks: {}, comments: {}, overall: '', verdict: '' };
+  if (!grades[k].marks) grades[k].marks = {};
+  if (grades[k].verdict === undefined) grades[k].verdict = '';
+  return grades[k];
+}
+let saveTimer = null;
+function persist() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    localStorage.setItem(STORE_KEY, JSON.stringify(grades));
+  }, 250);
+}
+
+function flatIndex(exam, sec, qi) {
+  let idx = 0;
+  for (const s of exam.sections) {
+    if (s === sec) return idx + qi;
+    idx += s.questions.length;
+  }
+  return idx;
+}
+
+function stageStats(sIdx, stage) {
+  const exam = EXAMS.find(e => e.id === stage);
+  const total = exam.sections.reduce((n, s) => n + s.questions.length, 0);
+  const g = getGrade(sIdx, stage);
+  const c = { pass: 0, ok: 0, improve: 0 };
+  Object.values(g.marks).forEach(v => { if (c[v] !== undefined) c[v]++; });
+  return { total, done: c.pass + c.ok + c.improve, c };
+}
+
+function esc(str) {
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function statLine(st) {
+  return `已評 <b>${st.done}</b> / ${st.total} 題　　合格 <b>${st.c.pass}</b>　再加強 <b>${st.c.ok}</b>　不合格 <b>${st.c.improve}</b>`;
+}
+
+/* ═══════════════ 渲染 ═══════════════ */
+
+function renderSidebar() {
+  const el = document.getElementById('studentList');
+  el.innerHTML = STUDENTS.map((s, i) => {
+    const s1 = stageStats(i, 'stage1'), s2 = stageStats(i, 'stage2');
+    const p = (st) => `<span class="${st.done === st.total ? 'done' : ''}">${st.done}/${st.total} 題</span>`;
+    return `<button class="student-btn ${i === currentStudent ? 'active' : ''}" onclick="selectStudent(${i})">
+      <div class="s-name">${s.name}</div>
+      <div class="s-meta">LINE:${s.line}</div>
+      <div class="s-progress">一階 ${p(s1)} · 二階 ${p(s2)}</div>
+    </button>`;
+  }).join('');
+}
+
+function renderPaper() {
+  const s = STUDENTS[currentStudent];
+  const exam = EXAMS.find(e => e.id === currentStage);
+  const sub = s.submissions[currentStage];
+  const g = getGrade(currentStudent, currentStage);
+  const stats = stageStats(currentStudent, currentStage);
+
+  const tabs = `<div class="stage-tabs">` + EXAMS.map(e => {
+    const st = stageStats(currentStudent, e.id);
+    return `<button class="stage-tab ${e.id === currentStage ? 'active' : ''}" onclick="selectStage('${e.id}')">
+      <div class="t-label">${e.label}</div>
+      <div class="t-name">${e.title}</div>
+      <div class="t-stat">已評 ${st.done} / ${st.total} 題</div>
+    </button>`;
+  }).join('') + `</div>`;
+
+  let qGlobal = 0;
+  const body = exam.sections.map((sec, secI) => {
+    const secHead = `<div class="sec-title">${exam.sections.length > 1 ? sec.name : '本 卷 試 題'}<small>${sec.note}</small></div>`;
+    const qs = sec.questions.map((q, qi) => {
+      qGlobal++;
+      const id = secI + '-' + qi;
+      const ans = (sub.answers[flatIndex(exam, sec, qi)] || '').trim();
+      const mark = g.marks[id] || '';
+      const comment = g.comments[id] ?? '';
+      const opts = MARK_KEYS.map(k =>
+        `<button class="mark-opt ${mark === k ? 'sel' : ''}" data-q="${id}" data-v="${k}" title="${HINTS[k]}"
+                 onclick="setMark('${id}','${k}')"
+                 onmouseenter="showHint('${id}','${k}')" onmouseleave="restoreHint('${id}')">${MARKS[k]}</button>`).join('');
+      return `<div class="question">
+        <div class="q-line"><span class="q-no">${qGlobal}、</span><span>${esc(q)}</span></div>
+        <div class="answer ${ans ? '' : 'empty'}">${ans ? esc(ans) : '(未作答)'}</div>
+        <div class="mark-row">
+          <span class="mark-label">評</span>
+          <div class="mark-main">
+            <div class="mark-opts-row">
+              <div class="mark-opts">${opts}</div>
+              <span class="mark-hint" id="hint-${id}">${mark ? HINTS[mark] : ''}</span>
+            </div>
+            <div class="mark-comment">
+              <textarea rows="1" placeholder="紅筆評語、訂正…"
+                        oninput="setComment('${id}', this.value)">${esc(comment)}</textarea>
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+    return secHead + qs;
+  }).join('');
+
+  document.getElementById('paperArea').innerHTML = tabs + `
+  <article class="paper"><div class="sheet">
+    <div class="p-school">泰 熙 爾 札 娜 寶 石 學 院</div>
+    <h2 class="p-title">${exam.title}</h2>
+    <div class="p-sub">${exam.label.replace(/\s/g, '')} 考 核 試 卷</div>
+    <div class="head-grid">
+      <div class="hg-th">姓　名</div><div class="hg-td">${s.name}</div>
+      <div class="hg-th">LINE 名稱</div><div class="hg-td">${s.line}</div>
+      <div class="hg-th">繳卷時間</div><div class="hg-td">${sub.time}</div>
+      <div class="hg-th">電子郵件</div><div class="hg-td hg-w">${s.email}</div>
+      <div class="hg-th">本卷評定</div><div class="hg-td v-cell" id="verdictCell">${g.verdict ? VERDICTS[g.verdict] : '評閱中'}</div>
+      <div class="hg-th">評閱統計</div><div class="hg-td hg-full stat-line" id="statCell">${statLine(stats)}</div>
+      <div class="hg-th">評閱說明</div><div class="hg-td hg-full legend-line">合格=已確實掌握;再加強=大致掌握,請依評語複習;不合格=尚未掌握,需重新學習後補考。</div>
+    </div>
+    ${body}
+    <div class="overall">
+      <div class="o-head">總 評 與 評 定</div>
+      <div class="o-body">
+        <div class="o-verdict" id="verdictRow">
+          <span class="v-label">本卷評定:</span>
+          <label class="${g.verdict === 'pass' ? 'on' : ''}">
+            <input type="radio" name="verdict-${currentStage}" value="pass" ${g.verdict === 'pass' ? 'checked' : ''}
+                   onchange="setVerdict('pass')">過關
+          </label>
+          <label class="${g.verdict === 'retake' ? 'on' : ''}">
+            <input type="radio" name="verdict-${currentStage}" value="retake" ${g.verdict === 'retake' ? 'checked' : ''}
+                   onchange="setVerdict('retake')">需補考
+          </label>
+          <label class="${!g.verdict ? 'on' : ''}">
+            <input type="radio" name="verdict-${currentStage}" value="" ${!g.verdict ? 'checked' : ''}
+                   onchange="setVerdict('')">尚未評定
+          </label>
+        </div>
+        <textarea placeholder="整體評語、後續培訓建議、補考範圍…"
+                  oninput="setOverall(this.value)">${esc(g.overall || '')}</textarea>
+      </div>
+    </div>
+  </div></article>`;
+}
+
+/* ═══════════════ 互動 ═══════════════ */
+
+function selectStudent(i) {
+  currentStudent = i;
+  renderSidebar();
+  renderPaper();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function selectStage(id) {
+  currentStage = id;
+  renderPaper();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function setMark(id, val) {
+  const g = getGrade(currentStudent, currentStage);
+  g.marks[id] = (g.marks[id] === val) ? '' : val;   // 再點一次可取消
+  if (!g.marks[id]) delete g.marks[id];
+  persist();
+  document.querySelectorAll(`.mark-opt[data-q="${id}"]`).forEach(b => {
+    b.classList.toggle('sel', b.dataset.v === g.marks[id]);
+  });
+  restoreHint(id);
+  refreshStats();
+}
+function setComment(id, val) {
+  getGrade(currentStudent, currentStage).comments[id] = val;
+  persist();
+}
+function showHint(id, k) {
+  const el = document.getElementById('hint-' + id);
+  if (el) el.textContent = HINTS[k];
+}
+function restoreHint(id) {
+  const el = document.getElementById('hint-' + id);
+  if (!el) return;
+  const m = getGrade(currentStudent, currentStage).marks[id];
+  el.textContent = m ? HINTS[m] : '';
+}
+function setOverall(val) {
+  getGrade(currentStudent, currentStage).overall = val;
+  persist();
+}
+function setVerdict(val) {
+  const g = getGrade(currentStudent, currentStage);
+  g.verdict = val;
+  persist();
+  const row = document.getElementById('verdictRow');
+  const labels = row.querySelectorAll('label');
+  labels.forEach(l => l.classList.remove('on'));
+  if (val === 'pass') labels[0].classList.add('on');
+  else if (val === 'retake') labels[1].classList.add('on');
+  else labels[2].classList.add('on');
+  document.getElementById('verdictCell').textContent = val ? VERDICTS[val] : '評閱中';
+}
+function refreshStats() {
+  const stats = stageStats(currentStudent, currentStage);
+  document.getElementById('statCell').innerHTML = statLine(stats);
+  const tabs = document.querySelectorAll('.stage-tab');
+  EXAMS.forEach((e, i) => {
+    const st = stageStats(currentStudent, e.id);
+    if (tabs[i]) tabs[i].querySelector('.t-stat').textContent = `已評 ${st.done} / ${st.total} 題`;
+  });
+  renderSidebar();
+}
+
+/* ═══════════════ 學員成績單 PDF ═══════════════ */
+
+function exportReport() {
+  const sIdx = currentStudent;
+  const s = STUDENTS[sIdx];
+
+  const pending = EXAMS.filter(e => !getGrade(sIdx, e.id).verdict).map(e => e.title);
+
+  const anyRetake = EXAMS.some(e => getGrade(sIdx, e.id).verdict === 'retake');
+  const allPass = EXAMS.every(e => getGrade(sIdx, e.id).verdict === 'pass');
+  const stampHtml = anyRetake
+    ? '<div class="r-stamp">需 補 考</div>'
+    : (allPass ? '<div class="r-stamp">合 格</div>' : '');
+
+  const summaryRows = EXAMS.map(e => {
+    const st = stageStats(sIdx, e.id);
+    const v = getGrade(sIdx, e.id).verdict;
+    const vHtml = v === 'pass' ? '<span class="v-pass">過關</span>'
+                : v === 'retake' ? '<span class="v-retake">需補考</span>'
+                : '<span style="color:var(--ink-faint)">評閱中</span>';
+    return `<tr>
+      <td>${e.label.replace(/\s/g, '')}</td>
+      <td style="text-align:left">${e.title}</td>
+      <td>${st.c.pass}</td>
+      <td>${st.c.ok}</td>
+      <td>${st.c.improve}</td>
+      <td>${vHtml}</td>
+    </tr>`;
+  }).join('');
+
+  const stages = EXAMS.map(exam => {
+    const g = getGrade(sIdx, exam.id);
+    const sub = s.submissions[exam.id];
+    let n = 0;
+    const body = exam.sections.map((sec, secI) => {
+      const qs = sec.questions.map((q, qi) => {
+        n++;
+        const id = secI + '-' + qi;
+        const ans = (sub.answers[flatIndex(exam, sec, qi)] || '').trim();
+        const mark = g.marks[id] || '';
+        const comment = (g.comments[id] || '').trim();
+        let markHtml = '';
+        if (mark || comment) {
+          markHtml = `<div class="r-mark">` +
+            (mark ? `<span class="r-m-stamp">${MARKS[mark]}</span>` : '') +
+            (comment ? `<span class="cm">${esc(comment)}</span>` : '') +
+            `</div>`;
+        }
+        return `<div class="r-q">
+          <div class="r-q-title"><span class="no">${n}、</span><span>${esc(q)}</span></div>
+          <div class="r-ans">${ans ? esc(ans) : '(未作答)'}</div>
+          ${markHtml}
+        </div>`;
+      }).join('');
+      return (exam.sections.length > 1 ? `<div class="r-sec">${sec.name}(${sec.note})</div>` : '') + qs;
+    }).join('');
+    const vTxt = g.verdict ? VERDICTS[g.verdict] : '評閱中';
+    const overall = (g.overall || '').trim();
+    return `<section class="r-stage">
+      <div class="r-stage-head">
+        <span>${exam.label.replace(/\s/g, '')}|${exam.title}</span>
+        <small>評定:${vTxt}</small>
+      </div>
+      ${body}
+      ${overall ? `<div class="r-overall"><span class="lbl">本 卷 總 評</span><div class="txt">${esc(overall)}</div></div>` : ''}
+    </section>`;
+  }).join('');
+
+  const today = new Date();
+  const dateStr = `${today.getFullYear()} 年 ${today.getMonth() + 1} 月 ${today.getDate()} 日`;
+
+  const pendingNote = pending.length
+    ? `<div class="bar-hint">注意:「${pending.join('、')}」尚未做本卷評定,將以「評閱中」顯示;可先返回評閱,在總評區選擇過關或需補考。</div>`
+    : `<div class="bar-hint">按「列印 / 另存 PDF」後,在列印選單選擇「儲存為 PDF」即可寄給學員;若按了沒反應,請改用瀏覽器開啟本頁再操作。</div>`;
+
+  document.getElementById('reportArea').innerHTML = `
+  <div class="report-bar">
+    <button onclick="closeReport()">← 返回評閱</button>
+    <button class="go" onclick="window.print()">列印 / 另存 PDF</button>
+    ${pendingNote}
+  </div>
+  <div class="report"><div class="r-sheet">
+    <div class="r-school">泰 熙 爾 札 娜 寶 石 學 院</div>
+    <h2>考核成績通知單</h2>
+    <div class="r-info">
+      <span>學員姓名:<b>${s.name}</b></span>
+      <span>LINE 名稱:<b>${s.line}</b></span>
+      <span>發送日期:<b>${dateStr}</b></span>
+    </div>
+    <div class="r-verdict-wrap">
+      ${stampHtml}
+      <div class="r-scroll"><table class="r-table">
+        <thead><tr><th>階段</th><th>考核名稱</th><th>合格</th><th>再加強</th><th>不合格</th><th>評定結果</th></tr></thead>
+        <tbody>${summaryRows}</tbody>
+      </table></div>
+      <div class="r-legend">評閱等級說明:合格=已確實掌握;再加強=大致掌握,請依紅筆評語複習加強;不合格=尚未掌握,請重新學習後補考。</div>
+    </div>
+    ${stages}
+    <div class="r-foot">
+      <span>本通知單由泰熙爾札娜寶石學院評閱後發出,如對成績有疑問請與學院聯繫。</span>
+      <div class="sign"><div class="line"></div><div class="cap">評 閱 教 師 簽 章</div></div>
+    </div>
+  </div></div>`;
+
+  document.body.classList.add('report-mode');
+  window.scrollTo(0, 0);
+}
+
+function closeReport() {
+  document.body.classList.remove('report-mode');
+  document.getElementById('reportArea').innerHTML = '';
+}
+
+/* ═══════════════ 清除重新評閱 ═══════════════ */
+
+let modalAction = null;
+function askConfirm(msg, onOk) {
+  document.getElementById('modalMsg').textContent = msg;
+  modalAction = onOk;
+  document.getElementById('modalMask').classList.add('show');
+}
+function modalOk() {
+  document.getElementById('modalMask').classList.remove('show');
+  if (modalAction) modalAction();
+  modalAction = null;
+}
+function modalCancel() {
+  document.getElementById('modalMask').classList.remove('show');
+  modalAction = null;
+}
+
+function clearCurrent() {
+  const s = STUDENTS[currentStudent];
+  const exam = EXAMS.find(e => e.id === currentStage);
+  askConfirm(`確定清除「${s.name} — ${exam.title}」的所有評閱與評語,還原成乾淨考卷重新評分?`, () => {
+    delete grades[gkey(currentStudent, currentStage)];
+    persist();
+    renderSidebar();
+    renderPaper();
+    toast('本卷已還原,可重新評閱');
+  });
+}
+
+let toastTimer = null;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
+}
+
+/* ═══════════════ 啟動 ═══════════════ */
+renderSidebar();
+renderPaper();
+</script>
+</body>
+</html>
