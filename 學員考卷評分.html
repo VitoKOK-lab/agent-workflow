@@ -458,6 +458,86 @@
   body.report-mode .layout,
   body.report-mode .toast { display: none !important; }
   body.report-mode #reportArea { display: block; }
+  body.report-mode { background: #e3e1da; }
+
+  .report-bar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--ink);
+    padding: 10px 14px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 12px rgba(28,35,51,.25);
+  }
+  .report-bar button {
+    font-family: inherit;
+    font-size: 14px;
+    letter-spacing: .12em;
+    padding: 9px 22px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid rgba(240,234,217,.5);
+    background: transparent;
+    color: #f0ead9;
+  }
+  .report-bar button.go {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff;
+    font-weight: 700;
+  }
+  .report-bar .bar-hint {
+    flex-basis: 100%;
+    text-align: center;
+    font-size: 11.5px;
+    color: rgba(240,234,217,.6);
+    letter-spacing: .05em;
+  }
+
+  /* 頁面內建確認框(App 內建瀏覽器會擋原生 confirm)*/
+  .modal-mask {
+    position: fixed;
+    inset: 0;
+    background: rgba(28,35,51,.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 20px;
+  }
+  .modal-mask.show { display: flex; }
+  .modal {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    max-width: 380px;
+    width: 100%;
+    padding: 22px 22px 18px;
+    box-shadow: 0 10px 40px rgba(28,35,51,.35);
+  }
+  .modal .m-msg { font-size: 14.5px; line-height: 1.9; }
+  .modal .m-btns { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; }
+  .modal .m-btns button {
+    font-family: inherit;
+    font-size: 13.5px;
+    letter-spacing: .1em;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink-soft);
+  }
+  .modal .m-btns button.danger {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
+    font-weight: 700;
+  }
 
   .report {
     max-width: 860px;
@@ -674,6 +754,8 @@
     .o-verdict input { display: none; }
     textarea { resize: none; border: none !important; }
     .r-scroll { overflow: visible; }
+    .report-bar, .modal-mask { display: none !important; }
+    body.report-mode { background: #fff; }
     body.report-mode .report { max-width: none; padding: 0; }
   }
 </style>
@@ -707,6 +789,15 @@
 
 <div class="toast" id="toast"></div>
 <div id="reportArea"></div>
+<div class="modal-mask" id="modalMask">
+  <div class="modal">
+    <div class="m-msg" id="modalMsg"></div>
+    <div class="m-btns">
+      <button onclick="modalCancel()">取消</button>
+      <button class="danger" id="modalOkBtn" onclick="modalOk()">確定清除</button>
+    </div>
+  </div>
+</div>
 
 <script>
 /* ═══════════════ 考卷資料(來源:Google 表單回覆)═══════════════ */
@@ -1362,9 +1453,6 @@ function exportReport() {
   const s = STUDENTS[sIdx];
 
   const pending = EXAMS.filter(e => !getGrade(sIdx, e.id).verdict).map(e => e.title);
-  if (pending.length) {
-    if (!confirm(`「${s.name}」尚未評定:${pending.join('、')}(總評區的「本卷評定」)。\n仍要輸出成績單嗎?未評定的卷將標示「評閱中」。`)) return;
-  }
 
   const anyRetake = EXAMS.some(e => getGrade(sIdx, e.id).verdict === 'retake');
   const allPass = EXAMS.every(e => getGrade(sIdx, e.id).verdict === 'pass');
@@ -1429,7 +1517,17 @@ function exportReport() {
   const today = new Date();
   const dateStr = `${today.getFullYear()} 年 ${today.getMonth() + 1} 月 ${today.getDate()} 日`;
 
-  document.getElementById('reportArea').innerHTML = `<div class="report"><div class="r-sheet">
+  const pendingNote = pending.length
+    ? `<div class="bar-hint">注意:「${pending.join('、')}」尚未做本卷評定,將以「評閱中」顯示;可先返回評閱,在總評區選擇過關或需補考。</div>`
+    : `<div class="bar-hint">按「列印 / 另存 PDF」後,在列印選單選擇「儲存為 PDF」即可寄給學員;若按了沒反應,請改用瀏覽器開啟本頁再操作。</div>`;
+
+  document.getElementById('reportArea').innerHTML = `
+  <div class="report-bar">
+    <button onclick="closeReport()">← 返回評閱</button>
+    <button class="go" onclick="window.print()">列印 / 另存 PDF</button>
+    ${pendingNote}
+  </div>
+  <div class="report"><div class="r-sheet">
     <div class="r-school">泰 熙 爾 札 娜 寶 石 學 院</div>
     <h2>考核成績通知單</h2>
     <div class="r-info">
@@ -1453,26 +1551,42 @@ function exportReport() {
   </div></div>`;
 
   document.body.classList.add('report-mode');
-  const cleanup = () => {
-    document.body.classList.remove('report-mode');
-    document.getElementById('reportArea').innerHTML = '';
-    window.removeEventListener('afterprint', cleanup);
-  };
-  window.addEventListener('afterprint', cleanup);
-  setTimeout(() => window.print(), 50);
+  window.scrollTo(0, 0);
+}
+
+function closeReport() {
+  document.body.classList.remove('report-mode');
+  document.getElementById('reportArea').innerHTML = '';
 }
 
 /* ═══════════════ 清除重新評閱 ═══════════════ */
 
+let modalAction = null;
+function askConfirm(msg, onOk) {
+  document.getElementById('modalMsg').textContent = msg;
+  modalAction = onOk;
+  document.getElementById('modalMask').classList.add('show');
+}
+function modalOk() {
+  document.getElementById('modalMask').classList.remove('show');
+  if (modalAction) modalAction();
+  modalAction = null;
+}
+function modalCancel() {
+  document.getElementById('modalMask').classList.remove('show');
+  modalAction = null;
+}
+
 function clearCurrent() {
   const s = STUDENTS[currentStudent];
   const exam = EXAMS.find(e => e.id === currentStage);
-  if (!confirm(`確定清除「${s.name} — ${exam.title}」的所有評閱與評語,還原成乾淨考卷重新評分?`)) return;
-  delete grades[gkey(currentStudent, currentStage)];
-  persist();
-  renderSidebar();
-  renderPaper();
-  toast('本卷已還原,可重新評閱');
+  askConfirm(`確定清除「${s.name} — ${exam.title}」的所有評閱與評語,還原成乾淨考卷重新評分?`, () => {
+    delete grades[gkey(currentStudent, currentStage)];
+    persist();
+    renderSidebar();
+    renderPaper();
+    toast('本卷已還原,可重新評閱');
+  });
 }
 
 let toastTimer = null;
