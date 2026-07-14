@@ -696,11 +696,7 @@
       <div class="panel-title">卷 宗 工 具</div>
       <div class="tools">
         <button class="tool-btn primary" onclick="exportReport()">輸出學員成績單 (PDF)</button>
-        <button class="tool-btn" onclick="window.print()">列印評閱中考卷</button>
-        <button class="tool-btn" onclick="exportCSV()">匯出評閱總表 (CSV)</button>
-        <button class="tool-btn" onclick="exportJSON()">備份評閱資料 (JSON)</button>
-        <button class="tool-btn" onclick="importJSON()">還原評閱資料</button>
-        <button class="tool-btn" onclick="clearCurrent()" style="color:var(--red)">清除本卷評閱</button>
+        <button class="tool-btn" onclick="clearCurrent()" style="color:var(--red)">清除本卷,重新評閱</button>
       </div>
       <div class="save-hint">評閱內容輸入後自動儲存於此瀏覽器</div>
     </div>
@@ -711,7 +707,6 @@
 
 <div class="toast" id="toast"></div>
 <div id="reportArea"></div>
-<input type="file" id="importFile" accept=".json" style="display:none">
 
 <script>
 /* ═══════════════ 考卷資料(來源:Google 表單回覆)═══════════════ */
@@ -1467,75 +1462,17 @@ function exportReport() {
   setTimeout(() => window.print(), 50);
 }
 
-/* ═══════════════ 匯出/還原 ═══════════════ */
-
-function exportCSV() {
-  const rows = [['學員姓名', '考核階段', '大題', '題號', '題目', '評閱結果', '評語', '本卷評定']];
-  STUDENTS.forEach((s, si) => {
-    EXAMS.forEach(exam => {
-      const g = getGrade(si, exam.id);
-      let n = 0;
-      exam.sections.forEach((sec, secI) => {
-        sec.questions.forEach((q, qi) => {
-          n++;
-          const id = secI + '-' + qi;
-          rows.push([s.name, exam.title, sec.name, n, q, g.marks[id] ? MARKS[g.marks[id]] : '', g.comments[id] ?? '', '']);
-        });
-      });
-      const st = stageStats(si, exam.id);
-      rows.push([s.name, exam.title, '—', '', '總評',
-        `合格${st.c.pass}/再加強${st.c.ok}/不合格${st.c.improve}`,
-        g.overall ?? '', g.verdict ? VERDICTS[g.verdict] : '未評定']);
-    });
-  });
-  const csv = '\ufeff' + rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\r\n');
-  download(new Blob([csv], { type: 'text/csv;charset=utf-8' }), '學員考核評閱總表.csv');
-  toast('已匯出評閱總表');
-}
-
-function exportJSON() {
-  download(new Blob([JSON.stringify(grades, null, 2)], { type: 'application/json' }), '評閱資料備份.json');
-  toast('已匯出評閱備份');
-}
-
-function importJSON() {
-  const input = document.getElementById('importFile');
-  input.onchange = () => {
-    const f = input.files[0];
-    if (!f) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      try {
-        grades = JSON.parse(reader.result);
-        persist();
-        renderSidebar();
-        renderPaper();
-        toast('已還原評閱資料');
-      } catch (e) { toast('檔案格式錯誤,無法還原'); }
-      input.value = '';
-    };
-    reader.readAsText(f);
-  };
-  input.click();
-}
+/* ═══════════════ 清除重新評閱 ═══════════════ */
 
 function clearCurrent() {
   const s = STUDENTS[currentStudent];
   const exam = EXAMS.find(e => e.id === currentStage);
-  if (!confirm(`確定清除「${s.name} — ${exam.title}」的所有評閱與評語?`)) return;
+  if (!confirm(`確定清除「${s.name} — ${exam.title}」的所有評閱與評語,還原成乾淨考卷重新評分?`)) return;
   delete grades[gkey(currentStudent, currentStage)];
   persist();
   renderSidebar();
   renderPaper();
-  toast('已清除本卷評閱');
-}
-
-function download(blob, filename) {
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = filename;
-  a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  toast('本卷已還原,可重新評閱');
 }
 
 let toastTimer = null;
