@@ -5,290 +5,185 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>代理培訓・直播流程講義｜泰熙爾札娜寶石學院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Space+Mono:wght@700&display=swap">
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html, body { overflow-x:clip; max-width:100%; }
-  body { font-family:'PingFang TC','Microsoft JhengHei','Noto Sans TC',sans-serif; background:#F5F2EB; color:#111108; line-height:1.65; }
-  .wrap { max-width:860px; margin:0 auto; padding:0 16px 64px; }
-  header.site { padding:28px 0 10px; border-bottom:2px solid #C5B382; margin-bottom:18px; }
-  .brand { font-size:13px; letter-spacing:.35em; color:#937C44; font-weight:700; }
-  h1 { font-size:26px; font-weight:800; margin-top:6px; }
-  .intro-line { font-size:13px; color:#6b6455; margin-top:6px; }
-  .intro-line a { color:#E6007E; }
-  .legend { display:flex; flex-wrap:wrap; gap:6px; margin:14px 0 10px; }
-  .legend span { font-size:11px; font-weight:700; color:#fff; padding:3px 10px; border-radius:999px; }
-  .map { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:10px; margin-bottom:30px; }
-  .map-card { display:block; background:#fff; border:1px solid #D8D2C0; border-left:3px solid #C5B382; border-radius:8px; padding:12px 14px; text-decoration:none; color:#111108; }
-  .map-card:active { background:#F9F4E4; }
-  .map-no { display:block; font-size:10px; letter-spacing:.15em; font-weight:800; }
-  .map-title { display:block; font-size:15px; font-weight:800; margin-top:2px; }
-  .map-tag { display:block; font-size:11px; color:#6b6455; margin-top:3px; }
-  .chap { padding-top:8px; margin-top:26px; border-top:1px solid #D8D2C0; }
-  .chap-head { display:flex; gap:12px; align-items:center; margin:10px 0 12px; }
-  .chap-no { color:#fff; border-radius:8px; min-width:52px; height:52px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:20px; font-weight:800; line-height:1; }
-  .chap-no small { font-size:9px; font-weight:700; margin-top:3px; }
-  .chap h2 { font-size:20px; font-weight:800; }
-  .tagline { font-size:12px; color:#6b6455; }
-  .card { background:#fff; border:1px solid #D8D2C0; border-radius:8px; padding:14px 16px; margin-bottom:10px; }
-  .card h3 { font-size:14px; color:#937C44; margin-bottom:6px; }
-  .card ul { padding-left:18px; }
-  .card li { font-size:13px; color:#3F3820; margin-bottom:4px; }
-  .note { font-size:12px; color:#6b6455; background:#F5F2EB; border-radius:6px; padding:8px 10px; margin-top:8px; }
-  .quote { font-size:12px; background:#FBF8EF; border:1px dashed #C5B382; border-radius:6px; padding:10px 12px; margin-top:8px; white-space:pre-wrap; word-break:break-all; font-family:inherit; }
-  .chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
-  .chip { font-size:12px; font-weight:600; border-radius:999px; padding:5px 12px; text-decoration:none; display:inline-block; max-width:100%; overflow-wrap:anywhere; }
-  .chip-v { color:#E6007E; border:1px solid #E6007E; background:#fff; }
-  .chip-l { color:#937C44; border:1px solid #C5B382; background:#fff; }
-  .chip-mask { color:#6b6455; border:1px dashed #D8D2C0; background:#F5F2EB; }
-  .exam-list { list-style:none; padding-left:0 !important; }
-  .exam-list li { border-bottom:1px dashed #D8D2C0; padding:7px 0; }
-  .exam-list li:last-child { border-bottom:0; }
-  .exam-list .dur { font-size:10px; font-weight:800; color:#937C44; margin-left:8px; }
-  .exam-list .desc { font-size:12px; color:#6b6455; }
-  .exam-card { border-color:#E6007E55; }
-  .backtop { text-align:right; margin-top:4px; }
-  .backtop a { font-size:11px; color:#6b6455; text-decoration:none; }
-  footer { margin-top:40px; padding-top:14px; border-top:1px solid #D8D2C0; display:flex; justify-content:space-between; font-size:11px; color:#937C44; }
+:root{--bg:#FBFBFC;--ink:#1D1B16;--mute:#5F5B52;--line:#DDD9CF;--gold:#7A6430;--soft:#F3F1EA}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-size:16px;line-height:1.7}
+.num,.no,.tag{font-family:"Space Mono",ui-monospace,Menlo,monospace}
+a{color:inherit;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
+a:hover{color:var(--gold)}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:780px;margin:0 auto;padding:0 20px 72px}
+header{padding:44px 0 22px;border-bottom:2px solid var(--ink)}
+.brand{font-size:12px;letter-spacing:.3em;color:var(--gold);font-weight:700}
+h1{font-size:30px;font-weight:900;letter-spacing:.02em;margin-top:8px;line-height:1.3}
+.lead{color:var(--mute);font-size:15px;margin-top:10px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;font-size:13px;color:var(--mute)}
+.bar button{font:inherit;color:var(--ink);background:none;border:1px solid var(--line);padding:0 14px;min-height:44px;cursor:pointer}
+.bar button:hover{border-color:var(--ink)}
+.ch{border-bottom:1px solid var(--line)}
+.ch:first-of-type{border-top:1px solid var(--line)}
+summary{display:grid;grid-template-columns:52px 1fr auto 16px;align-items:center;gap:8px;min-height:64px;padding:8px 0;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";width:8px;height:8px;border-right:2px solid var(--mute);border-bottom:2px solid var(--mute);transform:rotate(45deg);transition:transform .2s ease-out;justify-self:center;margin-top:-4px}
+.ch[open]>summary::after{transform:rotate(225deg);margin-top:4px}
+.no{font-size:22px;font-weight:700;color:var(--c)}
+.ttl{font-size:18px;font-weight:700;line-height:1.4}
+.ph{font-size:12px;color:var(--mute);white-space:nowrap;display:flex;align-items:center;gap:6px}
+.ph::before{content:"";width:8px;height:8px;background:var(--c)}
+summary:hover .ttl{color:var(--c)}
+.in{padding:4px 0 28px 60px}
+.blk{display:grid;grid-template-columns:124px 1fr;gap:4px 20px;padding:14px 0;border-top:1px solid var(--line)}
+.blk:first-child{border-top:0}
+h3{font-size:14px;font-weight:700;color:var(--c);line-height:1.7;padding-top:1px}
+.body ul,.body ol{list-style:none}
+.body>ul>li,.body>ol>li{position:relative;padding-left:22px;margin-bottom:5px;font-size:15.5px}
+.body>ul:not(.links)>li::before{content:"";position:absolute;left:4px;top:.78em;width:5px;height:5px;background:var(--line)}
+.body>ol{counter-reset:n}
+.body>ol>li{counter-increment:n}
+.body>ol>li::before{content:counter(n);position:absolute;left:0;top:.2em;font:700 12px "Space Mono",ui-monospace,monospace;color:var(--c)}
+.tpl{background:var(--soft);border-left:2px solid var(--c);padding:10px 14px;font-size:14.5px;word-break:break-word}
+.tag{display:inline-block;font-size:11px;font-weight:700;color:var(--mute);border:1px solid var(--line);padding:0 6px;margin-right:10px;line-height:18px;vertical-align:1px;background:var(--bg)}
+.links{margin-top:6px;display:grid;grid-template-columns:1fr 1fr;column-gap:20px}
+.links li{padding:0!important;margin:0!important}
+.links li:last-child:nth-child(odd){grid-column:1/-1}
+.links a{display:block;padding:10px 0;font-size:14.5px;text-decoration:none;border-bottom:1px solid var(--soft);line-height:1.6}
+.links a:hover{text-decoration:underline;text-decoration-color:var(--gold)}
+dialog{border:0;padding:0;background:#fff;color:var(--ink);width:min(960px,calc(100vw - 24px));max-height:calc(100dvh - 24px);margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(20,18,14,.62)}
+.phead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 0 0 16px;border-bottom:1px solid var(--line)}
+.phead p{font-size:15px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.phead button{font:inherit;font-size:14px;background:none;border:0;border-left:1px solid var(--line);min-width:64px;min-height:48px;cursor:pointer;color:var(--ink)}
+.phead button:hover{background:var(--soft)}
+.pframe{aspect-ratio:16/9;background:#111;max-height:calc(100dvh - 140px);width:100%}
+.pframe iframe{width:100%;height:100%;border:0;display:block}
+.pfoot{font-size:13px;color:var(--mute);padding:10px 16px}
+
+.ic{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ic.lg{width:24px;height:24px}.ic.sm{width:14px;height:14px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.road{display:grid;grid-template-columns:repeat(4,1fr);margin:22px 0 6px;border:1px solid var(--line);background:#fff}
+.stage{position:relative;padding:16px 14px 14px;display:flex;flex-direction:column;gap:3px;border-left:1px solid var(--line);color:var(--c)}
+.stage:first-child{border-left:0}
+.stage:not(:last-child)::after{content:"";position:absolute;right:-7px;top:22px;width:12px;height:12px;background:#fff;border-top:1px solid var(--line);border-right:1px solid var(--line);transform:rotate(45deg);z-index:1}
+.stage b{font-size:16px;color:var(--ink);margin-top:6px}
+.cap{font-size:12.5px;color:var(--mute);line-height:1.5}
+.nums{display:grid;grid-template-columns:repeat(2,44px);gap:6px;margin-top:8px}
+.nums a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:1px solid var(--c);color:var(--c);text-decoration:none;font-size:14px;font-weight:700}
+.nums a:hover{background:var(--c);color:#fff}
+.badge{display:flex;align-items:center;justify-content:center;width:44px;height:44px;color:var(--c);background:color-mix(in srgb,var(--c) 10%,#fff)}
+summary{grid-template-columns:44px 34px 1fr auto 16px;gap:12px}
+.no{font-size:15px}
+.in{padding-left:56px}
+h3{display:flex;align-items:flex-start;gap:8px}
+h3 .ic{margin-top:3px}
+.body li b{font-weight:700;margin-right:8px;color:var(--ink)}
+.body li b::after{content:""}
+.flow{display:inline-flex;flex-wrap:wrap;gap:6px 0;vertical-align:top}
+.flow>span{position:relative;background:var(--soft);padding:2px 10px;margin-right:16px;font-size:14.5px;line-height:1.7}
+.flow>span:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:6px;height:6px;border-top:1.6px solid var(--c);border-right:1.6px solid var(--c);transform:translateY(-50%) rotate(45deg)}
+.flow>span:last-child{margin-right:0}
+.tail{display:block;color:var(--mute);font-size:14px;margin-top:4px}
+.meta{display:inline-flex;align-items:center;gap:4px;margin-left:8px;font-size:12.5px;color:var(--mute);border:1px solid var(--line);padding:0 7px;white-space:nowrap;vertical-align:1px}
+.body>ol>li{padding-left:34px;margin-bottom:0;padding-bottom:10px}
+.body>ol>li::before{width:22px;height:22px;border:1.5px solid var(--c);border-radius:50%;display:flex;align-items:center;justify-content:center;top:.15em;background:var(--bg)}
+.body>ol>li:not(:last-child)::after{content:"";position:absolute;left:10.5px;top:calc(.15em + 24px);bottom:-2px;width:1.5px;background:var(--line)}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.tiles.two{grid-template-columns:1fr 1fr}
+.tile{border:1px solid var(--line);background:#fff;padding:12px;display:flex;flex-direction:column;gap:2px;color:var(--c)}
+.big{font-size:22px;font-weight:700;line-height:1.3}
+.tt{font-size:15px;font-weight:700;color:var(--ink);margin-top:4px}
+.links a{display:flex;align-items:center;gap:10px}
+.links .ic{color:var(--c)}
+footer{margin-top:36px;display:flex;justify-content:space-between;gap:12px;font-size:12px;color:var(--mute)}
+@media (max-width:640px){
+ h1{font-size:25px} header{padding-top:28px}
+ summary{grid-template-columns:44px 1fr 16px;gap:12px} .no{display:none} .ph{grid-column:2;grid-row:2;margin-top:-10px} summary::after{grid-column:3;grid-row:1} .badge{grid-row:1/3}
+ .road{grid-template-columns:1fr 1fr} .stage:nth-child(3){border-left:0} .stage:nth-child(n+3){border-top:1px solid var(--line)} .stage:nth-child(2)::after{display:none}
+ .tiles{grid-template-columns:1fr 1fr}
+ .in{padding-left:0} .blk{grid-template-columns:1fr} .links{grid-template-columns:1fr}
+ footer{flex-direction:column}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media print{.bar,dialog{display:none} .ch{break-inside:avoid-page} body{font-size:12px} a{text-decoration:none}}
 </style>
 </head>
 <body>
-<div class="wrap" id="top">
-  <header class="site">
-    <p class="brand">泰熙爾札娜寶石學院｜TZG ROTW・AGENT TRAINING</p>
-    <h1>代理培訓・直播流程講義</h1>
-    <p class="intro-line">九大主題照順序上——先看 <a href="https://drive.google.com/file/d/1w1jwNO-zYcouys8bLVip_ObOJSuEghqZ/view" target="_blank" rel="noopener">講義導覽影片（3 分鐘看懂九大主題）</a></p>
-    <p class="intro-line">影片打不開？LINE 跟助理說一聲，幫你開權限就好。</p>
+<div class="wrap">
+  <header>
+    <p class="brand">泰熙爾札娜寶石學院・代理培訓</p>
+    <h1>直播流程講義</h1>
+    <p class="lead">先看<a href="https://drive.google.com/file/d/1w1jwNO-zYcouys8bLVip_ObOJSuEghqZ/view" target="_blank" rel="noopener" data-v="1w1jwNO-zYcouys8bLVip_ObOJSuEghqZ">導覽影片（3 分鐘）</a>，再照章節順序上。影片打不開，LINE 找助理開權限。</p>
   </header>
-  <div class="legend"><span style="background:#937C44">上場前</span><span style="background:#2C9C90">直播後</span><span style="background:#6b6455">隨時查</span><span style="background:#E6007E">考核</span></div>
-  <nav class="map"><a class="map-card" href="#c1">
-    <span class="map-no" style="color:#937C44">第 1 章・上場前</span>
-    <span class="map-title">資料庫與查詢工具</span>
-    <span class="map-tag">開播前查資料的四個地方＋一套電子書</span>
-  </a><a class="map-card" href="#c2">
-    <span class="map-no" style="color:#937C44">第 2 章・上場前</span>
-    <span class="map-title">群組與平台操作</span>
-    <span class="map-tag">每個群做什麼、怎麼發、規矩是什麼</span>
-  </a><a class="map-card" href="#c3">
-    <span class="map-no" style="color:#937C44">第 3 章・上場前</span>
-    <span class="map-title">開播前找尋商品價格</span>
-    <span class="map-tag">賣之前，先把每一款的價格查清楚</span>
-  </a><a class="map-card" href="#c4">
-    <span class="map-no" style="color:#937C44">第 4 章・上場前</span>
-    <span class="map-title">官網與直播上架（SHOPLINE Live）</span>
-    <span class="map-tag">從開一場直播到看數據，後台一條龍</span>
-  </a><a class="map-card" href="#c5">
-    <span class="map-no" style="color:#937C44">第 5 章・上場前</span>
-    <span class="map-title">直播前準備與工具</span>
-    <span class="map-tag">心態、道具、腳本、話術——上場前的全部</span>
-  </a><a class="map-card" href="#c6">
-    <span class="map-no" style="color:#2C9C90">第 6 章・直播後</span>
-    <span class="map-title">直播後銷售SOP</span>
-    <span class="map-tag">下播不是結束——得標信、報表、覆盤一次做完</span>
-  </a><a class="map-card" href="#c7">
-    <span class="map-no" style="color:#2C9C90">第 7 章・直播後</span>
-    <span class="map-title">出貨流程</span>
-    <span class="map-tag">從訂單明細到託運單，出貨五步</span>
-  </a><a class="map-card" href="#c8">
-    <span class="map-no" style="color:#6b6455">第 8 章・隨時查</span>
-    <span class="map-title">客服問題參考與 Q&amp;A</span>
-    <span class="map-tag">真實客訴案例的處理思路＋Q&amp;A 筆記</span>
-  </a><a class="map-card" href="#c9">
-    <span class="map-no" style="color:#E6007E">第 9 章・考核</span>
-    <span class="map-title">作業與考核</span>
-    <span class="map-tag">要交的作業、要考的卷、每天要填的回報——全部在這裡</span>
-  </a></nav>
-  <section class="chap" id="c1">
-    <div class="chap-head">
-      <div class="chap-no" style="background:#937C44">01<small>上場前</small></div>
-      <div><h2>資料庫與查詢工具</h2><p class="tagline">開播前查資料的四個地方＋一套電子書</p></div>
-    </div>
-    <div class="card">
-    <h3>一、登入資料庫</h3>
-    <ul><li>到官網登入（有 SHOPLINE 帳號可直接同步登入）</li><li>登入後點「進入我的店面」，或直接搜尋「泰熙爾札娜」進官網</li></ul>
-  </div><div class="card">
-    <h3>二、必看品牌故事（最重要的基礎）</h3>
-    <ul><li>品牌初衷</li><li>為什麼能提供親民價格</li><li>品牌服務與理念</li></ul><p class="note">直播前幾分鐘、新客進場時——品牌故事就是暖場話題，講得出來，互動跟信任感都會提升。</p><div class="chips"><a class="chip chip-l" href="https://www.tzgrotw.tw/pages/%E6%96%B0%E7%9A%84%E5%88%86%E9%A0%81-2" target="_blank" rel="noopener">🔗 官網・品牌故事</a></div>
-  </div><div class="card">
-    <h3>三、每日寶石知識（查資料的地方）</h3>
-    <ul><li>先找今天要介紹的寶石</li><li>查特色、背景、小故事</li><li>整理成直播介紹用的內容</li></ul><p class="note">例：要賣石榴石 → 查石榴石的歷史、名人佩戴、特性，直播中穿插分享。</p><div class="chips"><a class="chip chip-l" href="https://www.tzgrotw.tw/blog/categories/%E8%B7%9F%E8%91%97%E6%BA%B1%E5%A7%90%E8%B2%B7%E5%AF%B6%E7%9F%B3-%E6%AF%8F%E6%97%A5%E5%AF%B6%E7%9F%B3%E7%9F%A5%E8%AD%98" target="_blank" rel="noopener">🔗 官網・每日寶石知識</a></div>
-  </div><div class="card">
-    <h3>四、行家 100 問</h3>
-    <ul><li>大量珠寶基礎知識</li><li>客人常見問題</li></ul><div class="chips"><a class="chip chip-l" href="https://www.tzgrotw.tw/blog/categories/%E8%B7%9F%E8%91%97%E6%BA%B1%E5%A7%90%E8%B2%B7%E5%AF%B6%E7%9F%B3-%E7%8F%A0%E5%AF%B6%E8%A1%8C%E5%AE%B6100%E5%95%8F" target="_blank" rel="noopener">🔗 官網・珠寶行家100問</a></div>
-  </div><div class="card">
-    <h3>五、電子書「寶石百科集成」（密碼在紙本講義上，或問助理）</h3>
-    <ul><li>星座與對應寶石</li><li>大牌珠寶案例</li><li>寶石小故事——整理成直播可用的內容</li></ul><div class="chips"><a class="chip chip-v" href="https://drive.google.com/file/d/1u5lOAzBcbRufbTvlhbb5cEnjSq-kV2wT/view" target="_blank" rel="noopener">▶ 主題一教學影片（資料庫・查詢工具）</a><a class="chip chip-v" href="https://drive.google.com/file/d/1aWen1IRif0EKpehsrTPNVIq9n2yY_lFS/view" target="_blank" rel="noopener">▶ 寶石百科集成・操作教學</a><a class="chip chip-l" href="https://heyzine.com/flip-book/6164fb5313.html" target="_blank" rel="noopener">🔗 主題一（上冊）托帕石・碧璽系列</a><a class="chip chip-l" href="https://heyzine.com/flip-book/eff315210f.html" target="_blank" rel="noopener">🔗 主題一（下冊）石榴石・尖晶石系列</a><a class="chip chip-l" href="https://heyzine.com/flip-book/917f6e3937.html" target="_blank" rel="noopener">🔗 主題二＆三（合併）閃鋅礦・風信子</a><a class="chip chip-l" href="https://heyzine.com/flip-book/6e0a50b192.html" target="_blank" rel="noopener">🔗 主題四（上冊）彩鑽・祖母綠系列</a><a class="chip chip-l" href="https://heyzine.com/flip-book/eceab80d0b.html" target="_blank" rel="noopener">🔗 主題四（下冊）藍寶石・金綠玉系列</a></div>
-  </div>
-    <p class="backtop"><a href="#top">↑ 回課程地圖</a></p>
-  </section><section class="chap" id="c2">
-    <div class="chap-head">
-      <div class="chap-no" style="background:#937C44">02<small>上場前</small></div>
-      <div><h2>群組與平台操作</h2><p class="tagline">每個群做什麼、怎麼發、規矩是什麼</p></div>
-    </div>
-    <div class="card">
-    <h3>入群規矩</h3>
-    <ul><li>名稱一律照規定設定：工作職務／名字／區域</li></ul><div class="chips"><a class="chip chip-v" href="https://drive.google.com/file/d/1LPxcoyhf2tmGjv6bKhzGKmXTPaGBnR-2/view" target="_blank" rel="noopener">▶ 主題二教學影片（各群組介紹運用）</a></div>
-  </div><div class="card">
-    <h3>④ 主播內部群（主播專用）</h3>
-    <ul><li>直播回報：到哪播、今天播哪些商品、心得與復盤、有問題都要回報</li><li>後勤問題詢問窗口：聯繫前台、交接流程、設備技術問題——群內直接 Q 珍姐或主管</li><li>公司公告：規則更新、分潤調整、活動促銷、課程通知</li></ul><div class="chips"><a class="chip chip-v" href="https://drive.google.com/file/d/10MkvjzM3tSYVohKUIjNnqp0vExkjvr5r/view" target="_blank" rel="noopener">▶ 製作限時動態串流教學</a></div>
-  </div><div class="card">
-    <h3>⑤ 代理分享群（商品分享＋活動公告）</h3>
-    <ul><li>溱姐會發特價商品、活動套組、寶石介紹——客人給預算就從這裡找符合的寶石抓圖</li><li>下單規則：新客一律全額付款保留；老客可付 1/2 定金保留；先付款先贏，不付款無法保留</li><li>避免搶同一顆：成交要在商品下方回覆「客人已下定」；想買某一顆先確認還在不在</li></ul>
-  </div><div class="card">
-    <h3>⑥ 詢價群（問商品價格）</h3>
-    <pre class="quote">詢價範本：1/進線詢價時間/帳號來源　2/客人名字　3/寶石名稱　4/重量　5/尺寸　6/材質…</pre><div class="chips"><a class="chip chip-v" href="https://drive.google.com/file/d/14l_J5U9OTHtdtuhQEHHBJe9m3K-Qsf4m/view" target="_blank" rel="noopener">▶ 寶石加工詢價範例</a></div>
-  </div><div class="card">
-    <h3>⑦ 新金工訂製群（訂製單）</h3>
-    <pre class="quote">務必標清楚方便查詢：平台／訂單編號／客人姓名／下單日期／寶石名稱／主石／重量／尺寸／材質／配鑽…</pre><div class="chips"><a class="chip chip-v" href="https://drive.google.com/file/d/1gTupziudViIoXg3CdXzxNvE0QZle0ize/view" target="_blank" rel="noopener">▶ SHOPLINE 如何開單給客人</a><a class="chip chip-v" href="https://drive.google.com/file/d/10TzHvelmhZUGfF3WGKZQ-XlwPlZU9_JM/view" target="_blank" rel="noopener">▶ 新金工訂製群操作教學</a></div>
-  </div><div class="card">
-    <h3>⑨ 寶石資料庫群（全部商品圖片庫）</h3>
-    <ul><li>可自行下載官方商品照，介紹給客人、以圖搜圖</li><li>圖片不要留浮水印（不要讓客人看到）</li><li>所有款式基本上都能製作，可當選款參考</li></ul>
-  </div>
-    <p class="backtop"><a href="#top">↑ 回課程地圖</a></p>
-  </section><section class="chap" id="c3">
-    <div class="chap-head">
-      <div class="chap-no" style="background:#937C44">03<small>上場前</small></div>
-      <div><h2>開播前找尋商品價格</h2><p class="tagline">賣之前，先把每一款的價格查清楚</p></div>
-    </div>
-    <div class="card">
-    <h3>價格都在 Excel 表單</h3>
-    <ul><li>每個分店的商品有獨立表單（庫存多集中在彰化店）</li><li>表內有：商品圖片、商品名稱、直播賣價（右側）、店內價／一般零售價（左側）、各盤編號</li></ul>
-  </div><div class="card">
-    <h3>直播前的價格準備</h3>
-    <ul><li>檢查當天會賣的商品</li><li>在表內確認每一款的價格</li><li>沒有價格 → 先詢問後勤</li></ul><p class="note">直播中若有客人想買、表上又沒價格——不要亂報，先問。</p>
-  </div><div class="card">
-    <h3>官網也能查價</h3>
-    <ul><li>表單找不到就查品牌官網</li><li>看到官網價格，也可以到代理分享群或詢價群做確認</li></ul><div class="chips"><a class="chip chip-v" href="https://drive.google.com/file/d/1pg_7oZi64mOmuClbKGlWVX1Sb8x0TkuA/view" target="_blank" rel="noopener">▶ 商品價格查詢操作（課程錄影）</a></div>
-  </div>
-    <p class="backtop"><a href="#top">↑ 回課程地圖</a></p>
-  </section><section class="chap" id="c4">
-    <div class="chap-head">
-      <div class="chap-no" style="background:#937C44">04<small>上場前</small></div>
-      <div><h2>官網與直播上架（SHOPLINE Live）</h2><p class="tagline">從開一場直播到看數據，後台一條龍</p></div>
-    </div>
-    <div class="card">
-    <h3>一、進入後台</h3>
-    <ul><li>SHOPLINE 後台 → 左側「社群電商」→ SHOPLINE 直播（上方「幫助中心」有常見問題）</li></ul>
-  </div><div class="card">
-    <h3>二、新增一場直播</h3>
-    <ul><li>基礎設定：直播名稱用日期（例：11/25 直播）、直播主、簡介、平台選 FB＋IG 多平台</li><li>關鍵字下單：通常用「a1＋加一」；提醒結賬訊息可設隔天早上自動發送；保留期限一般設一個月</li><li>直播商品可「大量編輯」批量設定直播限定價與促銷期限</li></ul><div class="chips"><a class="chip chip-v" href="https://drive.google.com/file/d/15_ShKjv_JwXFvYTsKvQkTtN43K7Qhii1/view" target="_blank" rel="noopener">▶ SHOPLINE Live 直播設定教學</a><a class="chip chip-v" href="https://drive.google.com/file/d/1_Au-e56SoHAQBUd7bPspH0dp01AbbZA2/view" target="_blank" rel="noopener">▶ 官網直播上架流程</a></div>
-  </div><div class="card">
-    <h3>三、連接直播畫面（要用手機）</h3>
-    <ul><li>電腦開主帳號 IG →「＋直播視訊」填標題、分享對象選所有人 → 複製串流金鑰</li><li>手機開直播軟體貼上金鑰（每場金鑰都不同，要重新操作）→ 選 IG、FB 開直播</li><li>回 SHOPLINE Live 後台連接直播 → 回電腦 IG 按開始直播</li><li>開播後把連結分享到 LINE 粉絲社群</li></ul><div class="chips"><span class="chip chip-mask">🔒 溱姐寵粉專屬珠寶社群（LINE）——入群連結請向助理索取</span></div>
-  </div><div class="card">
-    <h3>四、直播商品上架（重點）</h3>
-    <ul><li>方式一：從現有庫存直接勾選商品加入直播</li><li>方式二：現場新增臨時商品——填名稱（例：手串A）、上傳圖片、設關鍵字（A1，不可重複）</li><li>關鍵字不要設太簡單避免誤下單（例：設「我要1」）</li></ul>
-  </div><div class="card">
-    <h3>五、直播中後台</h3>
-    <ul><li>商品可加入「推薦」顯示在前台右側</li><li>留言區可切「全部留言／下單留言」（系統會過濾出加一）</li></ul>
-  </div><div class="card">
-    <h3>六、直播後看數據＋關閉順序</h3>
-    <ul><li>直播成效：留言、關鍵字留言、訂單、總訂單金額、總付款金額——業績看「總付款金額」</li><li>關閉順序：電腦 IG 結束 → SHOPLINE Live 後台結束 → 直播設備結束</li></ul>
-  </div>
-    <p class="backtop"><a href="#top">↑ 回課程地圖</a></p>
-  </section><section class="chap" id="c5">
-    <div class="chap-head">
-      <div class="chap-no" style="background:#937C44">05<small>上場前</small></div>
-      <div><h2>直播前準備與工具</h2><p class="tagline">心態、道具、腳本、話術——上場前的全部</p></div>
-    </div>
-    <div class="card">
-    <h3>開播前的八個心法</h3>
-    <ul><li>多看各大直播台，學別人成功的地方</li><li>製造話題：注意時事、收集網路笑話跟大家分享</li><li>定位自己的角色：決定露臉或不露臉——露臉衣著乾淨整齊，不露臉手一定要非常乾淨</li><li>1 分鐘自我介紹文案先準備好</li><li>遇到問題不要慌：寫下來跟老師討論，引導客人下次再來看直播會回覆</li><li>每次播完把心得寫下來，回看直播檢討不足</li><li>熟記公司背景：泰熙爾札娜寶石學院＝17 年寶石批發、珠寶製作及切磨經驗（官網有詳細介紹）</li><li>準備好背景音樂＋隨身筆記本和筆</li></ul>
-  </div><div class="card">
-    <h3>道具清單</h3>
-    <ul><li>手機、充電器、手機架</li><li>珠寶手電筒、檯燈、裸石珠寶燈</li><li>裸石展示盤、珠寶展示盤（黑底或白底）——盤上一定要有畫尺標</li><li>珠寶秤（裸石要量克拉）</li></ul>
-  </div><div class="card">
-    <h3>商品與預告</h3>
-    <ul><li>珠寶排列整齊、所有直播商品做筆記</li><li>價位要提早一小時問（老師在國外要前一天問）</li><li>直播預告：拍 10 秒內影片或商品照，編輯後發各平台限時動態</li></ul>
-  </div><div class="card">
-    <h3>直播腳本四核心</h3>
-    <ul><li>① 明確主題：這場為了什麼（回饋粉絲／新品／促銷）——讓粉絲知道能看到什麼</li><li>② 節奏流程：具體到分鐘——開播前 10 分鐘預告當期產品、一款介紹多久、最後 10 分鐘預告下期</li><li>③ 分工：主播引導介紹、助播互動回覆發優惠、後台改價溝通轉單</li><li>④ 預算：優惠券面額、秒殺、贈品支出提前設計好</li></ul><p class="note">腳本分兩種：單品腳本（賣點＋價格贈品優勢）；整場腳本（時間、地點、商品數、主題、主播、預告文案、場控、逐時段流程）。</p><div class="chips"><a class="chip chip-l" href="https://docs.google.com/document/d/1r4-cReD4zCb68tQqb7OSxLIy3PvEENqm/edit" target="_blank" rel="noopener">🔗 腳本寫作示範（完整文件）</a></div>
-  </div><div class="card">
-    <h3>直播流程五段</h3>
-    <ul><li>開場預熱：打招呼、自我介紹、今日主題</li><li>話題引入：主題或熱點切入，活絡氣氛</li><li>產品介紹：照單品腳本，突出性能與價格優勢</li><li>粉絲互動：福利留人、點關注、送禮、抽獎、催單、穿插答問</li><li>結束預告：回顧催付、感謝、預告下次時間與福利</li></ul>
-  </div><div class="card">
-    <h3>直播中注意事項（背起來）</h3>
-    <ul><li>不要說自己是新人直播主</li><li>不要告知客人溱姐行程——請客人加官方 LINE 詢問預約</li><li>客人點菜沒貨：「XXX 你可以加我們的官LINE，會有專人為您服務」或「稍等一下，小助理幫我拿一下XXX」——不要說沒有貨</li><li>不討論其他客人的話題，姓氏名字都不要提</li><li>裸石以「多少錢／克拉」報價；燈用珠寶燈或 IKEA 檯燈</li><li>簡約款價格區段：925 銀爪鑲 4500–7000；18K 金爪鑲 9000 以上（戒台厚度、配石多寡、真鑽或莫桑、戒圈大小都會影響）</li><li>訂製流程：購買後加官LINE → 發得標信先付寶石價格 → 詢問是否訂製 → 問預算 → 依需求報價</li><li>購買或抽獎送的裸石都要量克拉、記錄在直播報表＋標籤</li><li>固定戒圍要確認是否改圍：下訂前告知改圍 500、發貨後才改 1500（來回運費 300）</li><li>不回收珠寶裸石，但可以幫客人寄賣</li><li>代打第三方證書：國內＋1000 代打費，國外依溱姐報價</li><li>客人得標：請他打「金額+1」（例 5000+1）＋商品截圖私訊官LINE——避免價格爭議</li><li>主動告知：珠寶成品出貨附公司電子保卡（不是證書）；裸石沒有保卡</li><li>得標後：標籤寫日期、商品、得標人、金額，商品放進夾鏈袋</li><li>珠寶成品先問老師價位——往上加、不能低於賣價</li><li>每位直播主有自己的下單連結，別用到別人的（業績會不見）</li></ul>
-  </div><div class="card">
-    <h3>話術金句（100 句練習的起手式）</h3>
-    <ul><li>價值感：「你買的不是材質，是稀有度與品相」</li><li>限量感：「這顆只有一件，你現在不鎖很容易被秒」</li><li>留人感：「你們先別走，等一下有更乾淨更大的款」</li><li>專業感：「光源不同，火彩完全不一樣，我給你看三種光」</li></ul>
-  </div><div class="card">
-    <h3>培訓五堂＋KPI＋驗收</h3>
-    <ul><li>第一堂 基礎珠寶知識＋開場話術｜第二堂 展示技巧與鏡頭感｜第三堂 節奏、留人、比價話術｜第四堂 上鏡演練＋冷場處理｜第五堂 獨立開播＋KPI 評估</li><li>KPI：首播觀看 ≥1.8 分鐘；每 10 分鐘至少 10 次扣字互動；展示完整度 ≥80%；成交依價位帶設定</li><li>最終驗收：獨立開場 1–2 分鐘不冷場；自行完成 5 件主推款展示；比價嫌貴能應對；珠寶基礎測驗 ≥80%</li><li>排班：直接用系統的「直播預排系統」搶時段（一天最多 2 場、取消要提前一天）</li></ul>
-  </div><div class="card">
-    <h3>進階直播專業課（Zoom・每週一堂・講師靖悅）</h3>
-    <ul><li>第一堂：心態、播感訓練、主播表現力五部曲</li><li>第二堂：控場核心概念、六大控場技術拆解、拉新全技術、塑品全解析、逼單框架</li><li>第三堂：腳本核心與四大區塊、塑品四大基石、逼單三犬框架、人貨場、直播 SOP</li></ul><p class="note">講師靖悅——十年帶貨從業；線上用 Zoom 上課，開課時間看公告。</p>
-  </div><div class="card">
-    <h3>線上課程影片（上課前在家看完）</h3>
-    <div class="chips"><a class="chip chip-v" href="https://drive.google.com/file/d/1OLsNyG8YKx5kfh88xTyo0wB5fCdbDMup/view" target="_blank" rel="noopener">▶ 第一集・如何使用工具</a><a class="chip chip-v" href="https://drive.google.com/file/d/1aKe-mazKNo46CtH6rInJUI641YbYoN-G/view" target="_blank" rel="noopener">▶ 第二集・如何打燈</a><a class="chip chip-v" href="https://drive.google.com/file/d/1rpcIkmZJAK1MqpX_OHSsL9FvBacFGo4l/view" target="_blank" rel="noopener">▶ 第三集・直播要注意的流程</a><a class="chip chip-v" href="https://drive.google.com/file/d/1VLN7p4gdviD69En0PzbdUTwZORa8cvO-/view" target="_blank" rel="noopener">▶ 主播直播教學（若晴姊）</a><a class="chip chip-v" href="https://drive.google.com/file/d/1C3BUSoEQ48Zmw08J1ukIHygSNCFTCjXp/view" target="_blank" rel="noopener">▶ 主題五・直播操作流程</a><a class="chip chip-l" href="https://docs.google.com/document/d/1a_c8qdThqdI5CNUGqUfIOQ6l6BNb27I_9_07UC6TW3c/edit" target="_blank" rel="noopener">🔗 直播培訓 SOP（完整文件）</a><a class="chip chip-l" href="https://docs.google.com/document/d/123tEt8oE53XN0e-7wJBaizQPqqWD2501SCWGWBG8UUQ/edit" target="_blank" rel="noopener">🔗 直播培訓課程（內容總覽）</a><a class="chip chip-l" href="https://docs.google.com/spreadsheets/d/1nLUP5ATCY6hOnYKixPh5FxuetaUKDMsoGlYxHttNSKE/edit" target="_blank" rel="noopener">🔗 珠寶直播賣貨實戰班（八章節影片總表）</a><a class="chip chip-l" href="https://drive.google.com/file/d/1CuRuuswtRdB6q3XflGIuIVtlUFnwcnHA/view" target="_blank" rel="noopener">🔗 原版直播課講義 PDF</a><a class="chip chip-l" href="https://drive.google.com/file/d/1rWuDyPap9-JMTs_U7g-S0yAQ9JcJj0mO/view" target="_blank" rel="noopener">🔗 課程整理文字檔</a><a class="chip chip-l" href="https://drive.google.com/drive/folders/1wvWibBmg5EOgOcCG_w3eKrJo2fDnOZiI" target="_blank" rel="noopener">🔗 大馬直播培訓現場影片</a><a class="chip chip-l" href="https://drive.google.com/open?id=1GfYytaUJmUO3REL1l3cCF9i69-xKp77f" target="_blank" rel="noopener">🔗 外部課程參考（百度雲端）</a><a class="chip chip-l" href="https://drive.google.com/drive/folders/1DNYtny5qDrmtR7j5hcd7uCJC9KM1YoZt" target="_blank" rel="noopener">🔗 所有直播課程影片總資料夾</a><a class="chip chip-l" href="https://seller.shopee.tw/edu/article/595" target="_blank" rel="noopener">🔗 蝦皮直播功能介紹</a><a class="chip chip-l" href="https://seller.shopee.tw/edu/article/1530" target="_blank" rel="noopener">🔗 蝦皮・創建直播教學（PC）</a><a class="chip chip-l" href="https://seller.shopee.tw/edu/article/16958" target="_blank" rel="noopener">🔗 蝦皮・直播間數據儀表板</a><a class="chip chip-l" href="https://cdngarenanow-a.akamaihd.net/shopee/seller/seller_cms/a75d8817448200e162c347364660d69c/Shopee%20Live.pdf" target="_blank" rel="noopener">🔗 蝦皮 APP 直播教學手冊</a><a class="chip chip-l" href="https://tw.shp.ee/LEv5W49t" target="_blank" rel="noopener">🔗 消費者直播下單・1 元測試賣場</a></div>
-  </div>
-    <p class="backtop"><a href="#top">↑ 回課程地圖</a></p>
-  </section><section class="chap" id="c6">
-    <div class="chap-head">
-      <div class="chap-no" style="background:#2C9C90">06<small>直播後</small></div>
-      <div><h2>直播後銷售SOP</h2><p class="tagline">下播不是結束——得標信、報表、覆盤一次做完</p></div>
-    </div>
-    <div class="card">
-    <h3>下播後照順序做</h3>
-    <ul><li>整理商品：客人個別分開放（歸檔概念，不要同一天混一起）</li><li>得標商品從夾鏈袋拿出、連夾鏈袋一起拍清晰正面照</li><li>發得標信：官LINE 找到得標客人，照片＋得標信一起發（日期記得改；新客第一次加，要把他的 TikTok 姓名記上）</li><li>打開【本月直播紀錄】把今天賣出的商品 key 上自己的業績報表（每日寵粉分享）——關係到你的業績，一定要打清楚</li><li>計算今日直播總業績，打進【客服業績表】</li><li>商品照全部上傳【主播內部群】記事本，標題打日期＋姓名（例：8/26 玲姐直播）</li><li>商品道具歸位、拍櫃位照，依範本回報業績、時數、交接內容到主播內部群</li><li>填每日直播覆盤表</li></ul><div class="chips"><a class="chip chip-v" href="https://drive.google.com/file/d/1f-34VIV48p7WKqEddQuEsSOxxx9mEApB/view" target="_blank" rel="noopener">▶ 主題六・直播後銷售SOP</a><a class="chip chip-v" href="https://drive.google.com/file/d/141GxPcLhiD2ZN6vTZ3akzFvMezCT8io7/view" target="_blank" rel="noopener">▶ 每日寵粉分享・填寫說明</a><a class="chip chip-v" href="https://drive.google.com/file/d/1nbDek41FW-teiQ2QeTKmHt2SLG1dmr-7/view" target="_blank" rel="noopener">▶ 客服業績表・填寫說明</a><a class="chip chip-l" href="https://docs.google.com/spreadsheets/d/1x0Y8KgkO_zbDzDuJ9dUz4wIA-OFd3dcqQuaoTpXtj88/edit" target="_blank" rel="noopener">🔗 每日寵粉分享（業績報表）</a><a class="chip chip-l" href="https://docs.google.com/spreadsheets/d/16Etix3oL4jMrThiLFxHynreW4J344r2I7FoUjajwKh8/edit" target="_blank" rel="noopener">🔗 客服業績表</a></div>
-  </div><div class="card">
-    <h3>回報範本</h3>
-    <pre class="quote">5/14業績$6000／工作時間：22:00~23:00 1小時／直播者：方之祈／直播交接：XXX未付款 @請店務協助留意</pre>
-  </div><div class="card">
-    <h3>客人怎麼下單、怎麼進官LINE</h3>
-    <ul><li>得標信裡有官網下單連結</li><li>進官LINE：直播小名牌或口播 @vmo7014k；或 TikTok 帳號「台巴寶石人生」首頁連結</li></ul><div class="chips"><a class="chip chip-l" href="https://lin.ee/ZCOKCSj" target="_blank" rel="noopener">🔗 官方 LINE</a></div>
-  </div><div class="card">
-    <h3>訂製客戶回覆（標準流程）</h3>
-    <pre class="quote">XXX 您好，我是助理 xxx。1/請問您的預算是多少呢？　2/材質想要 925 銀還是 18K 金？　3/想要簡約款還是豪華款呢？</pre>
-  </div><div class="card">
-    <h3>後台作業（訂單清理・創建訂單・保卡）</h3>
-    <ul><li>訂單清理／結案：一般物流等正常配送；客人併單時避免多收運費（退單重下、其他併單設自取要手動消）</li><li>後台創建訂單：訂製或加購用「自訂商品」；國外運費也從自訂商品說明；付款只有信用卡／SHOPLINE ATM；務必勾開立發票（無特別要求＝雲端發票・會員載具）</li><li>商品保卡：MYSHOPEE 建品（單價 1、數量 100）→ canva 保卡設計貼上名稱編號、填材質款式寶石名稱後下載</li></ul><div class="chips"><a class="chip chip-v" href="https://drive.google.com/file/d/1zGXUQ9lyQGtpBjpiiVen2kO9HKmwU2O1/view" target="_blank" rel="noopener">▶ 後台訂單總覽・訂單清理／結案</a><a class="chip chip-v" href="https://drive.google.com/file/d/16XgZTaztPPRyj2HHTz7sBpD0hLnakivb/view" target="_blank" rel="noopener">▶ 後台創建訂單流程</a><a class="chip chip-v" href="https://drive.google.com/file/d/1mIJAkh-JLK-QYsuzvIfbqvZBCpFzFGyL/view" target="_blank" rel="noopener">▶ 商品保卡創建流程</a></div>
-  </div>
-    <p class="backtop"><a href="#top">↑ 回課程地圖</a></p>
-  </section><section class="chap" id="c7">
-    <div class="chap-head">
-      <div class="chap-no" style="background:#2C9C90">07<small>直播後</small></div>
-      <div><h2>出貨流程</h2><p class="tagline">從訂單明細到託運單，出貨五步</p></div>
-    </div>
-    <div class="card">
-    <h3>出貨五步</h3>
-    <ul><li>① 訂單明細：確認備註、SHOPLINE 後台查併單、備註到顧客通訊、核對商品與數量</li><li>② 清點商品：寄回總部後總清點，清點完統一放會計室</li><li>③ 拍攝商品：訂製品查金工群確認正確；領貨要拍照簽名；工廠回來的都個別包裝</li><li>④ 包裝：按材質（925銀／18K金／PT950）與樣式分類；訂製品務必確認戒圍、寶石顏色、有無中途改單——拍多角度照＋開箱錄影給客人；寶石膜包好＋氣泡紙＋破壞袋貼託運單全程錄影</li><li>⑤ 託運單總表：後台選今日出貨物流編號、下載託運總表，一式兩份（公司／物流）</li></ul><div class="chips"><a class="chip chip-v" href="https://drive.google.com/file/d/1wGkI4y8aINfMZDcY-CVmvR8coj2sU2-_/view" target="_blank" rel="noopener">▶ 出貨流程（課程錄影）</a></div>
-  </div>
-    <p class="backtop"><a href="#top">↑ 回課程地圖</a></p>
-  </section><section class="chap" id="c8">
-    <div class="chap-head">
-      <div class="chap-no" style="background:#6b6455">08<small>隨時查</small></div>
-      <div><h2>客服問題參考與 Q&amp;A</h2><p class="tagline">真實客訴案例的處理思路＋Q&amp;A 筆記</p></div>
-    </div>
-    <div class="card">
-    <h3>案例：戒指用 4 個月「變黑＋主石掉落」</h3>
-    <ul><li>背景：購買已 4 個月，回報變黑、主石掉落</li><li>評估：包鑲＋活動戒圍——自行調整易變形、包鑲鬆脫；公司一開始就不建議自行調整 → 屬人為使用造成</li><li>保卡制度：免費保養與清潔；人為損壞（掉石、磨損、撞擊）修復費自負；不含運費</li><li>退換貨：已超過 7 天鑑賞期，不符退換條件（官網《購物須知》《售後服務說明》《購物QA》可查）</li><li>結案四步：確認是否寄回維修 → 依標準流程收費 → 維修後寄回 → 記錄客訴表追蹤</li></ul>
-  </div><div class="card">
-    <h3>工作 Q&amp;A 筆記</h3>
-    <ul><li>珠寶訂製、電商部門、課程學員連結、社群貼文與影片、鑽石價查詢、戒圍對照表——都整理在這份筆記</li></ul><div class="chips"><a class="chip chip-l" href="https://docs.google.com/spreadsheets/d/1fGLr_a8NUo6iwotdjkVM1lA6lmKO4w_6W5JckwfccqU/edit" target="_blank" rel="noopener">🔗 工作 Q&amp;A 筆記</a></div>
-  </div>
-    <p class="backtop"><a href="#top">↑ 回課程地圖</a></p>
-  </section><section class="chap" id="c9">
-    <div class="chap-head">
-      <div class="chap-no" style="background:#E6007E">09<small>考核</small></div>
-      <div><h2>作業與考核</h2><p class="tagline">要交的作業、要考的卷、每天要填的回報——全部在這裡</p></div>
-    </div>
-    <div class="card">
-    <h3>要填寫的五張卷（照順序）</h3>
-    <ul><li>① 課程預習作業——看完第 5 章的線上課程影片，每集寫下重點（不限時，上實體課前完成）</li><li>② 直播培訓作業考核（主題九）——11 題＋1 分鐘自我介紹文案，答案都在講義裡，開卷慢慢寫（不限時）</li><li>③ 寶石獵人第一階段考核——一階課後筆試（40 分鐘計時）</li><li>④ 寶石獵人第二階段考核——直播前／中／後三區 23 題（40 分鐘、開卷）</li><li>⑤ 直播準備作業（開播前交付包）——講稿、10 個主題、議題清單、素材清單、平台、對標主播六樣一次交齊（不限時）</li></ul><p class="note">在下面「開始作答」一張一張開；交卷後小老師批改，沒過可以重考、兩次答案並排看；筆試和準備包及格會自動打進培訓站的勾。</p>
-  </div><div class="card">
-    <h3>每天下播後要填的</h3>
-    <ul><li>每日直播覆盤表——業績、時數、交接、心得檢討，下播就填（同一份也照範本回報主播內部群）</li></ul>
-  </div><div class="card">
-    <h3>然後呢</h3>
-    <ul><li>五張卷都過＋覆盤有在交——準備實習，依個人狀態最快 1 週安排上線直播</li></ul>
-  </div><div class="card exam-card">
-    <h3>怎麼作答</h3>
-    <ul class="exam-list"><li><b>① 課程預習作業</b><span class="dur">不限時</span><br><span class="desc">看完第 5 章的線上課程影片，每集寫下重點——上實體課前完成</span></li><li><b>② 直播培訓作業考核（主題九）</b><span class="dur">不限時</span><br><span class="desc">11 題＋1 分鐘自我介紹文案——答案都在講義裡，開卷慢慢寫</span></li><li><b>③ 寶石獵人・第一階段考核</b><span class="dur">40 分鐘</span><br><span class="desc">一階課後筆試（40 分鐘計時）——及格自動打進培訓站的勾</span></li><li><b>④ 寶石獵人・第二階段考核</b><span class="dur">40 分鐘</span><br><span class="desc">直播前／中／後三區 23 題（40 分鐘、開卷）——通過就準備上線</span></li><li><b>⑤ 直播準備作業（開播前交付包）</b><span class="dur">不限時</span><br><span class="desc">講稿、10 個主題、議題清單、素材清單、平台、對標主播——六樣一次交齊，過了追蹤卡六個勾自動打上</span></li></ul>
-    <p class="note">作答要用你的代理帳號登入公司系統（培訓 → 第 9 章按「開始作答」）；每日直播覆盤表也在系統裡填。帳號問題 LINE 找助理。</p>
-  </div>
-    <p class="backtop"><a href="#top">↑ 回課程地圖</a></p>
-  </section>
+  <nav class="road" aria-label="直播流程"><div class="stage" style="--c:#8A6D1F"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><b>上場前</b><span class="cap">查資料、備商品、練話術</span><span class="nums"><a href="#c1" class="num">01</a><a href="#c2" class="num">02</a><a href="#c3" class="num">03</a><a href="#c5" class="num">05</a></span></div><div class="stage" style="--c:#2B5BB8"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2"/><path d="M8 8a5.5 5.5 0 0 0 0 8M16 8a5.5 5.5 0 0 1 0 8M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14"/></svg><b>開播</b><span class="cap">兩套直播系統</span><span class="nums"><a href="#c4" class="num">04</a><a href="#c10" class="num">10</a></span></div><div class="stage" style="--c:#1E7A55"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="1"/><path d="M9 4V3h6v1M9 10h6M9 14h6"/></svg><b>直播後</b><span class="cap">得標信、報表、出貨</span><span class="nums"><a href="#c6" class="num">06</a><a href="#c7" class="num">07</a></span></div><div class="stage" style="--c:#B4233C"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="m8 12 3 3 5-6"/></svg><b>查詢與考核</b><span class="cap">客服案例、五張卷</span><span class="nums"><a href="#c8" class="num">08</a><a href="#c9" class="num">09</a></span></div></nav>
+  <div class="bar"><span>共 <span class="num">10</span> 章，點章節展開</span><button type="button" id="all">全部展開</button></div>
+  <main>
+<details class="ch" id="c1" style="--c:#8A6D1F">
+  <summary><span class="badge"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span><span class="no">01</span><span class="ttl">資料庫與查詢工具</span><span class="ph">上場前</span></summary>
+  <div class="in"><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M16 7l3 3"/></svg>登入</h3><div class="body"><ul><li>官網登入（SHOPLINE 帳號可同步）→「進入我的店面」</li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12l3 5-9 11L3 9z"/><path d="M3 9h18M9 4l3 5 3-5"/></svg>品牌故事</h3><div class="body"><ul><li>初衷、親民價格的原因、服務理念</li><li>開場暖場就講這個</li></ul><ul class="links"><li><a href="https://www.tzgrotw.tw/pages/%E6%96%B0%E7%9A%84%E5%88%86%E9%A0%81-2" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>官網・品牌故事</a></li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/></svg>每日寶石知識</h3><div class="body"><ol><li>找今天要賣的寶石</li><li>查特色、背景、小故事</li><li>整理成介紹詞</li></ol><ul class="links"><li><a href="https://www.tzgrotw.tw/blog/categories/%E8%B7%9F%E8%91%97%E6%BA%B1%E5%A7%90%E8%B2%B7%E5%AF%B6%E7%9F%B3-%E6%AF%8F%E6%97%A5%E5%AF%B6%E7%9F%B3%E7%9F%A5%E8%AD%98" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>官網・每日寶石知識</a></li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 1-1 1.7M12 17h.01"/></svg>行家 100 問</h3><div class="body"><ul><li>珠寶基礎知識、客人常見問題</li></ul><ul class="links"><li><a href="https://www.tzgrotw.tw/blog/categories/%E8%B7%9F%E8%91%97%E6%BA%B1%E5%A7%90%E8%B2%B7%E5%AF%B6%E7%9F%B3-%E7%8F%A0%E5%AF%B6%E8%A1%8C%E5%AE%B6100%E5%95%8F" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>官網・珠寶行家100問</a></li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/></svg>電子書</h3><div class="body"><ul><li><b>「寶石百科集成」</b>星座對應寶石、大牌案例、寶石小故事</li><li>密碼在紙本講義，或問助理</li></ul><ul class="links"><li><a href="https://drive.google.com/file/d/1u5lOAzBcbRufbTvlhbb5cEnjSq-kV2wT/view" target="_blank" rel="noopener" data-v="1u5lOAzBcbRufbTvlhbb5cEnjSq-kV2wT"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>主題一・資料庫與查詢工具</a></li><li><a href="https://drive.google.com/file/d/1aWen1IRif0EKpehsrTPNVIq9n2yY_lFS/view" target="_blank" rel="noopener" data-v="1aWen1IRif0EKpehsrTPNVIq9n2yY_lFS"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>寶石百科集成・操作教學</a></li><li><a href="https://heyzine.com/flip-book/6164fb5313.html" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>上冊一：托帕石・碧璽</a></li><li><a href="https://heyzine.com/flip-book/eff315210f.html" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>下冊一：石榴石・尖晶石</a></li><li><a href="https://heyzine.com/flip-book/917f6e3937.html" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>二＆三：閃鋅礦・風信子</a></li><li><a href="https://heyzine.com/flip-book/6e0a50b192.html" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>上冊四：彩鑽・祖母綠</a></li><li><a href="https://heyzine.com/flip-book/eceab80d0b.html" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>下冊四：藍寶石・金綠玉</a></li></ul></div></div></div>
+</details>
+<details class="ch" id="c2" style="--c:#8A6D1F">
+  <summary><span class="badge"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></span><span class="no">02</span><span class="ttl">群組與平台操作</span><span class="ph">上場前</span></summary>
+  <div class="in"><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>入群</h3><div class="body"><ul><li><b>名稱照規定</b>職務／名字／區域</li></ul><ul class="links"><li><a href="https://drive.google.com/file/d/1LPxcoyhf2tmGjv6bKhzGKmXTPaGBnR-2/view" target="_blank" rel="noopener" data-v="1LPxcoyhf2tmGjv6bKhzGKmXTPaGBnR-2"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>主題二・各群組介紹</a></li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>④ 主播內部群</h3><div class="body"><ul><li><b>直播回報</b>地點、商品、心得、問題</li><li>後勤與設備問題，直接問珍姐或主管</li><li>公司公告在這裡發</li></ul><ul class="links"><li><a href="https://drive.google.com/file/d/10MkvjzM3tSYVohKUIjNnqp0vExkjvr5r/view" target="_blank" rel="noopener" data-v="10MkvjzM3tSYVohKUIjNnqp0vExkjvr5r"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>製作限時動態串流教學</a></li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>⑤ 代理分享群</h3><div class="body"><ul><li>溱姐發特價、套組、寶石介紹；客人給預算就從這裡抓圖</li><li>新客全額付款保留；老客可付一半定金；先付款先贏</li><li>成交在商品下回「客人已下定」；想買先確認還在</li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M14.5 9.5h-3.7a1.3 1.3 0 0 0 0 2.6h2.4a1.3 1.3 0 0 1 0 2.6H9.5"/></svg>⑥ 詢價群</h3><div class="body"><p class="tpl"><span class="tag">範本</span>1/進線詢價時間/帳號來源　2/客人名字　3/寶石名稱　4/重量　5/尺寸　6/材質…</p><ul class="links"><li><a href="https://drive.google.com/file/d/14l_J5U9OTHtdtuhQEHHBJe9m3K-Qsf4m/view" target="_blank" rel="noopener" data-v="14l_J5U9OTHtdtuhQEHHBJe9m3K-Qsf4m"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>寶石加工詢價範例</a></li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12l3 5-9 11L3 9z"/><path d="M3 9h18M9 4l3 5 3-5"/></svg>⑦ 新金工訂製群</h3><div class="body"><p class="tpl"><span class="tag">範本</span>平台／訂單編號／客人姓名／下單日期／寶石名稱／主石／重量／尺寸／材質／配鑽…</p><ul class="links"><li><a href="https://drive.google.com/file/d/1gTupziudViIoXg3CdXzxNvE0QZle0ize/view" target="_blank" rel="noopener" data-v="1gTupziudViIoXg3CdXzxNvE0QZle0ize"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>SHOPLINE 如何開單給客人</a></li><li><a href="https://drive.google.com/file/d/10TzHvelmhZUGfF3WGKZQ-XlwPlZU9_JM/view" target="_blank" rel="noopener" data-v="10TzHvelmhZUGfF3WGKZQ-XlwPlZU9_JM"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>新金工訂製群操作教學</a></li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="9.5" r="1.2"/></svg>⑨ 寶石資料庫群</h3><div class="body"><ul><li>官方商品照可下載給客人、以圖搜圖</li><li>圖片不留浮水印</li><li>款式基本都能做，可當選款參考</li></ul></div></div></div>
+</details>
+<details class="ch" id="c3" style="--c:#8A6D1F">
+  <summary><span class="badge"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg></span><span class="no">03</span><span class="ttl">開播前找尋商品價格</span><span class="ph">上場前</span></summary>
+  <div class="in"><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>價格表</h3><div class="body"><ul><li>Excel，各分店各一份，庫存多在彰化店</li><li>右側直播賣價、左側店內價；另有圖片、品名、盤編號</li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>開播前</h3><div class="body"><ul><li>逐款確認當天商品的價格</li><li>表上沒價格先問後勤，不要亂報</li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>查不到</h3><div class="body"><ul><li>查官網，再到代理分享群或詢價群確認</li></ul><ul class="links"><li><a href="https://drive.google.com/file/d/1pg_7oZi64mOmuClbKGlWVX1Sb8x0TkuA/view" target="_blank" rel="noopener" data-v="1pg_7oZi64mOmuClbKGlWVX1Sb8x0TkuA"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>商品價格查詢操作</a></li></ul></div></div></div>
+</details>
+<details class="ch" id="c4" style="--c:#2B5BB8">
+  <summary><span class="badge"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span><span class="no">04</span><span class="ttl">官網與直播上架（SHOPLINE Live）</span><span class="ph">直播系統</span></summary>
+  <div class="in"><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8M12 16v4"/></svg>進後台</h3><div class="body"><ul><li><span class="flow"><span>SHOPLINE 後台</span><span>「社群電商」</span><span>SHOPLINE 直播</span></span></li><li>常見問題看上方「幫助中心」</li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="1"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>新增直播</h3><div class="body"><ul><li><b>名稱用日期（例</b>11/25 直播），平台選 FB＋IG</li><li>關鍵字通常「a1＋加一」；結帳提醒可設隔天早上；保留期一個月</li><li>商品可「大量編輯」設直播價與期限</li></ul><ul class="links"><li><a href="https://drive.google.com/file/d/15_ShKjv_JwXFvYTsKvQkTtN43K7Qhii1/view" target="_blank" rel="noopener" data-v="15_ShKjv_JwXFvYTsKvQkTtN43K7Qhii1"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>SHOPLINE Live 直播設定教學</a></li><li><a href="https://drive.google.com/file/d/1_Au-e56SoHAQBUd7bPspH0dp01AbbZA2/view" target="_blank" rel="noopener" data-v="1_Au-e56SoHAQBUd7bPspH0dp01AbbZA2"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>官網直播上架流程</a></li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18h2"/></svg>接直播畫面</h3><div class="body"><ol><li><span class="flow"><span>電腦主帳號 IG「＋直播視訊」</span><span>分享對象選所有人</span><span>複製串流金鑰</span></span></li><li><span class="flow"><span>手機直播軟體貼金鑰（每場都不同）</span><span>開 IG、FB</span></span></li><li>回 SHOPLINE Live 連接直播 → 電腦 IG 按開始</li><li>把連結貼到 LINE 粉絲社群（入群連結向助理索取）</li></ol></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg>商品上架</h3><div class="body"><ul><li>從庫存勾選，或現場新增：名稱、圖片、關鍵字（不可重複）</li><li>關鍵字別太簡單，例：「我要1」</li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2"/><path d="M8 8a5.5 5.5 0 0 0 0 8M16 8a5.5 5.5 0 0 1 0 8M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14"/></svg>直播中</h3><div class="body"><ul><li>商品可設「推薦」顯示在前台</li><li>留言可切「下單留言」只看加一</li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v8"/><path d="M6.5 7a8 8 0 1 0 11 0"/></svg>下播</h3><div class="body"><ul><li>業績看「總付款金額」</li><li><b>關閉順序</b><span class="flow"><span>電腦 IG</span><span>SHOPLINE Live 後台</span><span>直播設備</span></span></li></ul></div></div></div>
+</details>
+<details class="ch" id="c5" style="--c:#8A6D1F">
+  <summary><span class="badge"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span><span class="no">05</span><span class="ttl">直播前準備與工具</span><span class="ph">上場前</span></summary>
+  <div class="in"><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>心法</h3><div class="body"><ul><li>多看別的直播台</li><li><b>備好話題</b>時事、笑話</li><li><b>定位</b>露臉衣著整齊；不露臉手要乾淨</li><li>備好 1 分鐘自我介紹</li><li>被問倒先記下，請客人下次直播聽回覆</li><li>播完寫心得、回看檢討</li><li><b>熟記公司背景</b>17 年寶石批發、珠寶製作與切磨</li><li>備背景音樂、筆記本和筆</li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="1"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg>道具</h3><div class="body"><div class="tiles"><div class="tile"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18h2"/></svg><span class="tt">手機</span><span class="cap">充電器、手機架</span></div><div class="tile"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg><span class="tt">燈</span><span class="cap">珠寶手電筒、珠寶燈或 IKEA 檯燈</span></div><div class="tile"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg><span class="tt">展示盤</span><span class="cap">黑或白底，要有尺標</span></div><div class="tile"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M6 20h12M5 7h14"/><path d="M5 7 2.5 13h5zM19 7l-2.5 6h5z"/></svg><span class="tt">珠寶秤</span><span class="cap">裸石量克拉</span></div></div></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3 3 10l7 3 3 7z"/></svg>商品與預告</h3><div class="body"><ul><li>商品排整齊，逐件做筆記</li><li>價位提早一小時問；老師在國外要前一天問</li><li><b>預告</b>10 秒內影片或商品照，發各平台限動</li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16 5l3 3L8 19z"/></svg>腳本四核心</h3><div class="body"><ol><li><b>主題</b>這場為了什麼（回饋／新品／促銷）</li><li><b>節奏</b>具體到分鐘；開頭 10 分鐘預告當期，最後 10 分鐘預告下期</li><li><b>分工</b>主播介紹、助播互動發優惠、後台改價轉單</li><li><b>預算</b>優惠券、秒殺、贈品先定好</li></ol><ul class="links"><li><a href="https://docs.google.com/document/d/1r4-cReD4zCb68tQqb7OSxLIy3PvEENqm/edit" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>腳本寫作示範</a></li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>流程五段</h3><div class="body"><ol><li><b>開場預熱</b>打招呼、自我介紹、今日主題</li><li>話題引入</li><li><b>產品介紹</b>照單品腳本</li><li><b>粉絲互動</b>福利、抽獎、催單、答問</li><li><b>結束預告</b>催付、感謝、下次時間</li></ol></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>說話守則</h3><div class="body"><ul><li>不說自己是新人</li><li>不透露溱姐行程；請客人加官方 LINE 預約</li><li><b>沒貨不說沒有</b>「可以加我們官 LINE，有專人為您服務」</li><li>不談其他客人，姓名都不提</li><li>用自己的下單連結，用錯業績會不見</li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M14.5 9.5h-3.7a1.3 1.3 0 0 0 0 2.6h2.4a1.3 1.3 0 0 1 0 2.6H9.5"/></svg>報價與訂製</h3><div class="body"><div class="tiles two"><div class="tile"><span class="big num">4500–7000</span><span class="cap">925 銀爪鑲・簡約款</span></div><div class="tile"><span class="big num">9000 起</span><span class="cap">18K 金爪鑲・簡約款</span></div><div class="tile"><span class="big num">500</span><span class="cap">改圍・下訂前</span></div><div class="tile"><span class="big num">1500</span><span class="cap">改圍・發貨後</span></div></div><ul><li>裸石報「多少錢／克拉」</li><li>價格會受戒台厚度、配石、真鑽或莫桑、戒圈影響</li><li>成品先問老師價位，只能往上加</li><li><b>訂製</b><span class="flow"><span>加官 LINE</span><span>得標信先付寶石</span><span>問是否訂製與預算</span><span>報價</span></span></li><li>發貨後改圍另加來回運費 300</li><li><b>第三方證書</b>國內代打費 1000；國外依溱姐報價</li><li>不回收，可代客寄賣</li><li>成品附電子保卡（不是證書）；裸石沒有保卡</li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4h12l-2 4 2 4H5"/></svg>得標與紀錄</h3><div class="body"><ul><li>請客人打「金額+1」（例 5000+1），截圖私訊官 LINE</li><li>標籤寫日期、商品、得標人、金額，放進夾鏈袋</li><li>裸石（含抽獎送的）量克拉，記在報表和標籤</li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>話術</h3><div class="body"><ul><li><b>價值</b>「你買的不是材質，是稀有度與品相」</li><li><b>限量</b>「這顆只有一件，你現在不鎖很容易被秒」</li><li><b>留人</b>「你們先別走，等一下有更乾淨更大的款」</li><li><b>專業</b>「光源不同，火彩完全不一樣，我給你看三種光」</li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.8-4.5 4.3 1.1 6.1L12 16.9 6.6 19.8l1.1-6.1L3.2 9.4l6.1-.8z"/></svg>培訓與驗收</h3><div class="body"><div class="tiles two"><div class="tile"><span class="big num">≥1.8 分</span><span class="cap">首播觀看</span></div><div class="tile"><span class="big num">≥10 次</span><span class="cap">每 10 分鐘扣字</span></div><div class="tile"><span class="big num">≥80%</span><span class="cap">展示完整度</span></div><div class="tile"><span class="big num">≥80%</span><span class="cap">珠寶測驗</span></div></div><ul><li><b>五堂</b>珠寶知識與開場話術／展示與鏡頭感／節奏、留人、比價／上鏡演練與冷場處理／獨立開播</li><li><b>驗收</b>獨立開場 1–2 分鐘不冷場；完成 5 件主推款展示；能應對嫌貴</li><li><b>排班</b>系統「直播預排系統」搶時段，一天最多 2 場，取消提前一天</li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8M12 16v4"/></svg>進階課</h3><div class="body"><ul><li>Zoom，每週一堂，講師靖悅（十年帶貨）；開課時間看公告</li><li><b>一</b>心態、播感、表現力五部曲</li><li><b>二</b>控場、拉新、塑品、逼單框架</li><li><b>三</b>腳本四大區塊、人貨場、直播 SOP</li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg>線上課程</h3><div class="body"><ul><li>上實體課前在家看完</li></ul><ul class="links"><li><a href="https://drive.google.com/file/d/1OLsNyG8YKx5kfh88xTyo0wB5fCdbDMup/view" target="_blank" rel="noopener" data-v="1OLsNyG8YKx5kfh88xTyo0wB5fCdbDMup"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>第一集・如何使用工具</a></li><li><a href="https://drive.google.com/file/d/1aKe-mazKNo46CtH6rInJUI641YbYoN-G/view" target="_blank" rel="noopener" data-v="1aKe-mazKNo46CtH6rInJUI641YbYoN-G"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>第二集・如何打燈</a></li><li><a href="https://drive.google.com/file/d/1rpcIkmZJAK1MqpX_OHSsL9FvBacFGo4l/view" target="_blank" rel="noopener" data-v="1rpcIkmZJAK1MqpX_OHSsL9FvBacFGo4l"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>第三集・直播要注意的流程</a></li><li><a href="https://drive.google.com/file/d/1VLN7p4gdviD69En0PzbdUTwZORa8cvO-/view" target="_blank" rel="noopener" data-v="1VLN7p4gdviD69En0PzbdUTwZORa8cvO-"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>主播直播教學（若晴姊）</a></li><li><a href="https://drive.google.com/file/d/1C3BUSoEQ48Zmw08J1ukIHygSNCFTCjXp/view" target="_blank" rel="noopener" data-v="1C3BUSoEQ48Zmw08J1ukIHygSNCFTCjXp"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>主題五・直播操作流程</a></li><li><a href="https://docs.google.com/document/d/1a_c8qdThqdI5CNUGqUfIOQ6l6BNb27I_9_07UC6TW3c/edit" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>直播培訓 SOP</a></li><li><a href="https://docs.google.com/document/d/123tEt8oE53XN0e-7wJBaizQPqqWD2501SCWGWBG8UUQ/edit" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>直播培訓課程總覽</a></li><li><a href="https://docs.google.com/spreadsheets/d/1nLUP5ATCY6hOnYKixPh5FxuetaUKDMsoGlYxHttNSKE/edit" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>珠寶直播賣貨實戰班・影片總表</a></li><li><a href="https://drive.google.com/file/d/1CuRuuswtRdB6q3XflGIuIVtlUFnwcnHA/view" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>原版直播課講義 PDF</a></li><li><a href="https://drive.google.com/file/d/1rWuDyPap9-JMTs_U7g-S0yAQ9JcJj0mO/view" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>課程整理文字檔</a></li><li><a href="https://drive.google.com/drive/folders/1wvWibBmg5EOgOcCG_w3eKrJo2fDnOZiI" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>大馬直播培訓現場影片</a></li><li><a href="https://drive.google.com/open?id=1GfYytaUJmUO3REL1l3cCF9i69-xKp77f" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>外部課程參考</a></li><li><a href="https://drive.google.com/drive/folders/1DNYtny5qDrmtR7j5hcd7uCJC9KM1YoZt" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>全部課程影片資料夾</a></li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>蝦皮直播</h3><div class="body"><ul><li>要在蝦皮開播時參考</li></ul><ul class="links"><li><a href="https://seller.shopee.tw/edu/article/595" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>功能介紹</a></li><li><a href="https://seller.shopee.tw/edu/article/1530" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>創建直播（PC）</a></li><li><a href="https://seller.shopee.tw/edu/article/16958" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>數據儀表板</a></li><li><a href="https://cdngarenanow-a.akamaihd.net/shopee/seller/seller_cms/a75d8817448200e162c347364660d69c/Shopee%20Live.pdf" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>APP 教學手冊</a></li><li><a href="https://tw.shp.ee/LEv5W49t" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>1 元測試賣場</a></li></ul></div></div></div>
+</details>
+<details class="ch" id="c6" style="--c:#1E7A55">
+  <summary><span class="badge"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="1"/><path d="M9 4V3h6v1M9 10h6M9 14h6"/></svg></span><span class="no">06</span><span class="ttl">直播後銷售 SOP</span><span class="ph">直播後</span></summary>
+  <div class="in"><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="1"/><path d="M9 4V3h6v1M9 10h6M9 14h6"/></svg>下播後</h3><div class="body"><ol><li>商品按客人分開放</li><li>得標商品連夾鏈袋拍清晰正面照</li><li>官 LINE 發得標信＋照片（日期要改；新客記上 TikTok 姓名）</li><li>【本月直播紀錄】把今天賣出的 key 進「每日寵粉分享」</li><li>算今日總業績，填【客服業績表】</li><li>商品照上傳主播內部群記事本，標題：日期＋姓名</li><li>道具歸位、拍櫃位照，照範本回報業績、時數、交接</li><li>填每日直播覆盤表</li></ol><ul class="links"><li><a href="https://drive.google.com/file/d/1f-34VIV48p7WKqEddQuEsSOxxx9mEApB/view" target="_blank" rel="noopener" data-v="1f-34VIV48p7WKqEddQuEsSOxxx9mEApB"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>主題六・直播後銷售 SOP</a></li><li><a href="https://drive.google.com/file/d/141GxPcLhiD2ZN6vTZ3akzFvMezCT8io7/view" target="_blank" rel="noopener" data-v="141GxPcLhiD2ZN6vTZ3akzFvMezCT8io7"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>每日寵粉分享・填寫說明</a></li><li><a href="https://drive.google.com/file/d/1nbDek41FW-teiQ2QeTKmHt2SLG1dmr-7/view" target="_blank" rel="noopener" data-v="1nbDek41FW-teiQ2QeTKmHt2SLG1dmr-7"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>客服業績表・填寫說明</a></li><li><a href="https://docs.google.com/spreadsheets/d/1x0Y8KgkO_zbDzDuJ9dUz4wIA-OFd3dcqQuaoTpXtj88/edit" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>每日寵粉分享</a></li><li><a href="https://docs.google.com/spreadsheets/d/16Etix3oL4jMrThiLFxHynreW4J344r2I7FoUjajwKh8/edit" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>客服業績表</a></li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg>回報範本</h3><div class="body"><p class="tpl"><span class="tag">範本</span>5/14業績$6000／工作時間：22:00~23:00 1小時／直播者：方之祈／直播交接：XXX未付款 @請店務協助留意</p></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>客人下單</h3><div class="body"><ul><li>得標信裡有官網下單連結</li><li><b>官 LINE</b>@vmo7014k，或 TikTok「台巴寶石人生」首頁連結</li></ul><ul class="links"><li><a href="https://lin.ee/ZCOKCSj" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>官方 LINE</a></li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>訂製回覆</h3><div class="body"><p class="tpl"><span class="tag">範本</span>XXX 您好，我是助理 xxx。1/請問您的預算是多少呢？　2/材質想要 925 銀還是 18K 金？　3/想要簡約款還是豪華款呢？</p></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8M12 16v4"/></svg>後台作業</h3><div class="body"><ul><li><b>併單避免多收運費</b>退單重下，其他併單設自取要手動消</li><li><b>創建訂單</b>訂製、加購、國外運費都用「自訂商品」；付款限信用卡／SHOPLINE ATM；勾開立發票（預設雲端發票・會員載具）</li><li><b>保卡</b>MYSHOPEE 建品（單價 1、數量 100）→ canva 填名稱編號、材質、款式、寶石後下載</li></ul><ul class="links"><li><a href="https://drive.google.com/file/d/1zGXUQ9lyQGtpBjpiiVen2kO9HKmwU2O1/view" target="_blank" rel="noopener" data-v="1zGXUQ9lyQGtpBjpiiVen2kO9HKmwU2O1"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>訂單清理／結案</a></li><li><a href="https://drive.google.com/file/d/16XgZTaztPPRyj2HHTz7sBpD0hLnakivb/view" target="_blank" rel="noopener" data-v="16XgZTaztPPRyj2HHTz7sBpD0hLnakivb"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>創建訂單</a></li><li><a href="https://drive.google.com/file/d/1mIJAkh-JLK-QYsuzvIfbqvZBCpFzFGyL/view" target="_blank" rel="noopener" data-v="1mIJAkh-JLK-QYsuzvIfbqvZBCpFzFGyL"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>保卡創建</a></li></ul></div></div></div>
+</details>
+<details class="ch" id="c7" style="--c:#1E7A55">
+  <summary><span class="badge"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></span><span class="no">07</span><span class="ttl">出貨流程</span><span class="ph">直播後</span></summary>
+  <div class="in"><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>出貨五步</h3><div class="body"><ol><li><b>訂單明細</b>看備註、查併單、核對商品與數量</li><li><b>清點</b>寄回總部總清點，統一放會計室</li><li><b>拍攝</b>訂製品對金工群確認；領貨拍照簽名</li><li><b>包裝</b>按材質與樣式分類；訂製品確認戒圍、寶石顏色、有無改單；多角度照＋開箱錄影；寶石膜、氣泡紙、破壞袋，貼託運單全程錄影</li><li><b>託運總表</b>選今日出貨物流編號下載，一式兩份（公司／物流）</li></ol><ul class="links"><li><a href="https://drive.google.com/file/d/1wGkI4y8aINfMZDcY-CVmvR8coj2sU2-_/view" target="_blank" rel="noopener" data-v="1wGkI4y8aINfMZDcY-CVmvR8coj2sU2-_"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>出貨流程</a></li></ul></div></div></div>
+</details>
+<details class="ch" id="c8" style="--c:#5E6472">
+  <summary><span class="badge"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 1-1 1.7M12 17h.01"/></svg></span><span class="no">08</span><span class="ttl">客服問題參考與 Q&amp;A</span><span class="ph">隨時查</span></summary>
+  <div class="in"><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 20h19z"/><path d="M12 10v5M12 17.5h.01"/></svg>案例</h3><div class="body"><ul><li>戒指用 4 個月，回報變黑、主石掉落</li><li><b>評估</b>包鑲＋活動戒圍，自行調整易變形鬆脫，屬人為使用</li><li><b>保卡</b>保養清潔免費；人為損壞修復自費，不含運費</li><li>已過 7 天鑑賞期，不符退換</li><li><b>結案</b><span class="flow"><span>確認是否寄回</span><span>照標準收費</span><span>修好寄回</span><span>記客訴表</span></span></li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg>Q&amp;A 筆記</h3><div class="body"><ul><li>訂製、電商、課程連結、貼文影片、鑽石價、戒圍對照表都在這份</li></ul><ul class="links"><li><a href="https://docs.google.com/spreadsheets/d/1fGLr_a8NUo6iwotdjkVM1lA6lmKO4w_6W5JckwfccqU/edit" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>工作 Q&amp;A 筆記</a></li></ul></div></div></div>
+</details>
+<details class="ch" id="c9" style="--c:#B4233C">
+  <summary><span class="badge"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="m8 12 3 3 5-6"/></svg></span><span class="no">09</span><span class="ttl">作業與考核</span><span class="ph">考核</span></summary>
+  <div class="in"><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="m8 12 3 3 5-6"/></svg>五張卷</h3><div class="body"><ol><li><b>課程預習作業</b>看完第 5 章線上課程，每集寫重點<span class="meta"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>不限時，實體課前交</span></li><li><b>直播培訓作業考核</b>11 題＋1 分鐘自我介紹<span class="meta"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>不限時，開卷</span></li><li><b>寶石獵人第一階段</b>課後筆試<span class="meta"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>40 分鐘</span></li><li><b>寶石獵人第二階段</b>直播前中後 23 題<span class="meta"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>40 分鐘，開卷</span></li><li><b>直播準備作業</b>講稿、10 個主題、議題清單、素材清單、平台、對標主播，一次交齊<span class="meta"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>不限時</span></li></ol></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16 5l3 3L8 19z"/></svg>作答</h3><div class="body"><ul><li><span class="flow"><span>代理帳號登入公司系統</span><span>培訓</span><span>第 9 章「開始作答」</span></span></li><li>沒過可重考；及格自動打勾</li><li>帳號問題 LINE 找助理</li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="1"/><path d="M4 10h16M8 3v4M16 3v4"/></svg>每天</h3><div class="body"><ul><li>下播就填每日直播覆盤表，同一份回報主播內部群</li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.8-4.5 4.3 1.1 6.1L12 16.9 6.6 19.8l1.1-6.1L3.2 9.4l6.1-.8z"/></svg>通過後</h3><div class="body"><ul><li><span class="flow"><span>五張卷都過、覆盤有在交</span><span>實習，最快 1 週上線直播</span></span></li></ul></div></div></div>
+</details>
+<details class="ch" id="c10" style="--c:#2B5BB8">
+  <summary><span class="badge"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2"/><path d="M8 8a5.5 5.5 0 0 0 0 8M16 8a5.5 5.5 0 0 1 0 8M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14"/></svg></span><span class="no">10</span><span class="ttl">98 直播平台操作</span><span class="ph">直播系統</span></summary>
+  <div class="in"><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M16 7l3 3"/></svg>登入</h3><div class="body"><ul><li><a href="https://tzgrotw-live.com" target="_blank" rel="noopener">tzgrotw-live.com</a>，預設密碼 <span class="num">1234</span></li><li>登不進去請詢問公司管理員，密碼可能變更</li><li>用 98 的場次不開 SHOPLINE Live，結帳連結只由 98 發出</li><li>先看八支短片（約 4 分鐘），再到練功房按一次</li></ul><ul class="links"><li><a href="https://tzgrotw-live.com/help" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>98 教學課程（八支）</a></li><li><a href="https://tzgrotw-live.com/host?rehearsal=practice" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span class="sr">連結：</span>練功房</a></li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>開播前</h3><div class="body"><ol><li><b>設定頁看連線狀態</b>全綠才開</li><li>按「分享直播畫面」，選直播視窗</li><li>按「開新場次」；檢查有打叉，照畫面處理後按「再檢查一次」</li><li>單人直播可先用「預排清單」排商品，現場按「上架」→「建檔」</li></ol><ul class="links"><li><a href="https://tzgrotw-live.com/help#01" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>01 開播前準備</a></li><li><a href="https://tzgrotw-live.com/help#02" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>02 預排商品</a></li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2"/><path d="M8 8a5.5 5.5 0 0 0 0 8M16 8a5.5 5.5 0 0 1 0 8M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14"/></svg>直播中</h3><div class="body"><ul><li><b>上架</b><span class="flow"><span>空白鍵拍照</span><span>打價格</span><span>Enter 建檔</span><span>出現「請喊」才報代號</span></span></li><li><b>多人喊同一件</b>最早的拿到，其他候補，照提醒卡念；搶到的人不要，系統自動換下一位</li><li><b>不拍照</b><span class="flow"><span>「官網商品」選種類、石種、商品</span><span>「使用這件官網商品」</span></span></li><li><b>加買</b><span class="flow"><span>右上「⋯」</span><span>「客人要加買官網的東西」</span><span>「加進連結」</span></span></li><li><b>價格打錯、連結還沒發</b><span class="flow"><span>「改價重開」</span><span>「作廢並重開」</span></span><span class="tail">已發出去到商品後台改</span></li><li><b>問價、剩幾件</b>看提醒卡，念完按「念完了」；喊上次代號，有貨照賣</li><li><b>抽獎</b><span class="flow"><span>「抽獎」填關鍵字、獎品、名額</span><span>「開始追蹤」</span><span>「結束留言」</span><span>選開獎方式</span><span>「發送中獎私訊」</span></span></li></ul><ul class="links"><li><a href="https://tzgrotw-live.com/help#03" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>03 上架與喊單</a></li><li><a href="https://tzgrotw-live.com/help#04" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>04 官網商品與加買</a></li><li><a href="https://tzgrotw-live.com/help#05" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>05 取消與改價重開</a></li><li><a href="https://tzgrotw-live.com/help#06" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>06 問價與上次代號</a></li><li><a href="https://tzgrotw-live.com/help#07" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>07 抽獎</a></li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="1"/><path d="M9 4V3h6v1M9 10h6M9 14h6"/></svg>下播後</h3><div class="body"><ol><li>按「下播了」，系統發完最後一批連結，出成績單</li><li>15 分鐘後按「同步付款」，再發候補連結</li><li>複製「回放商城」連結貼給客人</li><li>訂單後台選「要聯絡的」，照「下一步」欄聯絡</li></ol><ul class="links"><li><a href="https://tzgrotw-live.com/help#08" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span class="sr">影片：</span>08 下播之後</a></li></ul></div></div><div class="blk"><h3><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 20h19z"/><path d="M12 10v5M12 17.5h.01"/></svg>出狀況</h3><div class="body"><ul><li><b>沒顯示直播中</b>設定頁第 5 區貼直播網址那串數字 →「接上直播」</li><li><b>紅卡「私訊沒送到」</b><span class="flow"><span>「複製連結」</span><span>「打開留言」</span><span>貼給客人</span><span>「貼好了」</span></span></li><li><b>「讀不到留言」</b>繼續講，系統會自己重試</li><li><b>連結被其他工具擋下</b>粉專「進階傳訊」關掉「控制對話」→ 設定頁「補發被擋下的私訊」先補 1 則，再「補發全部」；下播 7 天內做完</li><li><b>處理不了</b>截圖到主播內部群問主管</li></ul></div></div></div>
+</details>
+  </main>
+  <dialog id="player" aria-labelledby="pt">
+    <div class="phead"><p id="pt"></p><button type="button" id="px" aria-label="關閉影片">關閉</button></div>
+    <div class="pframe"><iframe id="pf" title="影片播放" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+    <p class="pfoot">播不出來？<a id="po" target="_blank" rel="noopener">改用新分頁開啟</a>，或 LINE 找助理開權限。</p>
+  </dialog>
   <footer><span>泰熙爾札娜・17 年寶石批發／珠寶製作與切磨</span><span>教材僅供代理培訓使用</span></footer>
 </div>
+<script>
+(function(){var ch=[].slice.call(document.querySelectorAll('.ch')),b=document.getElementById('all');
+function label(){b.textContent=ch.every(function(d){return d.open})?'全部收合':'全部展開'}
+b.onclick=function(){var o=!ch.every(function(d){return d.open});ch.forEach(function(d){d.open=o});label()};
+ch.forEach(function(d){d.addEventListener('toggle',label)});
+function go(){var t=document.getElementById(location.hash.slice(1));if(t&&t.tagName==='DETAILS'){t.open=true;t.scrollIntoView()}}
+window.addEventListener('hashchange',go);go();
+var dlg=document.getElementById('player'),pf=document.getElementById('pf'),pt=document.getElementById('pt'),po=document.getElementById('po');
+if(dlg.showModal){document.addEventListener('click',function(e){var l=e.target.closest&&e.target.closest('a[data-v]');if(!l||e.metaKey||e.ctrlKey||e.shiftKey)return;e.preventDefault();
+pt.textContent=l.textContent.replace(/^影片：/,'');po.href=l.href;pf.src='https://drive.google.com/file/d/'+l.dataset.v+'/preview';dlg.showModal()});
+document.getElementById('px').onclick=function(){dlg.close()};
+dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
+dlg.addEventListener('close',function(){pf.src='about:blank'})}
+window.addEventListener('beforeprint',function(){ch.forEach(function(d){d.open=true})});label()})();
+</script>
 </body>
 </html>
